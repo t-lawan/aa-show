@@ -3,9 +3,9 @@ import Layout from "../Components/Layout/Layout";
 import styled from "styled-components";
 import { Colours, size } from "../Components/Global/global.styles";
 import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
+import TestEnvironment from "../Components/Environment/TestEnvironment";
 
-const HomeWrapper = styled.div``;
+const TestWrapper = styled.div``;
 
 export const Title = styled.p`
   text-align: center;
@@ -27,18 +27,18 @@ export const TwoColumnGrid = styled.div`
 `;
 
 
-const Home = () => {
+const Test = () => {
   let location = useLocation();
   const homeWrapper = useRef(null);
 
 
   return (
     <Layout>
-      <HomeWrapper ref={homeWrapper}>
-        <Link to={'/test'}> Test </Link>
-      </HomeWrapper>
+      <TestWrapper ref={homeWrapper}>
+        <TestEnvironment />
+      </TestWrapper>
     </Layout>
   );
 };
 
-export default Home;
+export default Test;
