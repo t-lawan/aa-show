@@ -3,6 +3,8 @@ import styled from "styled-components";
 import THREE from 'three'
 
 const LocationTestWrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
 `;
 const LocationTest = () => {
 
