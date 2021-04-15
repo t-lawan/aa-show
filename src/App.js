@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { reducer } from './Store/reducer';
 import Home from './Pages/Home';
 import Test from './Pages/Test';
+import AR from './Pages/AR';
 
 const store = createStore(
   reducer,
@@ -18,6 +19,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/test" exact component={Test} />
+          <Route path="/ar" exact component={AR} />
         </Switch>
       </Router>
     </Provider>

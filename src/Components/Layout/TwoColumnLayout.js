@@ -1,6 +1,4 @@
 import * as React from "react";
-import { TwoColumnSection } from "../Global/global.styles";
-import SideNavbar from "../SideNavbar/SideNavbar";
 import Layout, { Main } from "./Layout";
 import styled from 'styled-components'
 
@@ -24,7 +22,7 @@ const TwoColumnLayout = props => {
     <Layout title={props.title} description={props.description}>
       <TwoColumnLayoutWrapper>
         <SideNavbarWrapper>
-          <SideNavbar />
+          <p> Sidebar</p>
         </SideNavbarWrapper>
         <TwoColumnMain>{props.children}</TwoColumnMain>
       </TwoColumnLayoutWrapper>

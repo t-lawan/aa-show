@@ -5,7 +5,14 @@ import { Colours, size } from "../Components/Global/global.styles";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-const HomeWrapper = styled.div``;
+const HomeWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+`;
 
 export const Title = styled.p`
   text-align: center;
@@ -36,6 +43,7 @@ const Home = () => {
     <Layout>
       <HomeWrapper ref={homeWrapper}>
         <Link to={'/test'}> Test </Link>
+        <Link to={'/ar'}> AR </Link>
       </HomeWrapper>
     </Layout>
   );
