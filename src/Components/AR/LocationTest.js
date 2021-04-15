@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import THREE from 'three'
-
+import Scene from '../../Assets/Models/scene.gltf'
 const LocationTestWrapper = styled.div`
   width: 100vw;
   height: 100vh;
@@ -35,7 +35,8 @@ const LocationTest = () => {
         <a-entity
           position="0 0 0"
           scale="0.05 0.05 0.05"
-          gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf"
+          // gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf"
+          gltf-model={Scene}
         ></a-entity>
       </a-marker>
       <a-entity camera></a-entity>
