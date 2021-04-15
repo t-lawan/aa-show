@@ -3,7 +3,7 @@ import Layout from "../Components/Layout/Layout";
 import styled from "styled-components";
 import { Colours, size } from "../Components/Global/global.styles";
 import { useLocation } from "react-router-dom";
-import AREnvironment from "../Components/Environment/AREnvironment";
+import LocationTest from "../Components/AR/LocationTest";
 
 const TestWrapper = styled.div``;
 
@@ -15,7 +15,7 @@ const AR = () => {
   return (
     <Layout>
       <TestWrapper ref={homeWrapper}>
-        <AREnvironment />
+        <LocationTest />
       </TestWrapper>
     </Layout>
   );
