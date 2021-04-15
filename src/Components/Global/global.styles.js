@@ -54,7 +54,7 @@ html, body {
   margin: 0;
   font-family:'NHaasGroteskDSPro';
   cursor: crosshair;
-  background: ${Colours.grey};
+  ${'' /* background: ${Colours.grey}; */}
   width: 100%;
   -webkit-font-smoothing: antialiased;
 }
