@@ -19,7 +19,7 @@ const LocationTest = () => {
           value="This content will always face you."
           look-at="[gps-camera]"
           scale="120 120 120"
-          gps-entity-place="latitude: 51.48327653033164; longitude: -0.027001553437656145;"
+          gps-entity-place="latitude: 51.48321062438039; longitude: -0.027118933579088286;"
         ></a-text>
         <a-camera gps-camera rotation-reader>
           {" "}
