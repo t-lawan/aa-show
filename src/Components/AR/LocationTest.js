@@ -13,7 +13,7 @@ const LocationTest = () => {
       <a-scene
         vr-mode-ui="enabled: false"
         embedded
-        arjs="sourceType: webcam; debugUIEnabled: false;"
+        arjs="sourceType: webcam; videoTexture: true;debugUIEnabled: false;"
       >
         <a-text
           value="This content will always face you."
