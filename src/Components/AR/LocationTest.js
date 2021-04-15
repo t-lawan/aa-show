@@ -7,9 +7,11 @@ const LocationTestWrapper = styled.div`
   height: 100vh;
 `;
 const LocationTest = () => {
-
+  let show = false;
   return (
     <LocationTestWrapper>
+
+    {show ? (
       <a-scene
         vr-mode-ui="enabled: false"
         embedded
@@ -27,7 +29,8 @@ const LocationTest = () => {
           {" "}
         </a-camera>
       </a-scene>
-      {/* <a-scene embedded arjs>
+    ) : (
+      <a-scene embedded arjs>
       <a-marker preset="hiro">
         <a-entity
           position="0 0 0"
@@ -36,8 +39,11 @@ const LocationTest = () => {
         ></a-entity>
       </a-marker>
       <a-entity camera></a-entity>
-    </a-scene> */}
+    </a-scene>
+    
+    )}
     </LocationTestWrapper>
+
   );
 };
 export default LocationTest;
