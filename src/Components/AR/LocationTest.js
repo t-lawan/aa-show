@@ -10,7 +10,7 @@ const LocationTest = () => {
 
   return (
     <LocationTestWrapper>
-      {/* <a-scene
+      <a-scene
         vr-mode-ui="enabled: false"
         embedded
         arjs="sourceType: webcam; debugUIEnabled: false;"
@@ -24,8 +24,8 @@ const LocationTest = () => {
         <a-camera gps-camera rotation-reader>
           {" "}
         </a-camera>
-      </a-scene> */}
-      <a-scene embedded arjs>
+      </a-scene>
+      {/* <a-scene embedded arjs>
       <a-marker preset="hiro">
         <a-entity
           position="0 0 0"
@@ -34,7 +34,7 @@ const LocationTest = () => {
         ></a-entity>
       </a-marker>
       <a-entity camera></a-entity>
-    </a-scene>
+    </a-scene> */}
     </LocationTestWrapper>
   );
 };
