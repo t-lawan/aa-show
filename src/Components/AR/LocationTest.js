@@ -24,7 +24,7 @@ const LocationTest = () => {
           scale="120 120 120"
           gps-entity-place='latitude: 51.0597; longitude: -0.7171'
         ></a-text>
-        <a-box material="color: yellow" scale="4" gps-entity-place="latitude: 51.483351; longitude: -0.026902;" position="0 1 0"/>
+        <a-box material="color: yellow" scale="100 100 100" gps-entity-place='latitude: 51.0597; longitude: -0.7171' position="0 1 0"/>
 
       </a-scene>
     ) : (
