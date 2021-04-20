@@ -7,7 +7,7 @@ const LocationTestWrapper = styled.div`
   height: 100vh;
 `;
 const LocationTest = () => {
-  let show = false;
+  let show = true;
   return (
     <LocationTestWrapper>
 
@@ -21,9 +21,9 @@ const LocationTest = () => {
           value="This content will always face you."
           look-at="[gps-camera]"
           scale="120 120 120"
-          gps-entity-place="latitude: 51.48319955619615; longitude: -0.027080548020672113;"
+          gps-entity-place="latitude: 51.483277; longitude: -0.027015;"
         ></a-text>
-        <a-box material="color: yellow" gps-entity-place="latitude: 51.48319955619615; longitude: -0.027080548020672113"/>
+        <a-box material="color: yellow" gps-entity-place="latitude: 51.483351; longitude: -0.026902"/>
         <a-camera gps-camera rotation-reader>
         {/* 51.48319955619615, -0.027080548020672113 */}
           {" "}
