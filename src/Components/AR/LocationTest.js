@@ -17,16 +17,15 @@ const LocationTest = () => {
         embedded
         arjs="sourceType: webcam; videoTexture: true;debugUIEnabled: false;"
       >
+        <a-camera near="0.1" far="50000" fov="80" gps-camera='simulateLatitude: 51.049; simulateLongitude: -0.723' rotation-reader ></a-camera>
         <a-text
           value="This content will always face you."
           look-at="[gps-camera]"
           scale="120 120 120"
-          gps-entity-place="latitude: 51.4833115; longitude:-0.026902;"
+          gps-entity-place='latitude: 51.0597; longitude: -0.7171'
         ></a-text>
         <a-box material="color: yellow" scale="4" gps-entity-place="latitude: 51.483351; longitude: -0.026902;" position="0 1 0"/>
-        <a-camera gps-camera="simulateLatitude:51.483351; simulateLongitude=-0.026902" rotation-reader >
 
-        </a-camera>
       </a-scene>
     ) : (
       <a-scene embedded arjs>
