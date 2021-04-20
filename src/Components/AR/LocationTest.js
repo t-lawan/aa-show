@@ -17,7 +17,7 @@ const LocationTest = () => {
         embedded
         arjs="sourceType: webcam; videoTexture: false;debugUIEnabled: false;"
       >
-        <a-camera near="0.1" far="50000" fov="80" gps-camera='simulateLatitude: 51.049; simulateLongitude: -0.723' rotation-reader ></a-camera>
+        <a-camera gps-camera='simulateLatitude: 51.049; simulateLongitude: -0.723' rotation-reader ></a-camera>
         <a-text
           value="This content will always face you."
           look-at="[gps-camera]"
