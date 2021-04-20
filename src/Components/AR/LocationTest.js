@@ -21,7 +21,7 @@ const LocationTest = () => {
           value="This content will always face you."
           look-at="[gps-camera]"
           scale="120 120 120"
-          gps-entity-place="latitude: 51.4833115; longitude: -0.0270072;"
+          gps-entity-place="latitude: 51.483351; longitude: -0.026902;"
         ></a-text>
         <a-box material="color: yellow" scale="50 50 50" gps-entity-place="latitude: 51.483351; longitude: -0.026902;" position="0 1 0"/>
         <a-camera gps-camera rotation-reader alert="true" simulateLatitude="51.483351" simulateLongitude="-0.026902">
