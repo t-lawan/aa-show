@@ -24,7 +24,7 @@ const LocationTest = () => {
           gps-entity-place="latitude: 51.4833115; longitude:-0.026902;"
         ></a-text>
         <a-box material="color: yellow" scale="4" gps-entity-place="latitude: 51.483351; longitude: -0.026902;" position="0 1 0"/>
-        <a-camera gps-camera="simulateLatitude:51.483351; simulateLongitude=-0.026902" rotation-reader alert="true" >
+        <a-camera gps-camera="simulateLatitude:51.483351; simulateLongitude=-0.026902" rotation-reader >
 
         </a-camera>
       </a-scene>
