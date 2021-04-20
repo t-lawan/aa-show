@@ -15,7 +15,7 @@ const LocationTest = () => {
       <a-scene
         vr-mode-ui="enabled: false"
         embedded
-        arjs="sourceType: webcam; videoTexture: true;debugUIEnabled: false;"
+        arjs="sourceType: webcam; videoTexture: false;debugUIEnabled: false;"
       >
         <a-camera near="0.1" far="50000" fov="80" gps-camera='simulateLatitude: 51.049; simulateLongitude: -0.723' rotation-reader ></a-camera>
         <a-text
