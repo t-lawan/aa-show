@@ -6,6 +6,7 @@ import { reducer } from './Store/reducer';
 import Home from './Pages/Home';
 import Test from './Pages/Test';
 import AR from './Pages/AR';
+import Real from './Pages/Real';
 
 const store = createStore(
   reducer,
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/test" exact component={Test} />
           <Route path="/ar" exact component={AR} />
+          <Route path="/real" exact component={Real} />
         </Switch>
       </Router>
     </Provider>
