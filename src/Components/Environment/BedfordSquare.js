@@ -99,8 +99,8 @@ class BedfordSquare extends Component {
   // https://threejs.org/docs/#api/en/geometries/BoxGeometry
 
   addGrid = () => {
-    const size = 50;
-    const divisions = 50;
+    const size = 100;
+    const divisions = 100;
 
     const gridHelper = new THREE.GridHelper(size, divisions);
 
@@ -184,7 +184,6 @@ class BedfordSquare extends Component {
         obj.material.color.r = 0;
         obj.material.color.g = 255;
         obj.material.color.b = 0;
-        console.log('OBJECT', obj);
     }
     // let boundingBoxes = this.clickableObjects.map(object => {
     //     return object.objectBoundary;
