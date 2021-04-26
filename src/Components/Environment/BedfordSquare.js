@@ -3,6 +3,9 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { Colours } from "../Global/global.styles";
 import RequestManager from "../../Utility/Managers/RequestManager";
+import { GLTFLoader } from "../../Utility/Loaders/GLTFLoader.js";
+import Bucket from '../../Assets/Models/Bucket/scene.gltf'
+import Bear from '../../Assets/Models/Bear.glb'
 const style = {
   height: "100vh" // we can control scene size by setting container dimensions
 };
@@ -14,12 +17,13 @@ class BedfordSquare extends Component {
     this.addGrid();
     await this.initLoadingObjects();
     console.log('ADD', this.clickableObjects.length)
-    this.addEventListener()
+    this.setupLoadingManager();
+    this.addEventListener();
     this.startAnimationLoop();
   }
 
   componentWillUnmount() {
-      this.removeEventListener()
+    this.removeEventListener()
     window.cancelAnimationFrame(this.requestID);
     this.controls.dispose();
   }
@@ -35,9 +39,9 @@ class BedfordSquare extends Component {
 
   initLoadingObjects = async () => {
       let projects = await RequestManager.getProjects();
-      console.log('PROJECTS', projects)
       projects.forEach((project) => {
         this.addCube(project);
+        this.addObject(project, Bear);
       })
   }
 
@@ -73,10 +77,11 @@ class BedfordSquare extends Component {
   };
 
   setupLoadingManager = () => {
-    this.manager = new THREE.LoadingManager(
-      this.hasLoaded,
-      this.loadProgressing
-    );
+    this.manager = new THREE.LoadingManager();
+    this.manager.onStart = this.loadStart;
+    this.manager.onProgress = this.loadProgressing;
+    this.manager.onLoad = this.loadFinished;
+    this.manager.onError = this.loadError;
   };
 
   setupMouse = () => {
@@ -87,6 +92,21 @@ class BedfordSquare extends Component {
     this.mouse.x = (event.clientX / this.mount.clientWidth) * 2 - 1;
     this.mouse.y = -(event.clientY / this.mount.clientHeight) * 2 + 1;
   };
+
+  loadStart = (url, itemsLoaded, itemsTotal) => {
+  };
+
+  loadProgressing = (url, itemsLoaded, itemsTotal) => {
+  };
+
+  loadFinished = () => {
+    console.log('FINISHED')
+  };
+
+  loadError = (url) => {
+    console.log('ERROR', url)
+
+  }
 
   hasLoaded = () => {
  
@@ -136,9 +156,27 @@ class BedfordSquare extends Component {
     lights[ 1 ].position.set( 100, 200, 100 );
     lights[ 2 ].position.set( - 100, - 200, - 100 );
 
-    this.scene.add( lights[ 0 ] );
+    // this.scene.add( lights[ 0 ] );
     this.scene.add( lights[ 1 ] );
-    this.scene.add( lights[ 2 ] );
+    // this.scene.add( lights[ 2 ] );
+  }
+
+  addObject = (project, object = Bear) => {
+    const loader = new GLTFLoader(this.manager);
+    let mesh = new THREE.Object3D();
+    const coordinate = project.coordinate;
+
+
+    loader.load(object, gltf => {
+        mesh = gltf.scene;
+        mesh.userData.project = project;
+        mesh.position.x = coordinate.x;
+        mesh.position.y = coordinate.y;
+        mesh.position.z = coordinate.z;
+        this.scene.add(mesh);
+        this.clickableObjects.push(mesh);
+
+    })
   }
 
   startAnimationLoop = () => {
@@ -153,12 +191,14 @@ class BedfordSquare extends Component {
   addEventListener = () => {
     window.addEventListener("resize", this.onWindowResize);
     document.addEventListener("mousemove", this.onDocumentMouseMove, false);
+    document.addEventListener("dblclick", this.onDoubleClick, false);
 
   }
 
   removeEventListener = () => {
     window.removeEventListener("resize", this.onWindowResize);
     document.removeEventListener("mousemove", this.onDocumentMouseMove);
+    document.removeEventListener("dblclick", this.onDoubleClick);
 
   }
 
@@ -190,6 +230,16 @@ class BedfordSquare extends Component {
     // })
 
   }
+
+  onDoubleClick = event => {
+      this.setMouse(event);
+      this.raycaster.setFromCamera(this.mouse, this.camera);
+      this.intersects = this.raycaster.intersectObjects(this.clickableObjects, true);
+      if (this.intersects.length > 0) {
+        let mesh = this.intersects[0];
+      }
+      
+  };
 
   render() {
     return <div style={style} ref={ref => (this.mount = ref)} />;
