@@ -42,7 +42,7 @@ const Home = () => {
   return (
     <Layout>
       <HomeWrapper ref={homeWrapper}>
-        <Link to={'/test'}> Test </Link>
+        <Link to={'/location'}> My house </Link>
         <Link to={'/ar'}> AR </Link>
         <Link to={'/real'}> Real </Link>
       </HomeWrapper>
