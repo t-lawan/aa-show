@@ -16,15 +16,23 @@ const HomeARWrapper = styled.div`
   }
 `;
 
-const ARButton = styled.p`
-  color: green;
+const ActivateARButton = styled.p`
+  color: white;
   background: red;
   border-radius: 4px;
   border: none;
   position: absolute;
-  top: 1vw;
+  bottom: 1vw;
   right: 1vw;
+  padding: 1vw;
 `
+
+const ExitARButton = styled(ActivateARButton)`
+  right: auto;
+  left: 1vw;
+`
+
+
 
 const HomeAR = () => {
   return (
@@ -40,10 +48,14 @@ const HomeAR = () => {
       >
         <ARButton
           slot="ar-button"
-        //   style="background-color: white; border-radius: 4px; border: none; position: absolute; top: 16px; right: 16px; "
         >
           Activate AR
         </ARButton>
+        <ExitARButton
+          slot="exit-webxr-ar-button"        
+        >
+          Exit AR
+        </ExitARButton>
       </model-viewer>
     </HomeARWrapper>
   );
