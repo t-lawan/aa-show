@@ -42,7 +42,7 @@ const HomeAR = () => {
           slot="ar-button"
         //   style="background-color: white; border-radius: 4px; border: none; position: absolute; top: 16px; right: 16px; "
         >
-          👋 Activate AR
+          Activate AR
         </ARButton>
       </model-viewer>
     </HomeARWrapper>
