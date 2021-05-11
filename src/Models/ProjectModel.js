@@ -3,10 +3,15 @@ export default class ProjectModel {
     title;
     author;
     coordinate;
-    constructor(id, title, author, coordinate) {
+    glbUrl;
+    usdzUrl;
+    constructor(id, title, author, coordinate, glbUrl,usdzUrl) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.coordinate = coordinate;
+        this.glbUrl = glbUrl;
+        this.usdzUrl = usdzUrl
+        
     }
 }

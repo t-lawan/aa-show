@@ -55,7 +55,7 @@ class BedfordSquare extends Component {
       let projects = await RequestManager.getProjects();
       projects.forEach((project) => {
         // this.addCube(project);
-        this.addObject(project, Astronaut);
+        this.addObject(project, project.glbUrl);
       })
   }
 
