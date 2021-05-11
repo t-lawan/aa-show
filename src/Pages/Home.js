@@ -44,7 +44,8 @@ const Home = () => {
       <HomeWrapper ref={homeWrapper}>
         <Link to={'/location'}> My house </Link>
         <Link to={'/ar'}> AR </Link>
-        <Link to={'/real'}> Real </Link>
+        <Link to={'/real'}> 3D Space </Link>
+        <Link to={'/model-viewer'}> Model viewer </Link>
       </HomeWrapper>
     </Layout>
   );

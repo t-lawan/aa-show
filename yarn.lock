@@ -1258,6 +1258,11 @@
     "minimatch" "^3.0.4"
     "strip-json-comments" "^3.1.1"
 
+"@google/model-viewer@^1.6.0":
+  "integrity" "sha512-RykcEQgeHByLiv/JR8JqOJDxbtk+VMsIIbpPDjyqhUG5eL+UliG5eBiupbpUbrUi/Wp7K3z3XsIVDmz/fDrmLg=="
+  "resolved" "https://registry.npmjs.org/@google/model-viewer/-/model-viewer-1.6.0.tgz"
+  "version" "1.6.0"
+
 "@hapi/address@2.x.x":
   "integrity" "sha512-QD1PhQk+s31P1ixsX0H0Suoupp3VMXzIVMSwobR3F3MSUO2YCV0B7xqLcUw/Bh8yuvd3LhpyqLQWTNcRmp6IdQ=="
   "resolved" "https://registry.yarnpkg.com/@hapi/address/-/address-2.1.4.tgz"
