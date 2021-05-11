@@ -46,11 +46,11 @@ const HomeAR = () => {
         alt="Bear"
         ar-placement="floor"
       >
-        <ARButton
+        <ActivateARButton
           slot="ar-button"
         >
           Activate AR
-        </ARButton>
+        </ActivateARButton>
         <ExitARButton
           slot="exit-webxr-ar-button"        
         >
