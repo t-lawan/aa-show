@@ -13,8 +13,8 @@ const HomeARWrapper = styled.div`
 const HomeAR = () => {
     return (
         <HomeARWrapper>
-            <p> Hi</p>
-            <model-viewer src={Bear} ar ar-modes="webxr scene-viewer quick-look" camera-controls alt="A 3D model of an astronaut" ar-placement="floor" />
+            {/* <model-viewer src={Bear} ar ar-modes="webxr scene-viewer quick-look" camera-controls alt="Bear" ar-placement="floor" /> */}
+            <model-viewer src={Bear} ar ar-modes="webxr" camera-controls alt="Bear" ar-placement="floor" />
         </HomeARWrapper>
     )
 }
