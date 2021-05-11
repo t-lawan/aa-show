@@ -15,7 +15,12 @@ export const size = {
   desktopM: "1900px",
   desktop: "2260px"
 };
-
+export const ZLayer = {
+  LOADING_PAGE: 100,
+  THREE_JS: 50,
+  MODEL_VIEWER: 50,
+  MODEL_VIEWER_LINKS: 100
+}
 export const Colours = {
   purple: "#a841f4",
   yellow: "#E4EE3F",

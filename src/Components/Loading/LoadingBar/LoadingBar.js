@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { Colours } from "../../Global/global.styles";
+import { Colours, ZLayer } from "../../Global/global.styles";
 
 const LoadingBarWrapper = styled.div`
   /* display: ${props => (props.show ? "flex" : "none")}; */
@@ -8,7 +8,7 @@ const LoadingBarWrapper = styled.div`
   display: flex;
   justify-content: center; 
   align-items: center;
-  z-index: 100;
+  z-index: ${ZLayer.LOADING_PAGE};
   width: 100%;
   height: 0.3rem;
   /* border: 1px solid ${Colours.dark_grey}; */

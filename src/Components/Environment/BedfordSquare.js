@@ -1,22 +1,34 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { Colours } from "../Global/global.styles";
 import RequestManager from "../../Utility/Managers/RequestManager";
 import { GLTFLoader } from "../../Utility/Loaders/GLTFLoader.js";
-import Bucket from '../../Assets/Models/Bucket/scene.gltf'
-import Bear from '../../Assets/Models/Bear.glb'
-const style = {
-  height: "100vh" // we can control scene size by setting container dimensions
-};
+import Astronaut from '../../Assets/Models/Astronaut.glb'
+import LoadingPage from "../Loading/LoadingPage/LoadingPage";
+
+const BedfordSquareWrapper = styled.div`
+  height: 100vh;
+  display: ${props => (props.show ? "block" : "none")};
+
+`
+
 
 class BedfordSquare extends Component {
     clickableObjects = [];
+    constructor(props){
+      super(props)
+      this.state = {
+        hasLoaded: false,
+        itemsLoaded: 0,
+        itemsTotal: 0
+      }
+    }
   async componentDidMount() {
     this.init();
     this.addGrid();
     await this.initLoadingObjects();
-    console.log('ADD', this.clickableObjects.length)
     this.setupLoadingManager();
     this.addEventListener();
     this.startAnimationLoop();
@@ -32,6 +44,8 @@ class BedfordSquare extends Component {
     this.setupScene();
     this.setupCamera();
     this.setupControls();
+    this.setupLoadingManager();
+    this.addLights();
     this.setupMouse();
     this.setupRayCaster();
     this.setupRenderer();
@@ -40,8 +54,8 @@ class BedfordSquare extends Component {
   initLoadingObjects = async () => {
       let projects = await RequestManager.getProjects();
       projects.forEach((project) => {
-        this.addCube(project);
-        this.addObject(project, Bear);
+        // this.addCube(project);
+        this.addObject(project, Astronaut);
       })
   }
 
@@ -94,13 +108,29 @@ class BedfordSquare extends Component {
   };
 
   loadStart = (url, itemsLoaded, itemsTotal) => {
+    console.log('START')
+    this.setState({
+      itemsLoaded: itemsLoaded,
+      itemsTotal: itemsTotal
+    })
   };
 
   loadProgressing = (url, itemsLoaded, itemsTotal) => {
+    console.log('itemsLoaded', itemsLoaded)
+    console.log('itemsTotal', itemsTotal)
+
+    this.setState({
+      itemsLoaded: itemsLoaded,
+      itemsTotal: itemsTotal
+    })
   };
 
   loadFinished = () => {
     console.log('FINISHED')
+    this.setState({
+      hasLoaded: true
+    })
+    this.onWindowResize()
   };
 
   loadError = (url) => {
@@ -129,6 +159,21 @@ class BedfordSquare extends Component {
     this.scene.add(gridHelper);
   };
 
+  addLights = () => {
+    const lights = [];
+    lights[ 0 ] = new THREE.PointLight( 0xffffff, 1, 0 );
+    lights[ 1 ] = new THREE.PointLight( 0xffffff, 1, 0 );
+    lights[ 2 ] = new THREE.PointLight( 0xffffff, 1, 0 );
+
+    lights[ 0 ].position.set( 0, 200, 0 );
+    lights[ 1 ].position.set( 100, 200, 100 );
+    lights[ 2 ].position.set( - 100, - 200, - 100 );
+
+    this.scene.add( lights[ 0 ] );
+    this.scene.add( lights[ 1 ] );
+    this.scene.add( lights[ 2 ] );
+  }
+
   addCube = (project) => {
     const coordinate = project.coordinate;
     const geometry = new THREE.BoxGeometry(1, 1, 1);
@@ -145,33 +190,19 @@ class BedfordSquare extends Component {
     this.cube.userData.isClickable = true;
     this.cube.userData.project = project;
     this.clickableObjects.push(this.cube);
-
-
-    const lights = [];
-    lights[ 0 ] = new THREE.PointLight( 0xffffff, 1, 0 );
-    lights[ 1 ] = new THREE.PointLight( 0xffffff, 1, 0 );
-    lights[ 2 ] = new THREE.PointLight( 0xffffff, 1, 0 );
-
-    lights[ 0 ].position.set( 0, 200, 0 );
-    lights[ 1 ].position.set( 100, 200, 100 );
-    lights[ 2 ].position.set( - 100, - 200, - 100 );
-
-    // this.scene.add( lights[ 0 ] );
-    this.scene.add( lights[ 1 ] );
-    // this.scene.add( lights[ 2 ] );
   }
 
-  addObject = (project, object = Bear) => {
+  addObject = (project, object = Astronaut) => {
     const loader = new GLTFLoader(this.manager);
     let mesh = new THREE.Object3D();
     const coordinate = project.coordinate;
-
 
     loader.load(object, gltf => {
         mesh = gltf.scene;
         mesh.userData.project = project;
         mesh.position.x = coordinate.x;
         mesh.position.y = coordinate.y;
+        // mesh.position.y = 0;
         mesh.position.z = coordinate.z;
         this.scene.add(mesh);
         this.clickableObjects.push(mesh);
@@ -215,16 +246,16 @@ class BedfordSquare extends Component {
   };
 
   onDocumentMouseMove = (event) => {
-    event.preventDefault();
-    this.setMouse(event);
-    this.raycaster.setFromCamera(this.mouse, this.camera);
-    this.intersects = this.raycaster.intersectObjects(this.clickableObjects, true);
-    if(this.intersects.length > 0) {
-        let obj = this.intersects[0].object;
-        obj.material.color.r = 0;
-        obj.material.color.g = 255;
-        obj.material.color.b = 0;
-    }
+    // event.preventDefault();
+    // this.setMouse(event);
+    // this.raycaster.setFromCamera(this.mouse, this.camera);
+    // this.intersects = this.raycaster.intersectObjects(this.clickableObjects, true);
+    // if(this.intersects.length > 0) {
+    //     let obj = this.intersects[0].object;
+    //     obj.material.color.r = 0;
+    //     obj.material.color.g = 255;
+    //     obj.material.color.b = 0;
+    // }
     // let boundingBoxes = this.clickableObjects.map(object => {
     //     return object.objectBoundary;
     // })
@@ -232,17 +263,27 @@ class BedfordSquare extends Component {
   }
 
   onDoubleClick = event => {
+      event.preventDefault();
       this.setMouse(event);
       this.raycaster.setFromCamera(this.mouse, this.camera);
       this.intersects = this.raycaster.intersectObjects(this.clickableObjects, true);
       if (this.intersects.length > 0) {
         let mesh = this.intersects[0];
+        let obj = this.intersects[0].object;
+        obj.material.color.r = 0;
+        obj.material.color.g = 255;
+        obj.material.color.b = 0;
       }
       
   };
 
   render() {
-    return <div style={style} ref={ref => (this.mount = ref)} />;
+    return (
+      <>
+          <BedfordSquareWrapper show={this.state.hasLoaded} ref={ref => (this.mount = ref)} />
+          <LoadingPage show={!this.state.hasLoaded} loaded={this.state.itemsLoaded} total={this.state.itemsTotal} />
+      </>
+    );
   }
 }
 
