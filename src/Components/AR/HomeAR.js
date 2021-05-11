@@ -16,6 +16,16 @@ const HomeARWrapper = styled.div`
   }
 `;
 
+const ARButton = styled.p`
+  color: green;
+  background: red;
+  border-radius: 4px;
+  border: none;
+  position: absolute;
+  top: 1vw;
+  right: 1vw;
+`
+
 const HomeAR = () => {
   return (
     <HomeARWrapper>
@@ -28,12 +38,12 @@ const HomeAR = () => {
         alt="Bear"
         ar-placement="floor"
       >
-        <button
+        <ARButton
           slot="ar-button"
         //   style="background-color: white; border-radius: 4px; border: none; position: absolute; top: 16px; right: 16px; "
         >
           👋 Activate AR
-        </button>
+        </ARButton>
       </model-viewer>
     </HomeARWrapper>
   );
