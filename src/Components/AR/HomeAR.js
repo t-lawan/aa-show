@@ -8,6 +8,11 @@ import '@google/model-viewer'
 const HomeARWrapper = styled.div`
   width: 100vw;
   height: 100vh;
+
+  model-viewer {
+      width: 100%;
+      height: 100%;
+  }
 `;
 
 const HomeAR = () => {
