@@ -45,6 +45,7 @@ const HomeAR = () => {
         camera-controls
         alt="Bear"
         ar-placement="floor"
+        
       >
         <ActivateARButton
           slot="ar-button"
