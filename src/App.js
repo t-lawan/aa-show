@@ -26,6 +26,7 @@ function App() {
           <Route path="/bedford-square" exact component={Real} />
           <Route path="/ar-at-home" exact component={ModelViewerExample} />
           <Route path="/location" exact component={Location} />
+          <Route component={Home} />
         </Switch>
       </Router>
     </Provider>
