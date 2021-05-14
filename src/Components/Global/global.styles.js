@@ -29,7 +29,8 @@ export const Colours = {
   green: "hsl(115, 100%, 42%)",
   environment_background: "#BABAB8",
   snot_green: '#deeac5',
-  background: '#d4d0d8'
+  background: '#d4d0d8',
+  light_black: 'rbga(0,0,0,0.1)'
 };
 
 export const GlobalStyle = createGlobalStyle`

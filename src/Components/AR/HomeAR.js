@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Bear from "../../Assets/Models/Bear.glb";
+import { connect } from "react-redux";
 import AstronautGLB from "../../Assets/Models/Astronaut.glb";
 import AstronautUSDZ from "../../Assets/Models/Astronaut.usdz";
 import "@google/model-viewer";
@@ -48,17 +48,19 @@ const ARLink = styled(Link)`
 
 
 
-const HomeAR = () => {
+const HomeAR = (props) => {
+  let project = props.selected_ar_project;
+  console.log('PROJECT', project)
   return (
     <HomeARWrapper>
-      <ARLink to={'/'}> Home </ARLink>
+      <ARLink to={'/bedford-square'}> Back To Bedford Square </ARLink>
       {/* <model-viewer src={Bear} ar ar-modes="webxr scene-viewer quick-look" camera-controls alt="Bear" ar-placement="floor" /> */}
       <model-viewer
-        src={AstronautGLB}
-        ios-src={AstronautUSDZ}
+        src={project ? project.glbUrl: AstronautGLB}
+        ios-src={project ? project.usdzUrl: AstronautUSDZ}
         ar
         camera-controls
-        alt="Bear"
+        alt="Astronaut"
         ar-placement="floor"
       >
         <ActivateARButton
@@ -71,4 +73,16 @@ const HomeAR = () => {
   );
 };
 
-export default HomeAR;
+// export default HomeAR;
+const mapStateToProps = state => {
+  return {
+    selected_ar_project: state.selected_ar_project,
+  };
+};
+
+
+
+export default connect(
+  mapStateToProps,
+  null
+)(HomeAR);

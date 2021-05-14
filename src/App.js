@@ -23,8 +23,8 @@ function App() {
           <Route path="/" exact component={Home} />
           {/* <Route path="/test" exact component={Test} /> */}
           <Route path="/ar" exact component={AR} />
-          <Route path="/real" exact component={Real} />
-          <Route path="/model-viewer" exact component={ModelViewerExample} />
+          <Route path="/bedford-square" exact component={Real} />
+          <Route path="/ar-at-home" exact component={ModelViewerExample} />
           <Route path="/location" exact component={Location} />
         </Switch>
       </Router>

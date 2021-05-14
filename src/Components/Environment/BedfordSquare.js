@@ -7,11 +7,23 @@ import RequestManager from "../../Utility/Managers/RequestManager";
 import { GLTFLoader } from "../../Utility/Loaders/GLTFLoader.js";
 import Astronaut from '../../Assets/Models/Astronaut.glb'
 import LoadingPage from "../Loading/LoadingPage/LoadingPage";
+import Overlay from "../Overlay/Overlay";
+import { setSelectedArProject } from "../../Store/action";
+import { connect } from "react-redux";
 
 const BedfordSquareWrapper = styled.div`
   height: 100vh;
   display: ${props => (props.show ? "block" : "none")};
+`
 
+const OverlayWrapper = styled.div`
+  display: ${props => props => props.show ? 'block' : 'none'};
+  position: absolute;
+  bottom: 0;
+  width: 50%;
+  height: 30%;
+  left: 0;
+  background: red;
 `
 
 
@@ -22,7 +34,8 @@ class BedfordSquare extends Component {
       this.state = {
         hasLoaded: false,
         itemsLoaded: 0,
-        itemsTotal: 0
+        itemsTotal: 0,
+        showOverlay: false,
       }
     }
   async componentDidMount() {
@@ -80,7 +93,7 @@ class BedfordSquare extends Component {
 
   setupRenderer = () => {
     this.renderer = new THREE.WebGLRenderer();
-    this.renderer.setClearColor(Colours.yellow);
+    this.renderer.setClearColor(Colours.background);
 
     this.renderer.setSize(this.mount.clientWidth, this.mount.clientHeight);
     this.mount.appendChild(this.renderer.domElement); // mount using React ref
@@ -108,7 +121,6 @@ class BedfordSquare extends Component {
   };
 
   loadStart = (url, itemsLoaded, itemsTotal) => {
-    console.log('START')
     this.setState({
       itemsLoaded: itemsLoaded,
       itemsTotal: itemsTotal
@@ -116,9 +128,6 @@ class BedfordSquare extends Component {
   };
 
   loadProgressing = (url, itemsLoaded, itemsTotal) => {
-    console.log('itemsLoaded', itemsLoaded)
-    console.log('itemsTotal', itemsTotal)
-
     this.setState({
       itemsLoaded: itemsLoaded,
       itemsTotal: itemsTotal
@@ -126,7 +135,6 @@ class BedfordSquare extends Component {
   };
 
   loadFinished = () => {
-    console.log('FINISHED')
     this.setState({
       hasLoaded: true
     })
@@ -199,11 +207,21 @@ class BedfordSquare extends Component {
 
     loader.load(object, gltf => {
         mesh = gltf.scene;
+        console.log('GLTF', gltf)
+        console.log('mesh', mesh)
         mesh.userData.project = project;
         mesh.position.x = coordinate.x;
-        mesh.position.y = coordinate.y;
-        // mesh.position.y = 0;
+        // mesh.position.y = coordinate.y;
+        mesh.position.y = 0;
         mesh.position.z = coordinate.z;
+
+        const lights = [];
+        const light = new THREE.PointLight( 'white', 5, 10 );
+    
+        light.position.set(coordinate.x, coordinate.y, coordinate.z);
+    
+        this.scene.add(light );
+
         this.scene.add(mesh);
         this.clickableObjects.push(mesh);
 
@@ -273,18 +291,49 @@ class BedfordSquare extends Component {
         obj.material.color.r = 0;
         obj.material.color.g = 255;
         obj.material.color.b = 0;
+        let project = obj.parent.parent.userData.project
+        if(project){
+          this.props.setSelectedArProject(project)
+          this.setState({
+            showOverlay: true
+          })
+        }
+
       }
       
   };
+
+  hideOverlay = () => {
+   this.setState({
+     showOverlay: false
+   })
+  }
 
   render() {
     return (
       <>
           <BedfordSquareWrapper show={this.state.hasLoaded} ref={ref => (this.mount = ref)} />
+          <Overlay onClick={() => this.hideOverlay()} show={this.state.showOverlay} />
           <LoadingPage show={!this.state.hasLoaded} loaded={this.state.itemsLoaded} total={this.state.itemsTotal} />
       </>
     );
   }
 }
 
-export default BedfordSquare;
+const mapStateToProps = state => {
+  return {
+    selected_ar_project: state.selected_ar_project,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setSelectedArProject: (project) => dispatch(setSelectedArProject(project)),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BedfordSquare);
+
