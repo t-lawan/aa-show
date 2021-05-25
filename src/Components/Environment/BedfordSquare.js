@@ -150,8 +150,6 @@ class BedfordSquare extends Component {
  
   };
 
-  loadProgressing = (url, itemsLoaded, itemsTotal) => {
-  };
   // Here should come custom code.
   // Code below is taken from Three.js BoxGeometry example
   // https://threejs.org/docs/#api/en/geometries/BoxGeometry
