@@ -6,29 +6,48 @@ const GeolocationWrapper = styled.div`
   width: 100vw;
   height: 100vh;
 `;
+
+const locations = [
+  {
+    lat: "51.4829326",
+    lon: "-0.00267869"
+  },
+  {
+    lat: "51.4828768",
+    lon: "-0.00268593"
+  },
+  {
+    lat: "51.4827793",
+    lon: "-0.00268385"
+  }
+];
 const Geolocation = () => {
   return (
     <GeolocationWrapper>
-        <a-scene
-          vr-mode-ui="enabled: false"
-          embedded
-          arjs="sourceType: webcam; videoTexture: false;debugUIEnabled: false;"
-        >
+      <a-scene
+        vr-mode-ui="enabled: false"
+        embedded
+        arjs="sourceType: webcam; videoTexture: false;debugUIEnabled: false;"
+      >
+        <a-camera locationfinder gps-camera rotation-reader></a-camera>
 
-          <a-camera locationfinder gps-camera rotation-reader ></a-camera>
-          <a-text
-          value="This content will always face you."
-          look-at="[gps-camera]"
-          scale="100 100 100"
-          gps-entity-place='latitude: 51.4832779; longitude: -0.026898199999999997'
-        ></a-text>
-          <a-box
-            material="color: yellow"
-            scale="200 200 200"
-            gps-entity-place="latitude: 51.4832779; longitude: -0.026898199999999997"
-            position="0 1 0"
-          />
-        </a-scene>
+        {locations.map((loc, index) => (
+          <div key={index}>
+            <a-text
+              value="This content will always face you."
+              look-at="[gps-camera]"
+              scale="100 100 100"
+              gps-entity-place={`latitude: ${loc.lat}; longitude: ${loc.lon}`}
+            ></a-text>
+            <a-box
+              material="color: yellow"
+              scale="200 200 200"
+              gps-entity-place={`latitude: ${loc.lat}; longitude: ${loc.lon}`}
+              position="0 1 0"
+            />
+          </div>
+        ))}
+      </a-scene>
     </GeolocationWrapper>
   );
 };
