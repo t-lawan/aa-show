@@ -33,7 +33,7 @@ const Geolocation = () => {
         embedded
         arjs="sourceType: webcam; videoTexture: false;debugUIEnabled: false;"
       >
-        <a-camera locationfinder gps-camera="gpsMinDistance: 1;" rotation-reader></a-camera>
+        <a-camera locationfinder gps-camera="gpsMinDistance: 1;alert:true;" rotation-reader></a-camera>
 
         {locations.map((loc, index) => (
           <div key={index}>
