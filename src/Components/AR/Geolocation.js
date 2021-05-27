@@ -46,7 +46,7 @@ const Geolocation = () => {
             ></a-text>
             <a-box
               material="color: yellow"
-              scale="200 200 200"
+              scale="500 500 500"
               gps-entity-place={`latitude:${loc.lat};longitude:${loc.lon}`}
               // position="0 1 0"
             />
