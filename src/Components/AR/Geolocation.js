@@ -43,7 +43,7 @@ const Geolocation = () => {
               material="color: yellow"
               scale="200 200 200"
               gps-entity-place={`latitude: ${loc.lat}; longitude: ${loc.lon}`}
-              position="0 1 0"
+              // position="0 1 0"
             />
           </div>
         ))}
