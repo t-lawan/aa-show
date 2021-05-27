@@ -13,6 +13,10 @@ const locations = [
     lon: "-0.00267869"
   },
   {
+    lat: "51.4832709",
+    lon: "-0.0268556"
+  },
+  {
     lat: "51.4828768",
     lon: "-0.00268593"
   },
@@ -29,7 +33,7 @@ const Geolocation = () => {
         embedded
         arjs="sourceType: webcam; videoTexture: false;debugUIEnabled: false;"
       >
-        <a-camera locationfinder gps-camera="gpsMinDistance: 1" rotation-reader></a-camera>
+        <a-camera locationfinder gps-camera="gpsMinDistance: 1;" rotation-reader></a-camera>
 
         {locations.map((loc, index) => (
           <div key={index}>
