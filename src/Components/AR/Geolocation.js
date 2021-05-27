@@ -29,7 +29,7 @@ const Geolocation = () => {
         embedded
         arjs="sourceType: webcam; videoTexture: false;debugUIEnabled: false;"
       >
-        <a-camera locationfinder gps-camera rotation-reader></a-camera>
+        <a-camera locationfinder gps-camera="gpsMinDistance: 1" rotation-reader></a-camera>
 
         {locations.map((loc, index) => (
           <div key={index}>
@@ -37,12 +37,13 @@ const Geolocation = () => {
               value="This content will always face you."
               look-at="[gps-camera]"
               scale="100 100 100"
-              gps-entity-place={`latitude: ${loc.lat}; longitude: ${loc.lon}`}
+              align="center"
+              gps-entity-place={`latitude:${loc.lat};longitude:${loc.lon}`}
             ></a-text>
             <a-box
               material="color: yellow"
               scale="200 200 200"
-              gps-entity-place={`latitude: ${loc.lat}; longitude: ${loc.lon}`}
+              gps-entity-place={`latitude:${loc.lat};longitude:${loc.lon}`}
               // position="0 1 0"
             />
           </div>
