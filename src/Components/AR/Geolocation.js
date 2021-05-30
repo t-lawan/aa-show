@@ -9,20 +9,20 @@ const GeolocationWrapper = styled.div`
 
 const locations = [
   {
-    lat: "51.4829326",
-    lon: "-0.00267869"
+    lat: "51.483330",
+    lon: "-0.026910"
   },
   {
-    lat: "51.4832709",
-    lon: "-0.0268556"
+    lat: "51.483134",
+    lon: "-0.026891"
   },
   {
-    lat: "51.4828768",
-    lon: "-0.00268593"
+    lat: "51.483388",
+    lon: "-0.027267"
   },
   {
-    lat: "51.4827793",
-    lon: "-0.00268385"
+    lat: "51.483456",
+    lon: "-0.028074"
   }
 ];
 const Geolocation = () => {
@@ -30,7 +30,7 @@ const Geolocation = () => {
     <GeolocationWrapper>
       <a-scene
         renderer="logarithmicDepthBuffer: true;"
-        // vr-mode-ui="enabled: false"
+        vr-mode-ui="enabled: false"
         embedded
         arjs="sourceType: webcam; debugUIEnabled: false;"
       >
