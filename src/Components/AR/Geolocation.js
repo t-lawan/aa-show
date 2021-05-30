@@ -42,12 +42,12 @@ const Geolocation = () => {
               look-at="[gps-camera]"
               scale="100 100 100"
               align="center"
-              gps-entity-place={`latitude:${loc.lat};longitude:${loc.lon}`}
+              gps-entity-place={`latitude: ${loc.lat}; longitude: ${loc.lon}`}
             ></a-text>
             <a-box
               material="color: red"
-              scale="500 500 500"
-              gps-entity-place={`latitude:${loc.lat};longitude:${loc.lon}`}
+              scale="200 200 200"
+              gps-entity-place={`latitude: ${loc.lat}; longitude: ${loc.lon}`}
               // position="0 1 0"
             />
           </React.Fragment>

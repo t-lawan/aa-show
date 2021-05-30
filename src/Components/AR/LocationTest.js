@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState}  from "react";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import THREE from "three";
@@ -6,11 +6,26 @@ import Bear from "../../Assets/Models/Bear.glb";
 const LocationTestWrapper = styled.div`
   width: 100vw;
   height: 100vh;
+  border: 1vw solid green;
 `;
+
+const OverlayWrapper = styled.div`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  height: 10%;
+  background: red;
+`
 const LocationTest = () => {
   let show = true;
+  const [count, setCount] = useState(0);
+
+  const onClick = () => {
+    setCount(count + 1);
+  }
   return (
-    <LocationTestWrapper>
+    <LocationTestWrapper onClick={onClick} onTouchEnd={onClick}>
       <a-scene
         vr-mode-ui="enabled: false"
         embedded
@@ -45,6 +60,9 @@ const LocationTest = () => {
         ></a-entity> */}
         {/* <a-box material="color: yellow" scale="200 200 200" gps-entity-place='latitude: 51.483271; longitude: -0.027009' position="0 1 0"/> */}
       </a-scene>
+      <OverlayWrapper>
+        <p> {count} strawberries</p>
+      </OverlayWrapper>
     </LocationTestWrapper>
   );
 };
