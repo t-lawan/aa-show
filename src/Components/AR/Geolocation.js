@@ -52,7 +52,8 @@ const Geolocation = () => {
             />
           </React.Fragment>
         ))}
-        <a-camera locationfinder gps-camera="gpsMinDistance: 1;alert:true;" rotation-reader></a-camera>
+        {/* <a-camera locationfinder gps-camera="gpsMinDistance: 1;alert:true;" rotation-reader></a-camera> */}
+        <a-camera locationfinder gps-camera rotation-reader></a-camera>
 
       </a-scene>
     </GeolocationWrapper>
