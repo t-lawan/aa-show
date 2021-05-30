@@ -9,34 +9,34 @@ const GeolocationWrapper = styled.div`
 
 const locations = [
   {
-    lat: "51.483330",
-    lon: "-0.026910"
+    lat: "51.4829326",
+    lon: "-0.00267869"
   },
   {
-    lat: "51.483134",
-    lon: "-0.026891"
+    lat: "51.4832709",
+    lon: "-0.0268556"
   },
   {
-    lat: "51.483388",
-    lon: "-0.027267"
+    lat: "51.4828768",
+    lon: "-0.00268593"
   },
   {
-    lat: "51.483435",
-    lon: "-0.028115"
+    lat: "51.4827793",
+    lon: "-0.00268385"
   }
 ];
 const Geolocation = () => {
   return (
     <GeolocationWrapper>
       <a-scene
-        vr-mode-ui="enabled: false"
+        renderer="logarithmicDepthBuffer: true;"
+        // vr-mode-ui="enabled: false"
         embedded
-        arjs="sourceType: webcam; videoTexture: false;debugUIEnabled: false;"
+        arjs="sourceType: webcam; debugUIEnabled: false;"
       >
-        <a-camera locationfinder gps-camera="gpsMinDistance: 1;alert:true;" rotation-reader></a-camera>
 
         {locations.map((loc, index) => (
-          <div key={index}>
+          <React.Fragment key={index}>
             <a-text
               value="This content will always face you."
               look-at="[gps-camera]"
@@ -50,8 +50,10 @@ const Geolocation = () => {
               gps-entity-place={`latitude:${loc.lat};longitude:${loc.lon}`}
               // position="0 1 0"
             />
-          </div>
+          </React.Fragment>
         ))}
+        <a-camera locationfinder gps-camera="gpsMinDistance: 1;alert:true;" rotation-reader></a-camera>
+
       </a-scene>
     </GeolocationWrapper>
   );
