@@ -58,6 +58,7 @@ overflow-y: hidden;
 
 html, body {
   margin: 0;
+  overflow: hidden;
   font-family:'NHaasGroteskDSPro';
   cursor: crosshair;
   ${'' /* background: ${Colours.grey}; */}

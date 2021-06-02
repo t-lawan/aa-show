@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import THREE from "three";
+import Bear from "../../Assets/Models/Bear.glb";
+
 import Scene from "../../Assets/Models/scene.gltf";
 const GeolocationWrapper = styled.div`
   width: 100vw;
@@ -26,14 +28,25 @@ const locations = [
   }
 ];
 const Geolocation = () => {
+
+  window.addEventListener('gps-camera-update-positon', (response) => {
+    alert(response.position)
+  })
   return (
     <GeolocationWrapper>
       <a-scene
         renderer="logarithmicDepthBuffer: true;"
-        vr-mode-ui="enabled: false"
+        // vr-mode-ui="enabled: false"
         embedded
+        loading-screen="enabled: false;"
         arjs="sourceType: webcam; debugUIEnabled: false;"
       >
+            {/* <a-assets>
+                <a-asset-item
+                    id="animated-asset"
+                    src="assets/asset.glb"
+                ></a-asset-item>
+            </a-assets> */}
 
         {locations.map((loc, index) => (
           <React.Fragment key={index}>
@@ -42,18 +55,18 @@ const Geolocation = () => {
               look-at="[gps-camera]"
               scale="100 100 100"
               align="center"
-              gps-entity-place={`latitude: ${loc.lat}; longitude: ${loc.lon}`}
+              gps-projected-entity-place={`latitude: ${loc.lat}; longitude: ${loc.lon}`}
             ></a-text>
             <a-box
               material="color: red"
               scale="200 200 200"
-              gps-entity-place={`latitude: ${loc.lat}; longitude: ${loc.lon}`}
+              gps-projected-entity-place={`latitude: ${loc.lat}; longitude: ${loc.lon}`}
               // position="0 1 0"
             />
           </React.Fragment>
         ))}
         {/* <a-camera locationfinder gps-camera="gpsMinDistance: 1;alert:true;" rotation-reader></a-camera> */}
-        <a-camera locationfinder gps-camera rotation-reader></a-camera>
+        <a-camera locationfinder gps-projected-camera rotation-reader></a-camera>
 
       </a-scene>
     </GeolocationWrapper>
