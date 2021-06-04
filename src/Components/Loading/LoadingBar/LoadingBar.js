@@ -25,7 +25,7 @@ const LoadingProgressWrapper = styled.div`
   /* height: 100%; */
   height: 0.3rem;
 
-  background: ${Colours.grey};
+  background: ${Colours.light_blue};
 `;
 const LoadingBar = (props) => {
   let percent = 0;

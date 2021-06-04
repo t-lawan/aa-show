@@ -1,5 +1,8 @@
 import styled, { createGlobalStyle } from "styled-components";
 import NHaasGroteskDSPro from "../../Assets/Fonts/NHaasGroteskDSPro-55Rg.ttf";
+import TypeWriterRegular from "../../Assets/Fonts/Typewriter_Regular_PRO.otf";
+import TypeWriterRegularItalic from "../../Assets/Fonts/Typewriter_Regular_Italic_PRO.otf";
+
 export const size = {
   mobileS: "320px",
   mobileM: "420px",
@@ -26,20 +29,28 @@ export const Colours = {
   yellow: "#E4EE3F",
   grey: "#cac6ce",
   dark_grey: "	#707070",
-  green: "hsl(115, 100%, 42%)",
   environment_background: "#BABAB8",
   snot_green: '#deeac5',
   background: '#d4d0d8',
-  light_black: 'rbga(0,0,0,0.1)'
+  light_black: 'rbga(0,0,0,0.1)',
+  light_blue: 'rgb(116, 251, 253)',
+  light_green: 'rgb(116, 251, 253)',
+  light_green_translucent: 'rgba(116,251,253, 0.7'
 };
 
 export const GlobalStyle = createGlobalStyle`
   @font-face {
-    font-family: 'NHaasGroteskDSPro';
-    src: url(${NHaasGroteskDSPro}) format('truetype');
+    font-family: 'TypeWriterRegular';
+    src: url(${TypeWriterRegular}) format('truetype');
     font-weight: normal;
     font-style: normal;
-}
+  }
+  @font-face {
+    font-family: 'TypeWriterRegular';
+    src: url(${TypeWriterRegularItalic}) format('truetype');
+    font-weight: normal;
+    font-style: italic;
+  }
   * {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -59,7 +70,7 @@ overflow-y: hidden;
 html, body {
   margin: 0;
   overflow: hidden;
-  font-family:'NHaasGroteskDSPro';
+  font-family:'TypeWriterRegular';
   cursor: crosshair;
   ${'' /* background: ${Colours.grey}; */}
   width: 100%;

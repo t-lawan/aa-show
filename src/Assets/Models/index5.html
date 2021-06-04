@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AAPR21</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+</style>
+<body>
+
+    <script src ="../js/three.js"></script>
+    <script src="../js/OrbitControls.js"></script>
+    
+    <script src ="../js/GLTFLoader.js"></script>
+    <script src ="../js/EffectComposer.js"></script>
+    <script src ="../js/RenderPass.js"></Script>
+    <script src ="../js/ShaderPass.js"></script>
+    <script src ="../js/BloomPass.js"></script>
+
+    <button type="button" style="position: absolute;margin-left: 0%;" id="Foundation">Foundation</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="FirstYear">First Year</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="EXPERIMENTAL">Experimental </button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="EX1">1</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="EX2"> 2</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="EX3"> 3</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="EX4"> 4</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="EX5"> 5</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="EX6"> 6</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="EX7"> 7</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="EX8">8</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="EX9">9</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="EX10"> 10</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="EX11">11</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="EX12"> 12</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="EX13">13</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="EX14">14</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="EX15">15</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="EX16">16</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="EX17">17</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="EX18">18</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="DIPLOMA">Diploma</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="DIP1">1</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="DIP2">2</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="DIP3">3</button> 
+    <button type="button" style="position: absolute;margin-left: 0%;" id="DIP4">4</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="DIP5">5</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="DIP6">6</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="DIP7">7</button>  
+    <button type="button" style="position: absolute;margin-left: 0%;" id="DIP8">8</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="DIP9">9</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="DIP10">10</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="DIP11">11</button> 
+    <button type="button" style="position: absolute;margin-left: 0%;" id="DIP12">12</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="DIP13">13</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="DIP14">14</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="DIP15">15</button>   
+    <button type="button" style="position: absolute;margin-left: 0%;" id="DIP16">16</button> 
+    <button type="button" style="position: absolute;margin-left: 0%;" id="DIP17">17</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="DIP18">18</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="DIP19">19</button>
+    <button type="button" style="position: absolute;margin-left: 0%;" id="DIP20">20</button>   
+    <button type="button" style="position: absolute;margin-left: 0%;" id="DIP21">21</button>     
+    <button type="button" style="position: absolute;margin-left: 0%;" id="AR">AR</button>      
+    <script>
+        
+
+      // set up renderer 
+
+
+
+        var renderer = new THREE.WebGLRenderer({antialias: true, premultipliedAlpha:true});
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        renderer.setClearColor("#c9c9c9");
+        renderer.toneMapping = THREE.ReinhardToneMapping;
+        renderer.toneMappingExposure = 1;
+        renderer.gammaOutput = true;
+        renderer.gammaFactor = 8;
+        renderer.setSize( window.innerWidth, window.innerHeight);
+        document.body.appendChild (renderer.domElement);
+
+ 
+        // postprocessing 
+
+    
+
+
+
+        // set up scene with fog
+        
+        var scene = new THREE.Scene();
+
+        {
+            const color = 0x4d4d4d;
+         //   const density = 0.1;
+         ///   const near = -20;
+         //   const far = 80;
+          //  scene.fog = new THREE.Fog(color, near, far);
+        }
+
+ 
+
+
+
+        var camera = new THREE.PerspectiveCamera(17, window.innerWidth/window.innerHeight, 0.1 ,1000);
+      
+
+        // set up controls
+
+        var controls = new THREE.OrbitControls(camera, renderer.domElement);
+        camera.position.set (300,300,1000);
+       
+      // camera.lookAt(20,1000,100);
+       
+        controls.update();
+
+        // set up lights
+
+        var hemilight = new THREE.HemisphereLight (0xfff0db, 0xfff0db, 0);
+        scene.add(hemilight);
+
+        var light = new THREE.AmbientLight (0xfff0db, 1);
+        scene.add(light);
+
+
+        
+    var light3 = new THREE.DirectionalLight (0xfff0db, 2);
+        light3.position.z = 50;
+        light3.position.x = 200;
+        light3.position.y = 500;
+
+
+light3.castShadow = true;
+light3.shadow.mapSize.width = 2048;
+light3.shadow.mapSize.height = 2048;
+light3.shadow.camera.near = 0.1;
+light3.shadow.camera.far = 1000;
+light3.shadow.intensity = 1000; 
+scene.add(light3);
+
+    
+
+
+       /* const width = 0.15;
+        const height = 0.15;
+        const intensity = 5000;
+        const rectLight = new THREE.RectAreaLight( 0xfbffd4, intensity,  width, height );
+        rectLight.position.set( 0, 10, -10);
+  
+        rectLight.lookAt(0, 0, -10 );
+        scene.add( rectLight );
+
+        const width1 = 0.15;
+        const height1 = 0.15;
+        const intensity1 = 5000;
+        const rectLight1 = new THREE.RectAreaLight( 0xfbffd4, intensity1,  width1, height1 );
+        rectLight1.position.set( -10, 10, 7 );
+  
+        rectLight1.lookAt(-10, 0, 7);
+        scene.add( rectLight1 );
+
+        const width2 = 0.15;
+        const height2 = 0.15;
+        const intensity2 = 5000;
+        const rectLight2 = new THREE.RectAreaLight( 0xfbffd4, intensity2,  width2, height2 );
+        rectLight2.position.set( -20, 10, 122 );
+  
+        rectLight2.lookAt(-20, 0, 122);
+        scene.add( rectLight2 );
+
+        const width3 = 0.15;
+        const height3 = 0.15;
+        const intensity3 = 5000;
+        const rectLight3 = new THREE.RectAreaLight( 0xfbffd4, intensity3,  width3, height3 );
+        rectLight3.position.set( -38, 10, 190 );
+  
+        rectLight3.lookAt(-38, 0, 190);
+        scene.add( rectLight3 );
+*/
+
+       // add in Bedford Square 
+
+    
+        
+
+       const loader1 = new THREE.GLTFLoader();
+        
+        var mesh1 = new THREE.Object3D();
+
+        loader1.load('../models/Context3js.glb', function(gltf){ 
+    
+        mesh1 = gltf.scene;
+        mesh1.name = "mesh1";
+    
+        mesh1.position.z = 0;
+
+      
+
+        scene.traverse( function( child ) { 
+
+if ( child.isMesh ) {
+
+    child.castShadow = true;
+    child.receiveShadow = true;
+
+}
+
+} );
+scene.add(mesh1);
+
+        });
+
+   
+    
+   
+        var minPan = new THREE.Vector3( - 40, - 20, - 40 );
+    var maxPan = new THREE.Vector3( 40, 20, 40 );
+    var _v = new THREE.Vector3();
+    
+    controls.addEventListener("change", function() {
+        _v.copy(controls.target);
+        controls.target.clamp(minPan, maxPan);
+        _v.sub(controls.target);
+        camera.position.sub(_v);
+    })
+
+   
+     // add in numbers
+
+     //aa side
+
+     const aawingloader = new THREE.GLTFLoader();
+
+        var aawingmesh= new THREE.Object3D();
+
+        
+
+       aawingloader.load('../models/AAwing3js.glb', function(gltf){
+
+          aawingmesh = gltf.scene;
+          console.log(aawingmesh);
+
+          scene.add(aawingmesh);
+         
+          
+        });
+
+    
+ 
+    //road outline
+
+     const roadoutlineloader = new THREE.GLTFLoader();
+
+var roadoutlinemesh= new THREE.Object3D();
+
+
+
+roadoutlineloader.load('../models/roadoutline3js.glb', function(gltf){
+
+  roadoutlinemesh = gltf.scene;
+  console.log(roadoutlinemesh);
+
+  scene.add(roadoutlinemesh);
+ 
+  
+});
+
+
+    //northside
+
+    const northsideloader = new THREE.GLTFLoader();
+
+var northsidemesh= new THREE.Object3D();
+
+
+
+northsideloader.load('../models/northsidee3js.glb', function(gltf){
+
+  northsidemesh = gltf.scene;
+  console.log(northsidemesh);
+
+  scene.add(northsidemesh);
+ 
+  
+});
+
+    //south side 
+
+    const southsideloader = new THREE.GLTFLoader();
+
+var southsidemesh= new THREE.Object3D();
+
+
+
+southsideloader.load('../models/southside3js.glb', function(gltf){
+
+  southsidemesh = gltf.scene;
+  console.log(southsidemesh);
+
+  scene.add(southsidemesh);
+ 
+  
+});
+
+
+    //east side 
+
+    const eastsideloader = new THREE.GLTFLoader();
+
+var eastsidemesh= new THREE.Object3D();
+
+
+
+eastsideloader.load('../models/eastside3js.glb', function(gltf){
+
+ eastsidemesh = gltf.scene;
+  console.log(eastsidemesh);
+
+  scene.add(eastsidemesh);
+ 
+  
+});
+
+    //Architectural Association 
+
+/*    const aaloader = new THREE.GLTFLoader();
+
+var aamesh= new THREE.Object3D();
+
+
+
+aaloader.load('../models/AA3js.glb', function(gltf){
+
+  aamesh = gltf.scene;
+  console.log(aamesh);
+
+  scene.add(aamesh);
+
+ 
+  aamesh.traverse((aamesh) => {
+  if (aamesh.isMesh) {
+    aamesh.material.emissive = new THREE.Color( 0xffffff );
+  }
+ 
+});
+
+  
+});
+
+*/
+
+         
+        // add in totems
+    
+        const etsloader = new THREE.GLTFLoader();
+
+        var etsmesh= new THREE.Object3D();
+
+        
+
+       etsloader.load('../models/ETS3js.glb', function(gltf){
+
+          etsmesh = gltf.scene;
+          console.log(etsmesh);
+
+
+          etsmesh.receiveShadow = true;
+        etsmesh.castShadow = true;
+        etsmesh.position.y = 32;
+        etsmesh.position.z = -25;
+        etsmesh.position.x = -30;
+
+        
+          scene.add(etsmesh);
+         
+          
+       });
+
+    
+ //EX18
+
+       const ex18loader = new THREE.GLTFLoader();
+
+        var ex18mesh= new THREE.Object3D();
+
+    
+       ex18loader.load('../models/EX183js.glb', function(gltf){
+
+          ex18mesh = gltf.scene;
+          console.log(ex18mesh);
+
+
+          ex18mesh.receiveShadow = true;
+        ex18mesh.castShadow = true;
+        ex18mesh.position.y = 30;
+        ex18mesh.position.z = -40;
+        ex18mesh.position.x = -40;
+          scene.add(ex18mesh);
+  
+          
+       });
+
+       ex18mesh = scene.getObjectByName(ex18mesh.name);
+       ex18mesh.visible = true;
+
+       document.getElementById("EX18").addEventListener("click", function (){
+
+        ex18mesh.traverse((ex18mesh) => {
+        if (ex18mesh.isMesh) {
+          ex18mesh.material.color = new THREE.Color( 0x87ffd7);
+         // ex18mesh.material.emissive= new THREE.Color( 0x87ffd7);
+                            }
+
+                          })
+
+                        });
+      
+
+//DRL
+
+
+       const DRLloader = new THREE.GLTFLoader();
+
+var DRLmesh= new THREE.Object3D();
+
+
+DRLloader.load('../models/DRL3js.glb', function(gltf){
+
+ DRLmesh = gltf.scene;
+  console.log(DRLmesh);
+
+
+  DRLmesh.receiveShadow = true;
+DRLmesh.castShadow = true;
+
+DRLmesh.position.y = 35;
+DRLmesh.position.z = -30;
+DRLmesh.position.x = 38;
+
+  scene.add(DRLmesh);
+
+  
+});
+
+
+
+
+//EX17
+
+const ex17loader = new THREE.GLTFLoader();
+
+var ex17mesh= new THREE.Object3D();
+
+
+ex17loader.load('../models/EX173js.glb', function(gltf){
+
+ ex17mesh = gltf.scene;
+  console.log(ex17mesh);
+
+
+  ex17mesh.receiveShadow = true;
+ex17mesh.castShadow = true;
+
+ex17mesh.position.y = 32;
+ex17mesh.position.z = -48;
+ex17mesh.position.x = 45;
+
+
+  scene.add(ex17mesh);
+
+  
+});
+
+ex17mesh = scene.getObjectByName(ex17mesh.name);
+ex17mesh.visible = true;
+
+       document.getElementById("EX17").addEventListener("click", function (){
+
+
+
+      
+     //  ex18mesh.visible =! ex18mesh.visible;
+
+        });
+
+
+
+//HCT
+
+const hctloader = new THREE.GLTFLoader();
+
+var hctmesh= new THREE.Object3D();
+
+
+hctloader.load('../models/HCT3js.glb', function(gltf){
+
+ hctmesh = gltf.scene;
+  console.log(hctmesh);
+
+
+  hctmesh.receiveShadow = true;
+hctmesh.castShadow = true;
+
+hctmesh.position.y = 32;
+hctmesh.position.z = 12;
+hctmesh.position.x = 63;
+
+  scene.add(hctmesh);
+
+  
+});
+
+//PHD
+
+const phdloader = new THREE.GLTFLoader();
+
+var phdmesh= new THREE.Object3D();
+
+
+phdloader.load('../models/PHD3js.glb', function(gltf){
+
+phdmesh = gltf.scene;
+console.log(phdmesh);
+
+
+phdmesh.receiveShadow = true;
+phdmesh.castShadow = true;
+
+
+phdmesh.position.y = 35;
+phdmesh.position.z = -40;
+phdmesh.position.x = -58;
+  scene.add(phdmesh);
+
+  
+});
+
+ 
+//DIP19
+
+const dip19loader = new THREE.GLTFLoader();
+
+var dip19mesh= new THREE.Object3D();
+
+
+dip19loader.load('../models/DIP193js.glb', function(gltf){
+
+ dip19mesh = gltf.scene;
+  console.log(dip19mesh);
+
+
+  dip19mesh.receiveShadow = true;
+dip19mesh.castShadow = true;
+
+
+dip19mesh.position.y = 32;
+dip19mesh.position.z = -15;
+dip19mesh.position.x = -56;
+  scene.add(dip19mesh);
+
+  
+});
+
+//FY
+
+const fyloader = new THREE.GLTFLoader();
+
+var fymesh= new THREE.Object3D();
+
+
+fyloader.load('../models/FY3js.glb', function(gltf){
+
+fymesh = gltf.scene;
+  console.log(fymesh);
+
+
+  fymesh.receiveShadow = true;
+fymesh.castShadow = true;
+
+
+fymesh.position.y = 32;
+fymesh.position.z = 36;
+fymesh.position.x = -58;
+  scene.add(fymesh);
+
+  
+});
+
+//Foundation
+
+const foundationloader = new THREE.GLTFLoader();
+
+var foundationmesh= new THREE.Object3D();
+
+
+foundationloader.load('../models/Foundation3js.glb', function(gltf){
+
+foundationmesh = gltf.scene;
+  console.log(foundationmesh);
+
+
+  foundationmesh.receiveShadow = true;
+foundationmesh.castShadow = true;
+
+
+foundationmesh.position.y = 35;
+foundationmesh.position.z = 50;
+foundationmesh.position.x = -55;
+  scene.add(foundationmesh);
+
+  
+});
+
+//DIP 10
+
+const dip10loader = new THREE.GLTFLoader();
+
+var dip10mesh= new THREE.Object3D();
+
+
+dip10loader.load('../models/DIP103js.glb', function(gltf){
+
+dip10mesh = gltf.scene;
+  console.log(dip10mesh);
+
+
+  dip10mesh.receiveShadow = true;
+dip10mesh.castShadow = true;
+
+
+dip10mesh.position.y = 33;
+dip10mesh.position.z = 45;
+dip10mesh.position.x = -39;
+  scene.add(dip10mesh);
+
+  
+});
+
+//EX12
+
+const ex12loader = new THREE.GLTFLoader();
+
+var ex12mesh= new THREE.Object3D();
+
+
+ex12loader.load('../models/EX123js.glb', function(gltf){
+
+ex12mesh = gltf.scene;
+  console.log(ex12mesh);
+
+
+  ex12mesh.receiveShadow = true;
+ex12mesh.castShadow = true;
+
+
+ex12mesh.position.y = 33;
+ex12mesh.position.z = 50;
+ex12mesh.position.x = -20;
+  scene.add(ex12mesh);
+
+  
+});
+
+//DIP18
+
+const dip18loader = new THREE.GLTFLoader();
+
+var dip18mesh= new THREE.Object3D();
+
+
+dip18loader.load('../models/DIP183js.glb', function(gltf){
+
+dip18mesh = gltf.scene;
+  console.log(dip18mesh);
+
+
+  dip18mesh.receiveShadow = true;
+dip18mesh.castShadow = true;
+
+
+dip18mesh.position.y = 28;
+dip18mesh.position.z = -40;
+dip18mesh.position.x = -15;
+  scene.add(dip18mesh);
+
+  
+});
+
+//EX2
+
+const ex2loader = new THREE.GLTFLoader();
+
+var ex2mesh= new THREE.Object3D();
+
+
+ex2loader.load('../models/EX23js.glb', function(gltf){
+
+ex2mesh = gltf.scene;
+  console.log(ex2mesh);
+
+
+  ex2mesh.receiveShadow = true;
+ex2mesh.castShadow = true;
+
+
+ex2mesh.position.y = 32;
+ex2mesh.position.z = 30;
+ex2mesh.position.x = 70;
+  scene.add(ex2mesh);
+
+  
+});
+
+//EX9
+
+const ex9loader = new THREE.GLTFLoader();
+
+var ex9mesh= new THREE.Object3D();
+
+
+ex9loader.load('../models/EX93js.glb', function(gltf){
+
+ex9mesh = gltf.scene;
+  console.log(ex9mesh);
+
+
+ ex9mesh.receiveShadow = true;
+ex9mesh.castShadow = true;
+
+
+ex9mesh.position.y = 35;
+ex9mesh.position.z = -49;
+ex9mesh.position.x = -15;
+  scene.add(ex9mesh);
+
+  
+});
+
+
+//EX6
+
+
+const ex6loader = new THREE.GLTFLoader();
+
+var ex6mesh= new THREE.Object3D();
+
+
+ex6loader.load('../models/EX63js.glb', function(gltf){
+
+ ex6mesh = gltf.scene;
+  console.log(ex6mesh);
+
+
+  ex6mesh.receiveShadow = true;
+ex6mesh.castShadow = true;
+
+ex6mesh.position.y = 35;
+ex6mesh.position.z = -40;
+ex6mesh.position.x = 30;
+
+  scene.add(ex6mesh);
+
+  
+});
+
+
+//DIP9
+
+
+const dip9loader = new THREE.GLTFLoader();
+
+var dip9mesh= new THREE.Object3D();
+
+
+dip9loader.load('../models/DIP93js.glb', function(gltf){
+
+dip9mesh = gltf.scene;
+  console.log(dip9mesh);
+
+
+  dip9mesh.receiveShadow = true;
+dip9mesh.castShadow = true;
+
+dip9mesh.position.y = 32;
+dip9mesh.position.z = 50;
+dip9mesh.position.x = 70;
+
+  scene.add(dip9mesh);
+
+  
+});    
+
+//DIP8
+
+
+const dip8loader = new THREE.GLTFLoader();
+
+var dip8mesh= new THREE.Object3D();
+
+
+dip8loader.load('../models/DIP83js.glb', function(gltf){
+
+dip8mesh = gltf.scene;
+  console.log(dip8mesh);
+
+
+  dip8mesh.receiveShadow = true;
+dip8mesh.castShadow = true;
+
+dip8mesh.position.y = 35;
+dip8mesh.position.z = 55;
+dip8mesh.position.x = -5;
+
+  scene.add(dip8mesh);
+
+  
+});    
+
+//LU
+
+const luloader = new THREE.GLTFLoader();
+
+var lumesh= new THREE.Object3D();
+
+
+luloader.load('../models/LU3js.glb', function(gltf){
+
+ lumesh = gltf.scene;
+  console.log(lumesh);
+
+
+  lumesh.receiveShadow = true;
+lumesh.castShadow = true;
+
+
+lumesh.position.y = 35;
+lumesh.position.z = -25;
+lumesh.position.x = 53;
+  scene.add(lumesh);
+
+  
+});
+
+//EX7
+
+const ex7loader = new THREE.GLTFLoader();
+
+var ex7mesh= new THREE.Object3D();
+
+
+ex7loader.load('../models/EX73js.glb', function(gltf){
+
+ ex7mesh = gltf.scene;
+  console.log(ex7mesh);
+
+
+  ex7mesh.receiveShadow = true;
+ex7mesh.castShadow = true;
+
+
+ex7mesh.position.y = 32;
+ex7mesh.position.z = -30;
+ex7mesh.position.x = 70;
+  scene.add(ex7mesh);
+
+  
+});
+
+//GroundLab 
+
+const groundlabloader = new THREE.GLTFLoader();
+
+var groundlabmesh= new THREE.Object3D();
+
+
+groundlabloader.load('../models/GroundLab3js.glb', function(gltf){
+
+groundlabmesh = gltf.scene;
+console.log(groundlabmesh);
+
+
+groundlabmesh.receiveShadow = true;
+groundlabmesh.castShadow = true;
+
+
+groundlabmesh.position.y = 37;
+groundlabmesh.position.z = -47;
+groundlabmesh.position.x = -32;
+scene.add(groundlabmesh);
+
+  
+});
+
+//DIP20 
+
+const dip20loader = new THREE.GLTFLoader();
+
+var dip20mesh= new THREE.Object3D();
+
+
+dip20loader.load('../models/DIP203js.glb', function(gltf){
+
+dip20mesh = gltf.scene;
+console.log(dip20mesh);
+
+
+dip20mesh.receiveShadow = true;
+dip20mesh.castShadow = true;
+
+
+dip20mesh.position.y = 33;
+dip20mesh.position.z = -16;
+dip20mesh.position.x = 65;
+scene.add(dip20mesh);
+
+  
+});
+
+
+//EX13
+
+const ex13loader = new THREE.GLTFLoader();
+
+var ex13mesh= new THREE.Object3D();
+
+
+ex13loader.load('../models/EX133js.glb', function(gltf){
+
+ex13mesh = gltf.scene;
+console.log(ex13mesh);
+
+
+ex13mesh.receiveShadow = true;
+ex13mesh.castShadow = true;
+
+
+ex13mesh.position.y = 33;
+ex13mesh.position.z = 0;
+ex13mesh.position.x = 80;
+scene.add(ex13mesh);
+
+  
+});
+
+
+//AAIS
+
+const aaisloader = new THREE.GLTFLoader();
+
+var aaismesh= new THREE.Object3D();
+
+
+aaisloader.load('../models/AAIS3js.glb', function(gltf){
+
+aaismesh = gltf.scene;
+console.log(aaismesh);
+
+
+aaismesh.receiveShadow = true;
+aaismesh.castShadow = true;
+
+
+aaismesh.position.y = 31;
+aaismesh.position.z = 50;
+aaismesh.position.x = 10;
+scene.add(aaismesh);
+
+  
+});
+
+//DIP6
+
+const dip6loader = new THREE.GLTFLoader();
+
+var dip6mesh= new THREE.Object3D();
+
+
+dip6loader.load('../models/DIP63js.glb', function(gltf){
+
+dip6mesh = gltf.scene;
+console.log(dip6mesh);
+
+
+dip6mesh.receiveShadow = true;
+dip6mesh.castShadow = true;
+
+
+dip6mesh.position.y = 33;
+dip6mesh.position.z = 30;
+dip6mesh.position.x = -45;
+scene.add(dip6mesh);
+
+  
+});
+
+           //visibility 
+             
+    //    document.getElementById("hideShowText").addEventListener("click", function(){
+    //    mesh2.visible = !mesh2.visible;
+     
+    //    });
+ 
+      
+
+        // follow mouse cursor
+
+   /*     const mouse = new THREE.Vector2();
+        const windowHalf = new THREE.Vector2( window.innerWidth / 2, window.innerHeight / 2 );
+        const target = new THREE.Vector2();
+
+        document.addEventListener( 'mousemove', onMouseMove);
+
+        function onMouseMove( event ) {
+
+            mouse.x = ( event.clientX - windowHalf.x );
+            mouse.y = ( event.clientY - windowHalf.x );
+
+        } */
+      
+        var update = function()
+        {
+          
+   
+        
+        };
+
+        var render = function ()
+        {
+           
+          renderer.render(scene,camera);
+            
+       
+         
+ 
+           
+        };
+
+
+        window.addEventListener ('resize', function()
+        {
+            var width = window.innerWidth;
+            var height = window.innerHeight;
+            renderer.setSize (width,height);
+         //   composer.setSize (width, height);
+            camera.aspect = width/height;
+            camera.updateProjectionMatrix();
+        });
+
+        var GameLoop = function ()
+        {
+       //     target.x = ( 1 - mouse.x ) * 0.01;
+       //     target.y = ( 1 - mouse.y ) * 0.01;
+       //     target.z = ( 1 - mouse.z ) * 0.0000001;
+  
+       //     camera.rotation.x += 0.0001 * ( target.y - camera.rotation.x );
+       //   camera.rotation.y += 0.0001 * ( target.x - camera.rotation.y );
+
+     
+      
+            ex18mesh.rotation.y -=0.03;
+            etsmesh.rotation.y +=0.02;
+            DRLmesh.rotation.y +=0.02;
+            phdmesh.rotation.y +=0.03;
+            dip19mesh.rotation.y -=0.03;
+            fymesh.rotation.x +=0.02;
+            foundationmesh.rotation.y -= 0.02;
+            dip10mesh.rotation.y +=0.01;
+            dip10mesh.rotation.x -=0.01;
+            ex17mesh.rotation.y -=0.01;
+            ex17mesh.rotation.x += 0.01;
+            hctmesh.rotation.y += 0.02;
+            ex12mesh.rotation.x +=0.03;
+            dip18mesh.rotation.y -= 0.01;
+            ex2mesh.rotation.y -= 0.01;
+            ex9mesh.rotation.y += 0.01;
+            ex9mesh.rotation.z -= 0.02;
+            ex9mesh.rotation.x += 0.01;
+            ex6mesh.rotation.y -=0.02;
+            dip9mesh.rotation.z +=0.02;
+            dip9mesh.rotation.y +=0.02;
+            dip8mesh.rotation.y +=0.03;
+            lumesh.rotation.y +=0.01;
+            ex7mesh.rotation.y +=0.02;
+            groundlabmesh.rotation.y +=0.05;   
+            dip20mesh.rotation.y -=0.02;  
+            ex13mesh.rotation.y +=0.03;
+            aaismesh.rotation.y -=0.02;
+            dip6mesh.rotation.y +=0.02;
+            dip6mesh.rotation.x +=0.02;
+            dip6mesh.rotation.z +=0.01;
+
+            requestAnimationFrame (GameLoop);
+            
+
+            controls.update ();
+            
+          
+            update();
+           render ();
+        
+        };
+
+        GameLoop ();
+      
+     </script>
+    
+</body>
+</html>

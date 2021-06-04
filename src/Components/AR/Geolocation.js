@@ -1,9 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import THREE from "three";
-import Bear from "../../Assets/Models/Bear.glb";
-
-import Scene from "../../Assets/Models/scene.gltf";
 const GeolocationWrapper = styled.div`
   width: 100vw;
   height: 100vh;

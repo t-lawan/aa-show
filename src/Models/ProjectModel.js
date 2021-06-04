@@ -1,17 +1,23 @@
 export default class ProjectModel {
     id;
     title;
-    author;
+    description;
     coordinate;
+    modelUrl;
     glbUrl;
     usdzUrl;
-    constructor(id, title, author, coordinate, glbUrl,usdzUrl) {
+    shouldDisplay;
+    unit;
+    constructor(id, title, description, unit, coordinate, modelUrl, glbUrl,usdzUrl, shouldDisplay) {
         this.id = id;
         this.title = title;
-        this.author = author;
+        this.description = description;
+        this.unit = unit;
         this.coordinate = coordinate;
+        this.modelUrl = modelUrl;
         this.glbUrl = glbUrl;
-        this.usdzUrl = usdzUrl
+        this.usdzUrl = usdzUrl;
+        this.shouldDisplay = shouldDisplay
         
     }
 }

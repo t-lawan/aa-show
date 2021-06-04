@@ -2,16 +2,19 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { Colours } from "../Global/global.styles";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { richTextOptions } from "../../Utility/Richtext";
 
 
 const OverlayWrapper = styled.div`
   display: ${props => props => props.show ? 'block' : 'none'};
   position: absolute;
   bottom: 0;
-  width: 50%;
+  width: 60%;
   height: 30%;
-  left: 0;
-  background: red;
+  right: 0;
+  background: ${Colours.light_green_translucent};
 `
 
 const ProjectTitle = styled.h1`
@@ -38,8 +41,8 @@ const Overlay = (props) => {
         {project ? (
             <ProjectContentWrapper>
                 <ProjectTitle> {project.title} </ProjectTitle>
-                <ProjectDescription> This is a description of {project.title} </ProjectDescription>
-                <ARLink to={"/ar-at-home"} > Totem Link </ARLink>
+                {documentToReactComponents(project.description, richTextOptions)}
+                {/* <ARLink to={"/ar-at-home"} > Totem Link </ARLink> */}
             </ProjectContentWrapper>
         ) : null}
       </OverlayWrapper>

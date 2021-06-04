@@ -20,14 +20,17 @@ export default class RequestManager {
 
           let projects = response.items.map((item) => {
               let coordinate = new Coordinates(item.fields.coordinate.fields.x, item.fields.coordinate.fields.y, item.fields.coordinate.fields.z);
-              console.log('ITEM', item)
+            //   console.log('Item', item)
               return new ProjectModel(
                   item.sys.id,
                   item.fields.title,
-                  item.fields.author,
+                  item.fields.description,
+                  item.fields.unit,
                   coordinate,
+                  item.fields.modelUrl,
                   item.fields.glbUrl,
-                  item.fields.usdzUrl
+                  item.fields.usdzUrl,
+                  item.fields.shouldDisplay
               )
           });
 

@@ -5,42 +5,49 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { Colours } from "../Global/global.styles";
 import RequestManager from "../../Utility/Managers/RequestManager";
 import { GLTFLoader } from "../../Utility/Loaders/GLTFLoader.js";
-import Astronaut from '../../Assets/Models/Astronaut.glb'
+import Astronaut from "../../Assets/Models/Astronaut.glb";
 import LoadingPage from "../Loading/LoadingPage/LoadingPage";
 import Overlay from "../Overlay/Overlay";
 import { setSelectedArProject } from "../../Store/action";
 import { connect } from "react-redux";
 
+import ContextModel from '../../Assets/Models/Context.glb';
+import AAWingModel from '../../Assets/Models/AAWing.glb';
+import EastSideModel from '../../Assets/Models/EastSide.glb';
+import NorthSideModel from '../../Assets/Models/NorthSide.glb';
+import SouthSideModel from '../../Assets/Models/SouthSide.glb';
+import RoadOutlineModel from '../../Assets/Models/RoadOutline.glb';
+
 const BedfordSquareWrapper = styled.div`
   height: 100vh;
   display: ${props => (props.show ? "block" : "none")};
-`
+`;
 
 const OverlayWrapper = styled.div`
-  display: ${props => props => props.show ? 'block' : 'none'};
+  display: ${props => props => (props.show ? "block" : "none")};
   position: absolute;
   bottom: 0;
   width: 50%;
   height: 30%;
   left: 0;
   background: red;
-`
-
+`;
 
 class BedfordSquare extends Component {
-    clickableObjects = [];
-    constructor(props){
-      super(props)
-      this.state = {
-        hasLoaded: false,
-        itemsLoaded: 0,
-        itemsTotal: 0,
-        showOverlay: false,
-      }
-    }
+  clickableObjects = [];
+  constructor(props) {
+    super(props);
+    this.state = {
+      hasLoaded: false,
+      itemsLoaded: 0,
+      itemsTotal: 0,
+      showOverlay: false
+    };
+  }
   async componentDidMount() {
     this.init();
-    this.addGrid();
+    // this.addGrid();
+    this.addEnvironment();
     await this.initLoadingObjects();
     this.setupLoadingManager();
     this.addEventListener();
@@ -48,7 +55,7 @@ class BedfordSquare extends Component {
   }
 
   componentWillUnmount() {
-    this.removeEventListener()
+    this.removeEventListener();
     window.cancelAnimationFrame(this.requestID);
     this.controls.dispose();
   }
@@ -62,34 +69,37 @@ class BedfordSquare extends Component {
     this.setupMouse();
     this.setupRayCaster();
     this.setupRenderer();
-  }
+  };
 
   initLoadingObjects = async () => {
-      let projects = await RequestManager.getProjects();
-      projects.forEach((project) => {
-        // this.addCube(project);
+    let projects = await RequestManager.getProjects();
+    projects.forEach(project => {
+      // this.addCube(project);
+      if(project.shouldDisplay){
         this.addObject(project, project.glbUrl);
-      })
-  }
+
+      }
+    });
+  };
 
   setupScene = () => {
     this.scene = new THREE.Scene();
-  }
+  };
 
   setupCamera = () => {
     this.camera = new THREE.PerspectiveCamera(
-        75, // fov = field of view
-        this.mount.clientWidth / this.mount.clientHeight, // aspect ratio
-        0.1, // near plane
-        1000 // far plane
-      );
-      this.camera.position.z = 50; 
-      this.camera.position.y = 40; 
-  }
+      75, // fov = field of view
+      this.mount.clientWidth / this.mount.clientHeight, // aspect ratio
+      0.1, // near plane
+      1000 // far plane
+    );
+    this.camera.position.z = 50;
+    this.camera.position.y = 40;
+  };
 
   setupControls = () => {
     this.controls = new OrbitControls(this.camera, this.mount);
-  }
+  };
 
   setupRenderer = () => {
     this.renderer = new THREE.WebGLRenderer();
@@ -97,7 +107,7 @@ class BedfordSquare extends Component {
 
     this.renderer.setSize(this.mount.clientWidth, this.mount.clientHeight);
     this.mount.appendChild(this.renderer.domElement); // mount using React ref
-  }
+  };
 
   setupRayCaster = () => {
     this.raycaster = new THREE.Raycaster();
@@ -124,78 +134,103 @@ class BedfordSquare extends Component {
     this.setState({
       itemsLoaded: itemsLoaded,
       itemsTotal: itemsTotal
-    })
+    });
   };
 
   loadProgressing = (url, itemsLoaded, itemsTotal) => {
     this.setState({
       itemsLoaded: itemsLoaded,
       itemsTotal: itemsTotal
-    })
+    });
   };
 
   loadFinished = () => {
     this.setState({
       hasLoaded: true
-    })
-    this.onWindowResize()
+    });
+    this.onWindowResize();
   };
 
-  loadError = (url) => {
-    console.log('ERROR', url)
-
-  }
-
-  hasLoaded = () => {
- 
+  loadError = url => {
+    console.log("ERROR", url);
   };
+
+  hasLoaded = () => {};
 
   // Here should come custom code.
   // Code below is taken from Three.js BoxGeometry example
   // https://threejs.org/docs/#api/en/geometries/BoxGeometry
 
   addGrid = () => {
-    const size = 100;
-    const divisions = 100;
+    const size = 200;
+    const divisions = 200;
 
     const gridHelper = new THREE.GridHelper(size, divisions);
 
-    const axesHelper = new THREE.AxesHelper( 5 );
-    this.scene.add( axesHelper );
+    const axesHelper = new THREE.AxesHelper(5);
+    this.scene.add(axesHelper);
     this.scene.add(gridHelper);
   };
 
-  addLights = () => {
-    const lights = [];
-    lights[ 0 ] = new THREE.PointLight( 0xffffff, 1, 0 );
-    lights[ 1 ] = new THREE.PointLight( 0xffffff, 1, 0 );
-    lights[ 2 ] = new THREE.PointLight( 0xffffff, 1, 0 );
+  addEnvironment = () => {
+    this.addEnvironmentObject(ContextModel, 'CONTEXT');
+    this.addEnvironmentObject(AAWingModel, 'AAWING');
+    this.addEnvironmentObject(RoadOutlineModel, 'RoadOutline');
+    this.addEnvironmentObject(NorthSideModel, 'NorthSide');
+    this.addEnvironmentObject(SouthSideModel, 'SouthSide');
 
-    lights[ 0 ].position.set( 0, 200, 0 );
-    lights[ 1 ].position.set( 100, 200, 100 );
-    lights[ 2 ].position.set( - 100, - 200, - 100 );
-
-    this.scene.add( lights[ 0 ] );
-    this.scene.add( lights[ 1 ] );
-    this.scene.add( lights[ 2 ] );
   }
 
-  addCube = (project) => {
+  addLights = () => {
+    let hemilight = new THREE.HemisphereLight(0xfff0db, 0xfff0db, 0);
+    this.scene.add(hemilight);
+
+    let light = new THREE.AmbientLight(0xfff0db, 1);
+    this.scene.add(light);
+
+    let light3 = new THREE.DirectionalLight(0xfff0db, 2);
+    light3.position.z = 50;
+    light3.position.x = 200;
+    light3.position.y = 500;
+
+    light3.castShadow = true;
+    light3.shadow.mapSize.width = 2048;
+    light3.shadow.mapSize.height = 2048;
+    light3.shadow.camera.near = 0.1;
+    light3.shadow.camera.far = 1000;
+    light3.shadow.intensity = 1000;
+    this.scene.add(light3);
+  };
+
+  addCube = project => {
     const coordinate = project.coordinate;
     const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshPhongMaterial( {
-        color: 0x156289,
-        emissive: 0x072534,
-        side: THREE.DoubleSide,
-        flatShading: true
-    } );
-    
-    this.cube = new THREE.Mesh( geometry, material );
+    const material = new THREE.MeshPhongMaterial({
+      color: 0x156289,
+      emissive: 0x072534,
+      side: THREE.DoubleSide,
+      flatShading: true
+    });
+
+    this.cube = new THREE.Mesh(geometry, material);
     this.cube.position.set(coordinate.x, coordinate.y, coordinate.z);
-    this.scene.add( this.cube );
+    this.scene.add(this.cube);
     this.cube.userData.isClickable = true;
     this.cube.userData.project = project;
     this.clickableObjects.push(this.cube);
+  };
+
+  addEnvironmentObject = (object, name) => {
+    const loader = new GLTFLoader(this.manager);
+    let mesh = new THREE.Object3D();
+
+    loader.load(object, gltf => {
+      mesh = gltf.scene;
+      mesh.name = name;
+      mesh.position.z = 0;
+      // mesh.position.y = -25;
+      this.scene.add(mesh);
+    })
   }
 
   addObject = (project, object = Astronaut) => {
@@ -204,27 +239,18 @@ class BedfordSquare extends Component {
     const coordinate = project.coordinate;
 
     loader.load(object, gltf => {
-        mesh = gltf.scene;
-        console.log('GLTF', gltf)
-        console.log('mesh', mesh)
-        mesh.userData.project = project;
-        mesh.position.x = coordinate.x;
-        // mesh.position.y = coordinate.y;
-        mesh.position.y = 0;
-        mesh.position.z = coordinate.z;
-
-        const lights = [];
-        const light = new THREE.PointLight( 'white', 5, 10 );
-    
-        light.position.set(coordinate.x, coordinate.y, coordinate.z);
-    
-        this.scene.add(light );
-
-        this.scene.add(mesh);
-        this.clickableObjects.push(mesh);
-
-    })
-  }
+      mesh = gltf.scene;
+      mesh.userData.project = project;
+      mesh.position.x = coordinate.x;
+      mesh.position.y = coordinate.y;
+      // mesh.position.y = 0;
+      mesh.position.z = coordinate.z;
+      mesh.visible = true
+      mesh.children[0].userData.project = project;
+      this.scene.add(mesh);
+      this.clickableObjects.push(mesh);
+    });
+  };
 
   startAnimationLoop = () => {
     this.renderer.render(this.scene, this.camera);
@@ -239,15 +265,13 @@ class BedfordSquare extends Component {
     window.addEventListener("resize", this.onWindowResize);
     document.addEventListener("mousemove", this.onDocumentMouseMove, false);
     document.addEventListener("dblclick", this.onDoubleClick, false);
-
-  }
+  };
 
   removeEventListener = () => {
     window.removeEventListener("resize", this.onWindowResize);
     document.removeEventListener("mousemove", this.onDocumentMouseMove);
     document.removeEventListener("dblclick", this.onDoubleClick);
-
-  }
+  };
 
   onWindowResize = () => {
     const width = this.mount.clientWidth;
@@ -261,7 +285,7 @@ class BedfordSquare extends Component {
     this.camera.updateProjectionMatrix();
   };
 
-  onDocumentMouseMove = (event) => {
+  onDocumentMouseMove = event => {
     // event.preventDefault();
     // this.setMouse(event);
     // this.raycaster.setFromCamera(this.mouse, this.camera);
@@ -275,44 +299,55 @@ class BedfordSquare extends Component {
     // let boundingBoxes = this.clickableObjects.map(object => {
     //     return object.objectBoundary;
     // })
-
-  }
+  };
 
   onDoubleClick = event => {
-      event.preventDefault();
-      this.setMouse(event);
-      this.raycaster.setFromCamera(this.mouse, this.camera);
-      this.intersects = this.raycaster.intersectObjects(this.clickableObjects, true);
-      if (this.intersects.length > 0) {
-        let mesh = this.intersects[0];
-        let obj = this.intersects[0].object;
-        obj.material.color.r = 0;
-        obj.material.color.g = 255;
-        obj.material.color.b = 0;
-        let project = obj.parent.parent.userData.project
-        if(project){
-          this.props.setSelectedArProject(project)
-          this.setState({
-            showOverlay: true
-          })
-        }
-
+    event.preventDefault();
+    this.setMouse(event);
+    this.raycaster.setFromCamera(this.mouse, this.camera);
+    this.intersects = this.raycaster.intersectObjects(
+      this.clickableObjects,
+      true
+    );
+    if (this.intersects.length > 0) {
+      let mesh = this.intersects[0];
+      let obj = this.intersects[0].object;
+      // obj.material.color.r = 116;
+      // obj.material.color.g = 251;
+      // obj.material.color.b = 253;
+      // console.log('OBJ', obj)
+      let project = obj.parent.userData.project;
+      if (project) {
+        this.props.setSelectedArProject(project);
+        this.setState({
+          showOverlay: true
+        });
       }
-      
+    }
   };
 
   hideOverlay = () => {
-   this.setState({
-     showOverlay: false
-   })
-  }
+    this.setState({
+      showOverlay: false
+    });
+  };
 
   render() {
     return (
       <>
-          <BedfordSquareWrapper show={this.state.hasLoaded} ref={ref => (this.mount = ref)} />
-          <Overlay onClick={() => this.hideOverlay()} show={this.state.showOverlay} />
-          <LoadingPage show={!this.state.hasLoaded} loaded={this.state.itemsLoaded} total={this.state.itemsTotal} />
+        <BedfordSquareWrapper
+          show={this.state.hasLoaded}
+          ref={ref => (this.mount = ref)}
+        />
+        <Overlay
+          onClick={() => this.hideOverlay()}
+          show={this.state.showOverlay}
+        />
+        <LoadingPage
+          show={!this.state.hasLoaded}
+          loaded={this.state.itemsLoaded}
+          total={this.state.itemsTotal}
+        />
       </>
     );
   }
@@ -320,13 +355,13 @@ class BedfordSquare extends Component {
 
 const mapStateToProps = state => {
   return {
-    selected_ar_project: state.selected_ar_project,
+    selected_ar_project: state.selected_ar_project
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    setSelectedArProject: (project) => dispatch(setSelectedArProject(project)),
+    setSelectedArProject: project => dispatch(setSelectedArProject(project))
   };
 };
 
@@ -334,4 +369,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(BedfordSquare);
-
