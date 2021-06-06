@@ -17,6 +17,7 @@ import EastSideModel from '../../Assets/Models/EastSide.glb';
 import NorthSideModel from '../../Assets/Models/NorthSide.glb';
 import SouthSideModel from '../../Assets/Models/SouthSide.glb';
 import RoadOutlineModel from '../../Assets/Models/RoadOutline.glb';
+import Sidebar from "../Sidebar/Sidebar";
 
 const BedfordSquareWrapper = styled.div`
   height: 100vh;
@@ -35,13 +36,16 @@ const OverlayWrapper = styled.div`
 
 class BedfordSquare extends Component {
   clickableObjects = [];
+  baseColor = new THREE.Color(0,0,0);
   constructor(props) {
     super(props);
     this.state = {
       hasLoaded: false,
       itemsLoaded: 0,
       itemsTotal: 0,
-      showOverlay: false
+      showOverlay: false,
+      showSidebar: true,
+      projects: []
     };
   }
   async componentDidMount() {
@@ -77,9 +81,11 @@ class BedfordSquare extends Component {
       // this.addCube(project);
       if(project.shouldDisplay){
         this.addObject(project, project.glbUrl);
-
       }
     });
+    this.setState({
+      projects: projects
+    })
   };
 
   setupScene = () => {
@@ -148,6 +154,7 @@ class BedfordSquare extends Component {
     this.setState({
       hasLoaded: true
     });
+    console.log('HAS LOADED')
     this.onWindowResize();
   };
 
@@ -247,10 +254,23 @@ class BedfordSquare extends Component {
       mesh.position.z = coordinate.z;
       mesh.visible = true
       mesh.children[0].userData.project = project;
+      this.baseColor = mesh.children[0].material.color;
+      mesh.userData.baseColor = mesh.children[0].material.color;
+      mesh.receiveShadow = true;
+      mesh.castShadow = true;
       this.scene.add(mesh);
       this.clickableObjects.push(mesh);
     });
   };
+
+  findMeshFromProject = (project) => {
+    let mesh =this.clickableObjects.find((pr) => {
+      return pr.userData.project.title == project.title;
+    })
+    console.log('MESH', mesh)
+
+    return mesh;
+  }
 
   startAnimationLoop = () => {
     this.renderer.render(this.scene, this.camera);
@@ -315,9 +335,11 @@ class BedfordSquare extends Component {
       // obj.material.color.r = 116;
       // obj.material.color.g = 251;
       // obj.material.color.b = 253;
+      obj.material.color = new THREE.Color( 0x87ffd7)
       // console.log('OBJ', obj)
       let project = obj.parent.userData.project;
       if (project) {
+        console.log(project)
         this.props.setSelectedArProject(project);
         this.setState({
           showOverlay: true
@@ -332,6 +354,31 @@ class BedfordSquare extends Component {
     });
   };
 
+  highlightProject = (project) => {
+    if(project.shouldDisplay) {
+      let mesh = this.findMeshFromProject(project)
+      // mesh.children[0].material.color = new THREE.Color( 0x87ffd7);
+      mesh.traverse((child) => {
+        if(child.material){
+          child.material.color = new THREE.Color( 0x87ffd7)
+
+        }
+      })
+      setTimeout(() => {
+        mesh.traverse((child) => {
+          if(child.material){
+            child.material.color = mesh.userData.baseColor;
+
+          }
+        })
+        // mesh.children[0].material.color = new THREE.Color(255,255,255);
+      }, 3000)
+
+      console.log('highlightProject', mesh)
+
+    }
+  }
+
   render() {
     return (
       <>
@@ -343,6 +390,7 @@ class BedfordSquare extends Component {
           onClick={() => this.hideOverlay()}
           show={this.state.showOverlay}
         />
+        <Sidebar show={this.state.hasLoaded} projects={this.state.projects} onClick={this.highlightProject.bind(this)} />
         <LoadingPage
           show={!this.state.hasLoaded}
           loaded={this.state.itemsLoaded}
