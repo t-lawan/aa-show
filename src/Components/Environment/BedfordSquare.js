@@ -100,8 +100,9 @@ class BedfordSquare extends Component {
       0.1, // near plane
       1000 // far plane
     );
-    this.camera.position.z = 50;
-    this.camera.position.y = 40;
+    
+    this.camera.position.set(300,300,1000);
+    // this.camera.position.y = 40;
   };
 
   setupControls = () => {
@@ -109,8 +110,15 @@ class BedfordSquare extends Component {
   };
 
   setupRenderer = () => {
-    this.renderer = new THREE.WebGLRenderer();
-    this.renderer.setClearColor(Colours.background);
+    this.renderer = new THREE.WebGLRenderer({antialias: true, premultipliedAlpha:true});
+    // this.renderer.setClearColor(Colours.background);
+    this.renderer.shadowMap.enabled = true;
+    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    this.renderer.setClearColor("#c9c9c9");
+    this.renderer.toneMapping = THREE.ReinhardToneMapping;
+    this.renderer.toneMappingExposure = 1;
+    this.renderer.gammaOutput = true;
+    this.renderer.gammaFactor = 8;
 
     this.renderer.setSize(this.mount.clientWidth, this.mount.clientHeight);
     this.mount.appendChild(this.renderer.domElement); // mount using React ref
