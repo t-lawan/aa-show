@@ -8,12 +8,14 @@ export default class ProjectModel {
     usdzUrl;
     shouldDisplay;
     unit;
-    constructor(id, title, description, unit, coordinate, modelUrl, glbUrl,usdzUrl, shouldDisplay) {
+    rotation;
+    constructor(id, title, description, unit, coordinate, rotation, modelUrl, glbUrl,usdzUrl, shouldDisplay) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.unit = unit;
         this.coordinate = coordinate;
+        this.rotation = rotation;
         this.modelUrl = modelUrl;
         this.glbUrl = glbUrl;
         this.usdzUrl = usdzUrl;

@@ -83,6 +83,7 @@ class BedfordSquare extends Component {
         this.addObject(project, project.glbUrl);
       }
     });
+    console.log('PROJECTS', projects);
     this.setState({
       projects: projects
     })
@@ -258,6 +259,7 @@ class BedfordSquare extends Component {
       mesh.userData.baseColor = mesh.children[0].material.color;
       mesh.receiveShadow = true;
       mesh.castShadow = true;
+      console.log('ADD MESH', mesh)
       this.scene.add(mesh);
       this.clickableObjects.push(mesh);
     });
@@ -267,12 +269,19 @@ class BedfordSquare extends Component {
     let mesh =this.clickableObjects.find((pr) => {
       return pr.userData.project.title == project.title;
     })
-    console.log('MESH', mesh)
 
     return mesh;
   }
 
   startAnimationLoop = () => {
+    this.clickableObjects.forEach((mesh)=> {
+      if(mesh.userData.project && mesh.userData.project.rotation){
+        mesh.rotation.x += mesh.userData.project.rotation.x;
+        mesh.rotation.y += mesh.userData.project.rotation.y;
+        mesh.rotation.z += mesh.userData.project.rotation.z;
+
+      }
+    })
     this.renderer.render(this.scene, this.camera);
 
     // The window.requestAnimationFrame() method tells the browser that you wish to perform

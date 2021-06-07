@@ -1,6 +1,7 @@
 import * as contentful from "contentful";
 import ProjectModel from "../../Models/ProjectModel";
 import Coordinates from "../../Models/Coordinates";
+import Rotation from "../../Models/Rotation";
 
 export default class RequestManager {
     static space = "w6wp6l1i10zr";
@@ -19,7 +20,12 @@ export default class RequestManager {
           });
 
           let projects = response.items.map((item) => {
-              let coordinate = new Coordinates(item.fields.coordinate.fields.x, item.fields.coordinate.fields.y, item.fields.coordinate.fields.z);
+            let coordinate = new Coordinates(item.fields.coordinate.fields.x, item.fields.coordinate.fields.y, item.fields.coordinate.fields.z);
+            let rotation = null;
+            if(item.fields.rotation){
+                rotation = new Rotation(item.fields.rotation.fields.x, item.fields.rotation.fields.y, item.fields.rotation.fields.z);
+            }
+             
             //   console.log('Item', item)
               return new ProjectModel(
                   item.sys.id,
@@ -27,6 +33,7 @@ export default class RequestManager {
                   item.fields.description,
                   item.fields.unit,
                   coordinate,
+                  rotation,
                   item.fields.modelUrl,
                   item.fields.glbUrl,
                   item.fields.usdzUrl,
