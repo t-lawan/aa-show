@@ -20,6 +20,10 @@ export default class RequestManager {
             content_type: "project"
           });
 
+
+        //   console.log('RESPONSE', response)
+          
+
           let projects = response.items.map((item) => {
             let coordinate = new Coordinates(item.fields.coordinate.fields.x, item.fields.coordinate.fields.y, item.fields.coordinate.fields.z);
             let rotation = null;
@@ -31,6 +35,7 @@ export default class RequestManager {
               return new ProjectModel(
                   item.sys.id,
                   item.fields.title,
+                  item.fields.sidebarDisplayTitle,
                   item.fields.description,
                   item.fields.unit,
                   coordinate,
@@ -66,6 +71,7 @@ export default class RequestManager {
             return new ProjectModel(
                 item.sys.id,
                 item.fields.title,
+                item.fields.sidebarDisplayTitle,
                 item.fields.description,
                 item.fields.unit,
                 coordinate,
@@ -86,6 +92,7 @@ export default class RequestManager {
             return new ProjectModel(
                 item.sys.id,
                 item.fields.title,
+                item.fields.sidebarDisplayTitle,
                 item.fields.description,
                 item.fields.unit,
                 coordinate,
@@ -97,14 +104,28 @@ export default class RequestManager {
             )
           })
 
-          let pageInfo = new PageInfoModel(experimental, diplomaProjects)
+          let defaultProjects = response.fields.defaultProjects.map((item) => {
+            let coordinate = new Coordinates(item.fields.coordinate.fields.x, item.fields.coordinate.fields.y, item.fields.coordinate.fields.z);
+            let rotation = null;
+            if(item.fields.rotation){
+                rotation = new Rotation(item.fields.rotation.fields.x, item.fields.rotation.fields.y, item.fields.rotation.fields.z);
+            }
+            return new ProjectModel(
+                item.sys.id,
+                item.fields.title,
+                item.fields.sidebarDisplayTitle,
+                item.fields.description,
+                item.fields.unit,
+                coordinate,
+                rotation,
+                item.fields.modelUrl,
+                item.fields.glbUrl,
+                item.fields.usdzUrl,
+                item.fields.shouldDisplay
+            )
+          })
 
-          console.log('RS', pageInfo)
-
-
-
-
-
+          let pageInfo = new PageInfoModel(defaultProjects, experimental, diplomaProjects)
 
           return pageInfo;
     }

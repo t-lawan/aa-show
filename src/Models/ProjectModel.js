@@ -1,6 +1,7 @@
 export default class ProjectModel {
     id;
     title;
+    sidebarTitle;
     description;
     coordinate;
     modelUrl;
@@ -9,9 +10,10 @@ export default class ProjectModel {
     shouldDisplay;
     unit;
     rotation;
-    constructor(id, title, description, unit, coordinate, rotation, modelUrl, glbUrl,usdzUrl, shouldDisplay) {
+    constructor(id, title, sidebarTitle, description, unit, coordinate, rotation, modelUrl, glbUrl,usdzUrl, shouldDisplay) {
         this.id = id;
         this.title = title;
+        this.sidebarTitle = sidebarTitle;
         this.description = description;
         this.unit = unit;
         this.coordinate = coordinate;

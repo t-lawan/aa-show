@@ -21,7 +21,7 @@ const SidebarTitle = styled.p`
   font-size: 1vw;
   opacity: ${props => (props.canClick ? 1 : 0.4)};
   margin: 0;
-  margin-bottom: 1vh;
+  margin-bottom: 0.75vh;
 `;
 const Sidebar = props => {
   let projects = props.projects;
@@ -31,6 +31,16 @@ const Sidebar = props => {
     <SidebarWrapper show={props.show}>
       {pageInfo ? (
         <React.Fragment>
+          {pageInfo.defaultProjects.map((project, index) => (
+            <SidebarTitle
+              canClick={project.shouldDisplay}
+              onClick={() => props.onClick(project)}
+              key={index}
+            >
+              {" "}
+              {project.sidebarTitle}
+            </SidebarTitle>
+          ))}
           <SidebarTitle canClick={true}> Experimental </SidebarTitle>
           {pageInfo.experimental.map((project, index) => (
             <SidebarTitle
@@ -39,7 +49,7 @@ const Sidebar = props => {
               key={index}
             >
               {" "}
-              {index + 1}
+              {project.sidebarTitle}
             </SidebarTitle>
           ))}
           <SidebarTitle canClick={true}> Diploma </SidebarTitle>
@@ -51,7 +61,7 @@ const Sidebar = props => {
               key={index}
             >
               {" "}
-              {index + 1}
+              {project.sidebarTitle}
             </SidebarTitle>
           ))}
         </React.Fragment>
