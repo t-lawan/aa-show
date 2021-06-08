@@ -7,21 +7,17 @@ export const EnvironmentFilter = {
 }
 
 export const PageURls = {
-    RESEARCH: {
-        id: 'RESEARCH',
-        url: '/research',
+    BEDFORD_SQUARE: {
+        id: 'BEDFORD_SQUARE',
+        url: '/bedford-square',
     },
-    NOW: {
-        id: 'NOW',
-        url: '/now',
+    AR_AT_HOME: {
+        id: 'AR_AT_HOME',
+        url: '/ar-at-home',
     },
-    FUTURE: {
-        id: 'FUTURE',
-        url: '/future',
-    },
-    PROPOSAL: {
-        id: 'PROPOSAL',
-        url: '/proposal',
+    GEOLOCATION_TEST: {
+        id: 'GEOLOCATION_TEST',
+        url: '/location',
     },
     HOME: {
         id: 'HOME',
@@ -33,21 +29,18 @@ export const PageURls = {
 export const IsPage = (page_id, pathname) => {
     let response = false;
     switch(page_id) {
-        case PageURls.RESEARCH.id:
-            response = (pathname === PageURls.RESEARCH.url)
+        case PageURls.BEDFORD_SQUARE.id:
+            response = (pathname === PageURls.BEDFORD_SQUARE.url)
             break;
-        case PageURls.PROPOSAL.id:
-            response = (pathname === PageURls.PROPOSAL.url)
+        case PageURls.AR_AT_HOME.id:
+            response = (pathname === PageURls.AR_AT_HOME.url)
             break;     
         case PageURls.HOME.id:
             response = (pathname === PageURls.HOME.url)
             break;  
-        case PageURls.NOW.id:
-            response = (pathname === PageURls.NOW.url)
-            break; 
-        case PageURls.FUTURE.id:
-            response = (pathname === PageURls.FUTURE.url)
-            break; 
+        case PageURls.GEOLOCATION_TEST.id:
+            response = (pathname === PageURls.GEOLOCATION_TEST.url)
+            break;  
     }
     return response;
 }

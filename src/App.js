@@ -9,6 +9,7 @@ import AR from './Pages/AR';
 import Real from './Pages/Real';
 import Location from './Pages/Location';
 import ModelViewerExample from './Pages/ModelViewerExample';
+import { PageURls } from './Utility/Misc';
 
 const store = createStore(
   reducer,
@@ -20,12 +21,12 @@ function App() {
     <Provider store={store}>
       <Router>
         <Switch>
-          <Route path="/" exact component={Home} />
+          <Route path={PageURls.HOME.url} exact component={Home} />
           {/* <Route path="/test" exact component={Test} /> */}
-          <Route path="/ar" exact component={AR} />
-          <Route path="/bedford-square" exact component={Real} />
-          <Route path="/ar-at-home" exact component={ModelViewerExample} />
-          <Route path="/location" exact component={Location} />
+          <Route path={"/ar"} exact component={AR} />
+          <Route path={PageURls.BEDFORD_SQUARE.url} exact component={Real} />
+          <Route path={PageURls.AR_AT_HOME.url} exact component={ModelViewerExample} />
+          <Route path={PageURls.GEOLOCATION_TEST.url} exact component={Location} />
           <Route component={Home} />
         </Switch>
       </Router>

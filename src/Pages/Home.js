@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Colours, size } from "../Components/Global/global.styles";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { PageURls } from "../Utility/Misc";
 
 const HomeWrapper = styled.div`
   display: flex;
@@ -42,10 +43,10 @@ const Home = () => {
   return (
     <Layout>
       <HomeWrapper ref={homeWrapper}>
-        <Link to={'/location'}> My house </Link>
-        <Link to={'/ar'}> AR </Link>
-        <Link to={'/bedford-square'}> Bedford Square  </Link>
-        <Link to={'/ar-at-home'}> Model viewer </Link>
+        <Link to={PageURls.GEOLOCATION_TEST.url}> My house </Link>
+        {/* <Link to={'/ar'}> AR </Link> */}
+        <Link to={PageURls.BEDFORD_SQUARE.url}> Bedford Square  </Link>
+        <Link to={PageURls.AR_AT_HOME.url}> Model viewer </Link>
       </HomeWrapper>
     </Layout>
   );

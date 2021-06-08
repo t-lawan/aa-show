@@ -18,19 +18,20 @@ import NorthSideModel from '../../Assets/Models/NorthSide.glb';
 import SouthSideModel from '../../Assets/Models/SouthSide.glb';
 import RoadOutlineModel from '../../Assets/Models/RoadOutline.glb';
 import Sidebar from "../Sidebar/Sidebar";
+import ARModal from "../ARModal/ARModal";
 
 const BedfordSquareWrapper = styled.div`
   height: 100vh;
   display: ${props => (props.show ? "block" : "none")};
 `;
 
-const OverlayWrapper = styled.div`
+const ARButtonWrapper = styled.div`
   display: ${props => props => (props.show ? "block" : "none")};
   position: absolute;
   bottom: 0;
-  width: 50%;
-  height: 30%;
-  left: 0;
+  width: 20vw;
+  height: 5vw;
+  left: 40vw;
   background: red;
 `;
 
@@ -82,7 +83,7 @@ class BedfordSquare extends Component {
     projects.forEach(project => {
       // this.addCube(project);
       if(project.shouldDisplay){
-        this.addObject(project, project.glbUrl);
+        // this.addObject(project, project.glbUrl);
       }
     });
     // console.log('PROJECTS', projects);
@@ -417,6 +418,7 @@ class BedfordSquare extends Component {
           loaded={this.state.itemsLoaded}
           total={this.state.itemsTotal}
         />
+        <ARModal show={this.state.hasLoaded && !this.state.showOverlay} />
       </>
     );
   }
