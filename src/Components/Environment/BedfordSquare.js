@@ -83,7 +83,7 @@ class BedfordSquare extends Component {
     projects.forEach(project => {
       // this.addCube(project);
       if(project.shouldDisplay){
-        // this.addObject(project, project.glbUrl);
+        this.addObject(project, project.glbUrl);
       }
     });
     // console.log('PROJECTS', projects);
