@@ -396,7 +396,7 @@ class BedfordSquare extends Component {
         // mesh.children[0].material.color = new THREE.Color(255,255,255);
       }, 3000)
 
-      console.log('highlightProject', mesh)
+      // console.log('highlightProject', mesh)
 
     }
   }
