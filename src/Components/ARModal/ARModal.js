@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { Colours } from "../Global/global.styles";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { richTextOptions } from "../../Utility/Richtext";
+import { PageURls } from "../../Utility/Misc";
 
 const ARModalWrapper = styled.div`
   display: ${props => (props.show ? "block" : "none")};
@@ -55,7 +56,7 @@ const ARModal = props => {
             <p> Are you in Bedford Square?</p>
             <ButtonWrapper>
                 <p> Yes</p>
-                <p> No</p>
+                <ARLink to={PageURls.AR_AT_HOME.url}> No</ARLink>
 
             </ButtonWrapper>
             </React.Fragment>
