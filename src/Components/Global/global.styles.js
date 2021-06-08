@@ -151,7 +151,7 @@ p, li, a, span{
   letter-spacing: 0.03em;
   line-height: 1.05em;
   ${'' /* font-weight: 100 !important; */}
-  color: ${Colours.dark_grey};
+  color: 'black';
   @media (max-width: ${size.mobileXL}) {
     font-size: 1.1rem;
   }

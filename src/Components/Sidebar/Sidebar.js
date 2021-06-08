@@ -1,12 +1,11 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Colours } from "../Global/global.styles";
 
-
 const SidebarWrapper = styled.div`
-  display: ${props => props => props.show ? 'block' : 'none'};
+  display: ${props => props => (props.show ? "block" : "none")};
   position: absolute;
   bottom: 0;
   width: 15%;
@@ -16,30 +15,62 @@ const SidebarWrapper = styled.div`
   z-index: 100;
   padding: 2vh 2vw;
   overflow-y: scroll;
-`
+`;
 
 const SidebarTitle = styled.p`
   font-size: 1vw;
-  opacity: ${props => props.canClick ? 1: 0.4};
-`
-const Sidebar = (props) => {
-    let projects = props.projects;
-    return (
-        <SidebarWrapper  show={props.show}>
-            {projects.map((project, index) => (
+  opacity: ${props => (props.canClick ? 1 : 0.4)};
+  margin: 0;
+  margin-bottom: 1vh;
+`;
+const Sidebar = props => {
+  let projects = props.projects;
+  let pageInfo = props.pageInfo;
+  console.log("PAGE", pageInfo);
+  return (
+    <SidebarWrapper show={props.show}>
+      {pageInfo ? (
+        <React.Fragment>
+          <SidebarTitle canClick={true}> Experimental </SidebarTitle>
+          {pageInfo.experimental.map((project, index) => (
+            <SidebarTitle
+              canClick={project.shouldDisplay}
+              onClick={() => props.onClick(project)}
+              key={index}
+            >
+              {" "}
+              {index + 1}
+            </SidebarTitle>
+          ))}
+          <SidebarTitle canClick={true}> Diploma </SidebarTitle>
+
+          {pageInfo.diploma.map((project, index) => (
+            <SidebarTitle
+              canClick={project.shouldDisplay}
+              onClick={() => props.onClick(project)}
+              key={index}
+            >
+              {" "}
+              {index + 1}
+            </SidebarTitle>
+          ))}
+        </React.Fragment>
+      ) : null}
+
+      {/* {projects.map((project, index) => (
               <SidebarTitle canClick={project.shouldDisplay} onClick={() => props.onClick(project)} key={index}> {project.title}</SidebarTitle>
-            ))}
-        </SidebarWrapper>
-    )
-}
+            ))} */}
+    </SidebarWrapper>
+  );
+};
 
 const mapStateToProps = state => {
-    return {
-      selected_ar_project: state.selected_ar_project,
-    };
+  return {
+    selected_ar_project: state.selected_ar_project
   };
+};
 
-  export default connect(
-    mapStateToProps,
-    null
-  )(Sidebar);
+export default connect(
+  mapStateToProps,
+  null
+)(Sidebar);

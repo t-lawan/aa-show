@@ -45,7 +45,8 @@ class BedfordSquare extends Component {
       itemsTotal: 0,
       showOverlay: false,
       showSidebar: true,
-      projects: []
+      projects: [],
+      pageInfo : null
     };
   }
   async componentDidMount() {
@@ -76,6 +77,7 @@ class BedfordSquare extends Component {
   };
 
   initLoadingObjects = async () => {
+    let pageInfo = await RequestManager.getPageInfo()
     let projects = await RequestManager.getProjects();
     projects.forEach(project => {
       // this.addCube(project);
@@ -83,9 +85,10 @@ class BedfordSquare extends Component {
         this.addObject(project, project.glbUrl);
       }
     });
-    console.log('PROJECTS', projects);
+    // console.log('PROJECTS', projects);
     this.setState({
-      projects: projects
+      projects: projects,
+      pageInfo: pageInfo
     })
   };
 
@@ -101,8 +104,9 @@ class BedfordSquare extends Component {
       1000 // far plane
     );
     
-    this.camera.position.set(300,300,1000);
-    // this.camera.position.y = 40;
+    // this.camera.position.set(300,300,1000);
+    this.camera.position.y = 40;
+    this.camera.position.z = 40;
   };
 
   setupControls = () => {
@@ -267,7 +271,7 @@ class BedfordSquare extends Component {
       mesh.userData.baseColor = mesh.children[0].material.color;
       mesh.receiveShadow = true;
       mesh.castShadow = true;
-      console.log('ADD MESH', mesh)
+      // console.log('ADD MESH', mesh)
       this.scene.add(mesh);
       this.clickableObjects.push(mesh);
     });
@@ -407,7 +411,7 @@ class BedfordSquare extends Component {
           onClick={() => this.hideOverlay()}
           show={this.state.showOverlay}
         />
-        <Sidebar show={this.state.hasLoaded} projects={this.state.projects} onClick={this.highlightProject.bind(this)} />
+        <Sidebar show={this.state.hasLoaded} projects={this.state.projects} pageInfo={this.state.pageInfo} onClick={this.highlightProject.bind(this)} />
         <LoadingPage
           show={!this.state.hasLoaded}
           loaded={this.state.itemsLoaded}
