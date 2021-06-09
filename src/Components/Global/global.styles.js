@@ -35,7 +35,7 @@ export const Colours = {
   light_black: 'rbga(0,0,0,0.1)',
   light_blue: 'rgb(116, 251, 253)',
   light_green: 'rgb(116, 251, 253)',
-  light_green_translucent: 'rgba(116,251,253, 0.7)'
+  light_green_translucent: 'rgba(116,251,253, 0.2)'
 };
 
 export const GlobalStyle = createGlobalStyle`

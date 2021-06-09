@@ -18,7 +18,7 @@ const SidebarWrapper = styled.div`
 `;
 
 const SidebarTitle = styled.p`
-  font-size: 1vw;
+  font-size: 1.2vh;
   opacity: ${props => (props.canClick ? 1 : 0.4)};
   margin: 0;
   margin-bottom: 0.75vh;
@@ -26,7 +26,7 @@ const SidebarTitle = styled.p`
 const Sidebar = props => {
   let projects = props.projects;
   let pageInfo = props.pageInfo;
-  console.log("PAGE", pageInfo);
+  // console.log("PAGE", pageInfo);
   return (
     <SidebarWrapper show={props.show}>
       {pageInfo ? (

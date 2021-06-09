@@ -376,6 +376,21 @@ class BedfordSquare extends Component {
     });
   };
 
+  selectProject = (project) => {
+
+    this.highlightProject(project);
+    // Move towards totem
+    let mesh = this.findMeshFromProject(project);
+    console.log('MESH', mesh)
+    this.controls.target = mesh.position;
+    this.controls.update()
+    this.props.setSelectedArProject(project);
+    this.setState({
+      showOverlay: true
+    });
+
+  }
+
   highlightProject = (project) => {
     if(project.shouldDisplay) {
       let mesh = this.findMeshFromProject(project)
@@ -412,7 +427,7 @@ class BedfordSquare extends Component {
           onClick={() => this.hideOverlay()}
           show={this.state.showOverlay}
         />
-        <Sidebar show={this.state.hasLoaded} projects={this.state.projects} pageInfo={this.state.pageInfo} onClick={this.highlightProject.bind(this)} />
+        <Sidebar show={this.state.hasLoaded} projects={this.state.projects} pageInfo={this.state.pageInfo} onClick={this.selectProject.bind(this)} />
         <LoadingPage
           show={!this.state.hasLoaded}
           loaded={this.state.itemsLoaded}

@@ -11,8 +11,8 @@ const OverlayWrapper = styled.div`
   display: ${props => props => props.show ? 'block' : 'none'};
   position: absolute;
   bottom: 0;
-  width: 60%;
-  height: 30%;
+  width: 100%;
+  height: 100%;
   right: 0;
   background: ${Colours.light_green_translucent};
 `
@@ -33,6 +33,10 @@ const ProjectContentWrapper = styled.div`
     display: flex;
     flex-direction: column;
     padding: 1vh 0.5vw;
+    justify-content: center;
+    align-items:center;
+    height: 100%;
+    color: ${Colours.light_green}
 `
 const Overlay = (props) => {
     let project = props.selected_ar_project;
@@ -41,7 +45,7 @@ const Overlay = (props) => {
         {project ? (
             <ProjectContentWrapper>
                 <ProjectTitle> {project.title} </ProjectTitle>
-                {documentToReactComponents(project.description, richTextOptions)}
+                {/* {documentToReactComponents(project.description, richTextOptions)} */}
                 {/* <ARLink to={"/ar-at-home"} > Totem Link </ARLink> */}
             </ProjectContentWrapper>
         ) : null}
