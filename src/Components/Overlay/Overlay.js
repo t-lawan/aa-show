@@ -18,6 +18,10 @@ const OverlayWrapper = styled.div`
 `
 
 const ProjectTitle = styled.h1`
+    color: ${Colours.light_green};
+    font-size: 10vh;
+}
+
 
 `
 
