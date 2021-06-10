@@ -54,7 +54,7 @@ const ARLink = styled(Link)`
 const ResetButton = styled.p`
   position: absolute;
   bottom: 1vh;
-  right: 1vw;
+  left: 1vw;
   z-index: ${ZLayer.MODEL_VIEWER_LINKS};
   color: ${Colours.light_green};
 
