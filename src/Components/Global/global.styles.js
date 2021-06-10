@@ -77,6 +77,8 @@ html, body {
   width: 100%;
   -webkit-font-smoothing: antialiased;
 }
+
+
 h1,h2,h3,h4,h5,h6 {
     margin-left: 0;
     margin-right: 0;

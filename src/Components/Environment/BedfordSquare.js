@@ -80,10 +80,11 @@ class BedfordSquare extends Component {
   initLoadingObjects = async () => {
     let pageInfo = await RequestManager.getPageInfo()
     let projects = await RequestManager.getProjects();
+    console.log('pro', projects)
     projects.forEach(project => {
       // this.addCube(project);
       if(project.shouldDisplay){
-        this.addObject(project, project.glbUrl);
+        this.addObject(project, project.modelUrl);
       }
     });
     // console.log('PROJECTS', projects);

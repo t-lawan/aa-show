@@ -2,7 +2,8 @@ import { HAS_LOADED, SET_SELECTED_AR_PROJECT } from "./action";
 
 const initalState = {
   has_loaded: false,
-  selected_ar_project: null
+  selected_ar_project: null,
+  projects: []
 };
 
 

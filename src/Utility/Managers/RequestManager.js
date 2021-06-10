@@ -21,7 +21,7 @@ export default class RequestManager {
           });
 
 
-        //   console.log('RESPONSE', response)
+          console.log('RESPONSE', response)
           
 
           let projects = response.items.map((item) => {
@@ -43,7 +43,9 @@ export default class RequestManager {
                   item.fields.modelUrl,
                   item.fields.glbUrl,
                   item.fields.usdzUrl,
-                  item.fields.shouldDisplay
+                  item.fields.shouldDisplay,
+                  item.fields.showInArAtHome,
+                  
               )
           });
 
@@ -57,10 +59,15 @@ export default class RequestManager {
             accessToken: this.accessToken
           });
 
-          let response = await client.getEntry({
-            content_type: "pageInfo"
+          let response = await client.getEntry('6As5HylC56AmAi8XZ7ikyP', {
+            content_type: "pageInfo",
+            include: 2
 
           });
+
+          
+
+          console.log('RESPONSE', response);
 
           let diplomaProjects = response.fields.diplomaProjects.map((item) =>{
             let coordinate = new Coordinates(item.fields.coordinate.fields.x, item.fields.coordinate.fields.y, item.fields.coordinate.fields.z);
@@ -79,7 +86,9 @@ export default class RequestManager {
                 item.fields.modelUrl,
                 item.fields.glbUrl,
                 item.fields.usdzUrl,
-                item.fields.shouldDisplay
+                item.fields.shouldDisplay,
+                item.fields.showInArAtHome,
+
             )
           })
 
@@ -100,7 +109,9 @@ export default class RequestManager {
                 item.fields.modelUrl,
                 item.fields.glbUrl,
                 item.fields.usdzUrl,
-                item.fields.shouldDisplay
+                item.fields.shouldDisplay,
+                item.fields.showInArAtHome,
+
             )
           })
 
@@ -121,7 +132,9 @@ export default class RequestManager {
                 item.fields.modelUrl,
                 item.fields.glbUrl,
                 item.fields.usdzUrl,
-                item.fields.shouldDisplay
+                item.fields.shouldDisplay,
+                item.fields.showInArAtHome,
+
             )
           })
 
