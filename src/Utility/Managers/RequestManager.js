@@ -138,7 +138,30 @@ export default class RequestManager {
             )
           })
 
-          let pageInfo = new PageInfoModel(defaultProjects, experimental, diplomaProjects)
+          let rightColumnProjects = response.fields.rightColumnProjects.map((item) => {
+            let coordinate = new Coordinates(item.fields.coordinate.fields.x, item.fields.coordinate.fields.y, item.fields.coordinate.fields.z);
+            let rotation = null;
+            if(item.fields.rotation){
+                rotation = new Rotation(item.fields.rotation.fields.x, item.fields.rotation.fields.y, item.fields.rotation.fields.z);
+            }
+            return new ProjectModel(
+                item.sys.id,
+                item.fields.title,
+                item.fields.sidebarDisplayTitle,
+                item.fields.description,
+                item.fields.unit,
+                coordinate,
+                rotation,
+                item.fields.modelUrl,
+                item.fields.glbUrl,
+                item.fields.usdzUrl,
+                item.fields.shouldDisplay,
+                item.fields.showInArAtHome,
+
+            )
+          })
+
+          let pageInfo = new PageInfoModel(defaultProjects, experimental, diplomaProjects, rightColumnProjects)
 
           return pageInfo;
     }

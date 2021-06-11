@@ -2,10 +2,12 @@ export default class PageInfoModel {
     experimental;
     diploma;
     defaultProjects;
-    constructor(defaultProjects,experimental, diploma) {
+    rightColumnProjects;
+    constructor(defaultProjects,experimental, diploma, rightColumnProjects) {
         this.defaultProjects = defaultProjects;
         this.experimental = experimental;
         this.diploma = diploma;
+        this.rightColumnProjects = rightColumnProjects;
         
     }
 }
