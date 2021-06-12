@@ -5,8 +5,8 @@ import { connect } from "react-redux";
 import { Colours, size } from "../Global/global.styles";
 
 const NavbarWrapper = styled.div`
-  display: ${props => props => (props.show ? "block" : "none")};
   position: absolute;
+  display: none;
   bottom: 0;
   width: 100%;
   /* height: 15%; */
@@ -15,6 +15,11 @@ const NavbarWrapper = styled.div`
   z-index: 100;
   padding: 2vh 4vw;
   overflow-y: scroll;
+  @media (max-width: ${size.tablet}) {
+      width: 2.5px;
+      height: 1vh;
+      display: block;
+    }
   ::-webkit-scrollbar {
     width: 5px;
     height: 1vh;

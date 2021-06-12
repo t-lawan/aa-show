@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { Colours } from "../Global/global.styles";
+import { Colours, size } from "../Global/global.styles";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { richTextOptions } from "../../Utility/Richtext";
 
@@ -20,6 +20,10 @@ const OverlayWrapper = styled.div`
 const ProjectTitle = styled.h1`
     color: ${Colours.light_green};
     font-size: 10vh;
+    @media (max-width: ${size.tablet}) {
+    font-size: 10vw;
+
+    }
 `
 
 const ProjectDescription = styled.p`

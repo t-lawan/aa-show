@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { Colours } from "../Global/global.styles";
 import RequestManager from "../../Utility/Managers/RequestManager";
 import { GLTFLoader } from "../../Utility/Loaders/GLTFLoader.js";
@@ -10,7 +10,7 @@ import LoadingPage from "../Loading/LoadingPage/LoadingPage";
 import Overlay from "../Overlay/Overlay";
 import { setSelectedArProject } from "../../Store/action";
 import { connect } from "react-redux";
-
+import {OrbitControls}from '../../Utility/OrbitControls/OrbitControls'
 import ContextModel from '../../Assets/Models/Context.glb';
 import AAWingModel from '../../Assets/Models/AAWing.glb';
 import EastSideModel from '../../Assets/Models/EastSide.glb';
@@ -40,6 +40,7 @@ const ARButtonWrapper = styled.div`
 class BedfordSquare extends Component {
   clickableObjects = [];
   baseColor = new THREE.Color(0,0,0);
+  centerPoint = new THREE.Vector3(0,0,0);
   constructor(props) {
     super(props);
     this.state = {
@@ -84,9 +85,10 @@ class BedfordSquare extends Component {
     let projects = await RequestManager.getProjects();
     console.log('pro', projects)
     projects.forEach(project => {
-      // this.addCube(project);
       if(project.shouldDisplay){
-        this.addObject(project, project.modelUrl);
+         this.addCube(project);
+
+        // this.addObject(project, project.modelUrl);
       }
     });
     // console.log('PROJECTS', projects);
@@ -226,23 +228,7 @@ class BedfordSquare extends Component {
     this.scene.add(light3);
   };
 
-  addCube = project => {
-    const coordinate = project.coordinate;
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshPhongMaterial({
-      color: 0x156289,
-      emissive: 0x072534,
-      side: THREE.DoubleSide,
-      flatShading: true
-    });
 
-    this.cube = new THREE.Mesh(geometry, material);
-    this.cube.position.set(coordinate.x, coordinate.y, coordinate.z);
-    this.scene.add(this.cube);
-    this.cube.userData.isClickable = true;
-    this.cube.userData.project = project;
-    this.clickableObjects.push(this.cube);
-  };
 
   addEnvironmentObject = (object, name) => {
     const loader = new GLTFLoader(this.manager);
@@ -256,6 +242,30 @@ class BedfordSquare extends Component {
       this.scene.add(mesh);
     })
   }
+
+  addCube = project => {
+    const coordinate = project.coordinate;
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    const material = new THREE.MeshPhongMaterial({
+      color: 0x156289,
+      emissive: 0x072534,
+      side: THREE.DoubleSide,
+      flatShading: true
+    });
+
+    let cube = new THREE.Mesh(geometry, material);
+    cube.position.set(coordinate.x, coordinate.y, coordinate.z);
+    this.baseColor = cube.material.color;
+    cube.userData.isClickable = true;
+    cube.userData.project = project;
+    cube.userData.baseColor = this.baseColor;
+    cube.visible = true;
+    
+
+    this.scene.add(cube);
+
+    this.clickableObjects.push(cube);
+  };
 
   addObject = (project, object = Astronaut) => {
     const loader = new GLTFLoader(this.manager);
@@ -348,6 +358,7 @@ class BedfordSquare extends Component {
 
   onDoubleClick = event => {
     event.preventDefault();
+    console.log('CONTROLS', this.controls.target0)
     this.setMouse(event);
     this.raycaster.setFromCamera(this.mouse, this.camera);
     this.intersects = this.raycaster.intersectObjects(
@@ -366,11 +377,15 @@ class BedfordSquare extends Component {
       if (project) {
         console.log(project)
         this.props.setSelectedArProject(project);
-        this.setState({
-          showOverlay: true
-        });
+        this.showOverlay()
       }
     }
+  };
+
+  showOverlay = () => {
+    this.setState({
+      showOverlay: true
+    });
   };
 
   hideOverlay = () => {
@@ -386,6 +401,7 @@ class BedfordSquare extends Component {
     let mesh = this.findMeshFromProject(project);
     console.log('MESH', mesh)
     this.controls.target = mesh.position;
+    this.controls.dollyOut(5);
     this.controls.update()
     this.props.setSelectedArProject(project);
     this.setState({
@@ -394,14 +410,19 @@ class BedfordSquare extends Component {
 
   }
 
+  resetTarget = () => {
+    this.controls.target = this.centerPoint;
+    this.controls.dollyIn(5);
+    this.controls.update()
+  }
+
   highlightProject = (project) => {
     if(project.shouldDisplay) {
       let mesh = this.findMeshFromProject(project)
       // mesh.children[0].material.color = new THREE.Color( 0x87ffd7);
       mesh.traverse((child) => {
         if(child.material){
-          child.material.color = new THREE.Color( 0x87ffd7)
-
+          child.material.color = new THREE.Color( 0x87ffd7);
         }
       })
       setTimeout(() => {
@@ -411,12 +432,22 @@ class BedfordSquare extends Component {
 
           }
         })
+
+        if(this.state.showOverlay){
+          this.closeOverlay()
+        }
+
+
         // mesh.children[0].material.color = new THREE.Color(255,255,255);
-      }, 3000)
+      }, 10000)
 
       // console.log('highlightProject', mesh)
-
     }
+  }
+
+  closeOverlay = () => {
+    this.hideOverlay();
+    this.resetTarget();
   }
 
   render() {
@@ -427,7 +458,7 @@ class BedfordSquare extends Component {
           ref={ref => (this.mount = ref)}
         />
         <Overlay
-          onClick={() => this.hideOverlay()}
+          onClick={() => this.closeOverlay()}
           show={this.state.showOverlay}
         />
         <Sidebar show={this.state.hasLoaded} projects={this.state.projects} pageInfo={this.state.pageInfo} onClick={this.selectProject.bind(this)} />
@@ -438,7 +469,7 @@ class BedfordSquare extends Component {
           loaded={this.state.itemsLoaded}
           total={this.state.itemsTotal}
         />
-         {/* <ARModal show={this.state.hasLoaded && !this.state.showOverlay} /> */}
+         <ARModal show={this.state.hasLoaded && !this.state.showOverlay} />
       </>
     );
   }
