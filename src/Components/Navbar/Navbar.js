@@ -4,77 +4,95 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Colours, size } from "../Global/global.styles";
 
-const SidebarWrapper = styled.div`
-  display: ${props => (props.show ? "block" : "none")};
+const NavbarWrapper = styled.div`
+  display: ${props => props => (props.show ? "block" : "none")};
   position: absolute;
   bottom: 0;
-  width: 15%;
-  height: 100%;
-  right: left;
+  width: 100%;
+  /* height: 15%; */
+  right: 0;
   /* background: ${Colours.light_green_translucent}; */
   z-index: 100;
-  padding: 2vh 2vw;
+  padding: 2vh 4vw;
   overflow-y: scroll;
-  @media (max-width: ${size.tabletL}) {
-    display: none;
-
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 1vh;
+    @media (max-width: ${size.tablet}) {
+      width: 2.5px;
+      height: 1vh;
+    }
   }
 `;
 
-const SidebarTitle = styled.p`
+const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const NavbarTitle = styled.p`
   font-size: 1.2vh;
+  font-size: 2vh;
   opacity: ${props => (props.canClick ? 1 : 0.4)};
   margin: 0;
-  margin-bottom: 0.75vh;
+  /* margin-bottom: 0.75vh; */
+  padding: 0 1vw;
 `;
-const Sidebar = props => {
-  let projects = props.projects;
+const Navbar = props => {
   let pageInfo = props.pageInfo;
   // console.log("PAGE", pageInfo);
   return (
-    <SidebarWrapper show={props.show}>
+    <NavbarWrapper show={props.show}>
       {pageInfo ? (
-        <React.Fragment>
+        <ContentWrapper>
           {pageInfo.defaultProjects.map((project, index) => (
-            <SidebarTitle
+            <NavbarTitle
               canClick={project.shouldDisplay}
               onClick={() => props.onClick(project)}
               key={index}
             >
               {" "}
               {project.sidebarTitle}
-            </SidebarTitle>
+            </NavbarTitle>
           ))}
-          <SidebarTitle canClick={true}> Experimental </SidebarTitle>
+          {/* <NavbarTitle canClick={false}> Experimental </NavbarTitle> */}
           {pageInfo.experimental.map((project, index) => (
-            <SidebarTitle
+            <NavbarTitle
               canClick={project.shouldDisplay}
               onClick={() => props.onClick(project)}
               key={index}
             >
               {" "}
-              {project.sidebarTitle}
-            </SidebarTitle>
+              Exp. {project.sidebarTitle}
+            </NavbarTitle>
           ))}
-          <SidebarTitle canClick={true}> Diploma </SidebarTitle>
+          {/* <NavbarTitle canClick={false}> Diploma </NavbarTitle> */}
 
           {pageInfo.diploma.map((project, index) => (
-            <SidebarTitle
+            <NavbarTitle
               canClick={project.shouldDisplay}
               onClick={() => props.onClick(project)}
               key={index}
             >
               {" "}
-              {project.sidebarTitle}
-            </SidebarTitle>
+              Dip. {project.sidebarTitle}
+            </NavbarTitle>
           ))}
-        </React.Fragment>
-      ) : null}
 
-      {/* {projects.map((project, index) => (
-              <SidebarTitle canClick={project.shouldDisplay} onClick={() => props.onClick(project)} key={index}> {project.title}</SidebarTitle>
-            ))} */}
-    </SidebarWrapper>
+          <React.Fragment>
+            {pageInfo.rightColumnProjects.map((project, index) => (
+              <NavbarTitle
+                canClick={project.shouldDisplay}
+                onClick={() => props.onClick(project)}
+                key={index}
+              >
+                {project.sidebarTitle}
+              </NavbarTitle>
+            ))}
+          </React.Fragment>
+        </ContentWrapper>
+      ) : null}
+    </NavbarWrapper>
   );
 };
 
@@ -87,4 +105,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   null
-)(Sidebar);
+)(Navbar);

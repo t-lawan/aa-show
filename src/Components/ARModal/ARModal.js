@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { Colours } from "../Global/global.styles";
+import { Colours, size } from "../Global/global.styles";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { richTextOptions } from "../../Utility/Richtext";
 import { PageURls } from "../../Utility/Misc";
@@ -15,6 +15,9 @@ const ARModalWrapper = styled.div`
   height: ${props => (props.showARSection ? "30vh" : "5vh")};
   left: ${props => (props.showARSection ? "25vw" : "40vw")};
   /* background: ${Colours.light_green_translucent}; */
+  @media (max-width: ${size.tablet}) {
+      display: none;
+    }
 `;
 
 const ARLink = styled(Link)``;

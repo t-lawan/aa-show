@@ -20,6 +20,7 @@ import RoadOutlineModel from '../../Assets/Models/RoadOutline.glb';
 import Sidebar from "../Sidebar/Sidebar";
 import ARModal from "../ARModal/ARModal";
 import RightSidebar from "../Sidebar/RightSidebar";
+import Navbar from "../Navbar/Navbar";
 
 const BedfordSquareWrapper = styled.div`
   height: 100vh;
@@ -431,12 +432,13 @@ class BedfordSquare extends Component {
         />
         <Sidebar show={this.state.hasLoaded} projects={this.state.projects} pageInfo={this.state.pageInfo} onClick={this.selectProject.bind(this)} />
         <RightSidebar show={this.state.hasLoaded} pageInfo={this.state.pageInfo} onClick={this.selectProject.bind(this)} />
+        <Navbar show={this.state.hasLoaded} pageInfo={this.state.pageInfo} onClick={this.selectProject.bind(this)} />
         <LoadingPage
           show={!this.state.hasLoaded}
           loaded={this.state.itemsLoaded}
           total={this.state.itemsTotal}
         />
-        <ARModal show={this.state.hasLoaded && !this.state.showOverlay} />
+         {/* <ARModal show={this.state.hasLoaded && !this.state.showOverlay} /> */}
       </>
     );
   }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { Colours } from "../Global/global.styles";
+import { Colours, size } from "../Global/global.styles";
 
 const RightSidebarWrapper = styled.div`
   display: ${props => props => (props.show ? "block" : "none")};
@@ -15,6 +15,10 @@ const RightSidebarWrapper = styled.div`
   z-index: 100;
   padding: 2vh 2vw;
   overflow-y: scroll;
+  @media (max-width: ${size.tabletL}) {
+    display: none;
+
+  }
 `;
 
 const SidebarTitle = styled.p`

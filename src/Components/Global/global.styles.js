@@ -59,7 +59,7 @@ export const GlobalStyle = createGlobalStyle`
     @media (max-width: ${size.tablet}) {
       width: 7px;
     }
-overflow-y: hidden;
+    overflow-y: hidden;
 
   }
   ::-webkit-scrollbar-thumb {
