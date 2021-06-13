@@ -2,19 +2,20 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { Colours, size } from "../Global/global.styles";
+import { Colours, size, ZLayer } from "../Global/global.styles";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { richTextOptions } from "../../Utility/Richtext";
 
 
 const OverlayWrapper = styled.div`
-  display: ${props => props => props.show ? 'block' : 'none'};
+  display: ${props => props.show ? 'block' : 'none'};
   position: absolute;
   bottom: 0;
   width: 100%;
   height: 100%;
   right: 0;
   background: ${Colours.light_green_translucent};
+  z-index: ${ZLayer.OVERLAY}
 `
 
 const ProjectTitle = styled.h1`

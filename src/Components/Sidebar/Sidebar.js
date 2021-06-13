@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { Colours, size } from "../Global/global.styles";
+import { Colours, size, ZLayer } from "../Global/global.styles";
 
 const SidebarWrapper = styled.div`
   display: ${props => (props.show ? "block" : "none")};
@@ -12,10 +12,11 @@ const SidebarWrapper = styled.div`
   height: 100%;
   right: left;
   /* background: ${Colours.light_green_translucent}; */
-  z-index: 100;
+  z-index: ${ZLayer.NAVBAR};
+
   padding: 2vh 2vw;
   overflow-y: scroll;
-  @media (max-width: ${size.tabletL}) {
+  @media (max-width: ${size.mobileL}) {
     display: none;
 
   }

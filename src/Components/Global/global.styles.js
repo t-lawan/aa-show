@@ -22,7 +22,9 @@ export const ZLayer = {
   LOADING_PAGE: 100,
   THREE_JS: 50,
   MODEL_VIEWER: 50,
-  MODEL_VIEWER_LINKS: 100
+  MODEL_VIEWER_LINKS: 100,
+  NAVBAR: 75,
+  OVERLAY: 80
 }
 export const Colours = {
   purple: "#a841f4",

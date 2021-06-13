@@ -40,7 +40,7 @@ const ARButtonWrapper = styled.div`
 class BedfordSquare extends Component {
   clickableObjects = [];
   baseColor = new THREE.Color(0,0,0);
-  centerPoint = new THREE.Vector3(0,0,0);
+  centerPoint = new THREE.Vector3(0,30,0);
   constructor(props) {
     super(props);
     this.state = {
@@ -86,9 +86,9 @@ class BedfordSquare extends Component {
     console.log('pro', projects)
     projects.forEach(project => {
       if(project.shouldDisplay){
-         this.addCube(project);
+        //  this.addCube(project);
 
-        // this.addObject(project, project.modelUrl);
+        this.addObject(project, project.modelUrl);
       }
     });
     // console.log('PROJECTS', projects);
@@ -104,19 +104,24 @@ class BedfordSquare extends Component {
 
   setupCamera = () => {
     this.camera = new THREE.PerspectiveCamera(
-      75, // fov = field of view
+      17, // fov = field of view
       this.mount.clientWidth / this.mount.clientHeight, // aspect ratio
       0.1, // near plane
       1000 // far plane
     );
     
     // this.camera.position.set(300,300,1000);
-    this.camera.position.y = 40;
-    this.camera.position.z = 40;
+    this.camera.position.set(663,477,13);
+    // this.camera.position.y = 40;
+    // this.camera.position.z = 40;
   };
 
   setupControls = () => {
     this.controls = new OrbitControls(this.camera, this.mount);
+    this.controls.minDistance  = 1;
+    this.controls.maxDistance = 800;
+    this.controls.target = this.centerPoint;
+    this.controls.maxPolarAngle = Math.PI/2;
   };
 
   setupRenderer = () => {
@@ -358,7 +363,7 @@ class BedfordSquare extends Component {
 
   onDoubleClick = event => {
     event.preventDefault();
-    console.log('CONTROLS', this.controls.target0)
+    console.log('CONTROLS', this.camera.position)
     this.setMouse(event);
     this.raycaster.setFromCamera(this.mouse, this.camera);
     this.intersects = this.raycaster.intersectObjects(
@@ -395,25 +400,29 @@ class BedfordSquare extends Component {
   };
 
   selectProject = (project) => {
-
-    this.highlightProject(project);
-    // Move towards totem
-    let mesh = this.findMeshFromProject(project);
-    console.log('MESH', mesh)
-    this.controls.target = mesh.position;
-    this.controls.dollyOut(5);
-    this.controls.update()
-    this.props.setSelectedArProject(project);
-    this.setState({
-      showOverlay: true
-    });
-
+    if(project.shouldDisplay){
+      this.highlightProject(project);
+      // Move towards totem
+      let mesh = this.findMeshFromProject(project);
+      console.log('MESH', mesh)
+      this.controls.target = mesh.position;
+      this.controls.dollyOut(100);
+      this.controls.update()
+      this.props.setSelectedArProject(project);
+      this.setState({
+        showOverlay: true
+      });
+    }
   }
 
   resetTarget = () => {
+    console.log('BEFORE', this.controls)
     this.controls.target = this.centerPoint;
-    this.controls.dollyIn(5);
+    // this.controls.scale(10);
+    this.controls.reset();
     this.controls.update()
+    console.log('AFTER', this.controls)
+
   }
 
   highlightProject = (project) => {
@@ -433,9 +442,9 @@ class BedfordSquare extends Component {
           }
         })
 
-        if(this.state.showOverlay){
-          this.closeOverlay()
-        }
+        // if(this.state.showOverlay){
+        //   this.closeOverlay()
+        // }
 
 
         // mesh.children[0].material.color = new THREE.Color(255,255,255);

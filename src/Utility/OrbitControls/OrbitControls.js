@@ -499,7 +499,30 @@ class OrbitControls extends EventDispatcher {
         }
         
         this.dollyIn = dollyIn;
-        this.dollyOut = dollyOut;
+		this.dollyOut = dollyOut;
+		
+		this.scale = function (dollyScale) {
+
+			if ( scope.object.isPerspectiveCamera ) {
+				// scale = 10;
+				// spherical.radius = dollyScale;
+				scale *= dollyScale;
+
+			} else if ( scope.object.isOrthographicCamera ) {
+
+				scope.object.zoom = Math.max( scope.minZoom, Math.min( scope.maxZoom, scope.object.zoom / dollyScale ) );
+				scope.object.updateProjectionMatrix();
+				zoomChanged = true;
+
+			} else {
+
+				console.warn( 'WARNING: OrbitControls.js encountered an unknown camera type - dolly/zoom disabled.' );
+				scope.enableZoom = false;
+
+			}
+
+		};
+
 
 		//
 		// event callbacks - update the object state

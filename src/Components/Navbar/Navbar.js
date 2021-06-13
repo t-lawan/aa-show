@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { Colours, size } from "../Global/global.styles";
+import { Colours, size, ZLayer } from "../Global/global.styles";
+
 
 const NavbarWrapper = styled.div`
   position: absolute;
@@ -12,18 +13,16 @@ const NavbarWrapper = styled.div`
   /* height: 15%; */
   right: 0;
   /* background: ${Colours.light_green_translucent}; */
-  z-index: 100;
+  z-index: ${ZLayer.NAVBAR};
   padding: 2vh 4vw;
   overflow-y: scroll;
-  @media (max-width: ${size.tablet}) {
-      width: 2.5px;
-      height: 1vh;
+  @media (max-width: ${size.mobileL}) {
       display: block;
     }
   ::-webkit-scrollbar {
     width: 5px;
     height: 1vh;
-    @media (max-width: ${size.tablet}) {
+    @media (max-width: ${size.mobileL}) {
       width: 2.5px;
       height: 1vh;
     }
