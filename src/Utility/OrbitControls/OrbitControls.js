@@ -1244,11 +1244,11 @@ class MapControls extends OrbitControls {
 
 		this.screenSpacePanning = false; // pan orthogonal to world-space direction camera.up
 
-		this.mouseButtons.LEFT = MOUSE.PAN;
-		this.mouseButtons.RIGHT = MOUSE.ROTATE;
+		this.mouseButtons.LEFT = MOUSE.ROTATE;
+		this.mouseButtons.RIGHT = MOUSE.PAN;
 
-		this.touches.ONE = TOUCH.PAN;
-		this.touches.TWO = TOUCH.DOLLY_ROTATE;
+		this.touches.ONE = TOUCH.DOLLY_ROTATE;
+		this.touches.TWO = TOUCH.PAN;
 
 	}
 

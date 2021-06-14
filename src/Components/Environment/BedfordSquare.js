@@ -10,7 +10,7 @@ import LoadingPage from "../Loading/LoadingPage/LoadingPage";
 import Overlay from "../Overlay/Overlay";
 import { setSelectedArProject } from "../../Store/action";
 import { connect } from "react-redux";
-import {OrbitControls}from '../../Utility/OrbitControls/OrbitControls'
+import {OrbitControls, MapControls}from '../../Utility/OrbitControls/OrbitControls'
 import ContextModel from '../../Assets/Models/Context.glb';
 import AAWingModel from '../../Assets/Models/AAWing.glb';
 import EastSideModel from '../../Assets/Models/EastSide.glb';
@@ -21,6 +21,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import ARModal from "../ARModal/ARModal";
 import RightSidebar from "../Sidebar/RightSidebar";
 import Navbar from "../Navbar/Navbar";
+import Instructions from "../Instructions/Instructions";
 
 const BedfordSquareWrapper = styled.div`
   height: 100vh;
@@ -44,6 +45,7 @@ class BedfordSquare extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      showInstructions: true,
       hasLoaded: false,
       itemsLoaded: 0,
       itemsTotal: 0,
@@ -117,7 +119,7 @@ class BedfordSquare extends Component {
   };
 
   setupControls = () => {
-    this.controls = new OrbitControls(this.camera, this.mount);
+    this.controls = new MapControls(this.camera, this.mount);
     this.controls.minDistance  = 1;
     this.controls.maxDistance = 800;
     this.controls.target = this.centerPoint;
@@ -346,7 +348,15 @@ class BedfordSquare extends Component {
   };
 
   onDocumentMouseMove = event => {
-    // event.preventDefault();
+    event.preventDefault();
+    if(this.state.showInstructions && this.state.hasLoaded){
+      setTimeout(() => {
+        this.setState({
+          showInstructions: false
+        })
+      }, 2000)
+
+    }
     // this.setMouse(event);
     // this.raycaster.setFromCamera(this.mouse, this.camera);
     // this.intersects = this.raycaster.intersectObjects(this.clickableObjects, true);
@@ -406,6 +416,7 @@ class BedfordSquare extends Component {
       let mesh = this.findMeshFromProject(project);
       console.log('MESH', mesh)
       this.controls.target = mesh.position;
+      this.controls.saveState()
       this.controls.dollyOut(20);
       this.controls.update()
       this.props.setSelectedArProject(project);
@@ -427,6 +438,8 @@ class BedfordSquare extends Component {
 
   highlightProject = (project) => {
     if(project.shouldDisplay) {
+      this.turnOffAllClickableObjects()
+
       let mesh = this.findMeshFromProject(project)
       // mesh.children[0].material.color = new THREE.Color( 0x87ffd7);
       mesh.traverse((child) => {
@@ -435,12 +448,12 @@ class BedfordSquare extends Component {
         }
       })
       setTimeout(() => {
-        mesh.traverse((child) => {
-          if(child.material){
-            child.material.color = mesh.userData.baseColor;
+        // mesh.traverse((child) => {
+        //   if(child.material){
+        //     child.material.color = mesh.userData.baseColor;
 
-          }
-        })
+        //   }
+        // })
 
         // if(this.state.showOverlay){
         //   this.closeOverlay()
@@ -456,7 +469,28 @@ class BedfordSquare extends Component {
 
   closeOverlay = () => {
     this.hideOverlay();
+    // setTimeout(() => {
+    //   this.turnOffAllClickableObjects()
+    // }, 10000)
     this.resetTarget();
+
+  }
+
+  turnOffAllClickableObjects = () => {
+    this.clickableObjects.forEach((mesh) => {
+      mesh.traverse((child) => {
+        if(child.material){
+          child.material.color = mesh.userData.baseColor;
+
+        }
+      })
+    })
+  }
+
+  closeInstructions = () => {
+    this.setState({
+      showInstructions: false
+    })
   }
 
   render() {
@@ -479,6 +513,7 @@ class BedfordSquare extends Component {
           total={this.state.itemsTotal}
         />
          <ARModal show={this.state.hasLoaded && !this.state.showOverlay} />
+         <Instructions show={this.state.showInstructions} onClick={this.selectProject.bind(this)} />
       </>
     );
   }

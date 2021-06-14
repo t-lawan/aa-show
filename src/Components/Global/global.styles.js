@@ -24,7 +24,8 @@ export const ZLayer = {
   MODEL_VIEWER: 50,
   MODEL_VIEWER_LINKS: 100,
   NAVBAR: 75,
-  OVERLAY: 80
+  OVERLAY: 80,
+  INSTRUCTIONS: 110
 }
 export const Colours = {
   purple: "#a841f4",
