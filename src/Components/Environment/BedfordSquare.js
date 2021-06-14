@@ -406,7 +406,7 @@ class BedfordSquare extends Component {
       let mesh = this.findMeshFromProject(project);
       console.log('MESH', mesh)
       this.controls.target = mesh.position;
-      this.controls.dollyOut(100);
+      this.controls.dollyOut(20);
       this.controls.update()
       this.props.setSelectedArProject(project);
       this.setState({

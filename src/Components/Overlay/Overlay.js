@@ -15,6 +15,7 @@ const OverlayWrapper = styled.div`
   height: 100%;
   right: 0;
   background: ${Colours.light_green_translucent};
+  background: transparent;
   z-index: ${ZLayer.OVERLAY}
 `
 
