@@ -43,10 +43,10 @@ const Home = () => {
   return (
     <Layout>
       <HomeWrapper ref={homeWrapper}>
-        <Link to={PageURls.GEOLOCATION_TEST.url}> My house </Link>
+        {/* <Link to={PageURls.GEOLOCATION_TEST.url}> My house </Link> */}
         {/* <Link to={'/ar'}> AR </Link> */}
         <Link to={PageURls.BEDFORD_SQUARE.url}> Bedford Square  </Link>
-        <Link to={PageURls.AR_AT_HOME.url}> Model viewer </Link>
+        <Link to={PageURls.AR_AT_HOME.url}> AR AT HOME </Link>
       </HomeWrapper>
     </Layout>
   );

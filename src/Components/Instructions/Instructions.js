@@ -22,6 +22,11 @@ const InstructionsWrapper = styled.div`
 const InstructionText = styled.p`
   color: ${Colours.light_green};
   font-size: 3vh;
+  opacity: 1;
+   transition: opacity .25s ease-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
+  
   /* @media (max-width: ${size.tablet}) {
     font-size: 10vw;
   } */
@@ -34,7 +39,7 @@ const ContentWrapper = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
-  color: ${Colours.light_green};
+  color: ${Colours.light_blue};
 `;
 const Instructions = props => {
   return (
@@ -45,7 +50,9 @@ const Instructions = props => {
             <InstructionText>mouse wheel - zoom</InstructionText>
             <InstructionText>left mouse button - rotate</InstructionText>
             <InstructionText> right mouse button - pan </InstructionText>
-            <InstructionText>Select projects on the sidebars to zoom into the totem </InstructionText>
+            <InstructionText>
+              Select projects on the sidebars to zoom into the totem{" "}
+            </InstructionText>
           </>
         ) : (
           <>

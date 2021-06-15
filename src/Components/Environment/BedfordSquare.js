@@ -120,7 +120,7 @@ class BedfordSquare extends Component {
 
   setupControls = () => {
     this.controls = new MapControls(this.camera, this.mount);
-    this.controls.minDistance  = 100;
+    this.controls.minDistance  = 60;
     this.controls.maxDistance = 800;
     this.controls.target = this.centerPoint;
     this.controls.maxPolarAngle = Math.PI/2;
@@ -354,7 +354,7 @@ class BedfordSquare extends Component {
         this.setState({
           showInstructions: false
         })
-      }, 2000)
+      }, 5000)
 
     }
     // this.setMouse(event);
@@ -415,6 +415,9 @@ class BedfordSquare extends Component {
       // Move towards totem
       let mesh = this.findMeshFromProject(project);
       console.log('MESH', mesh)
+      
+      console.log('BEFORE',this.camera.position.distanceTo(mesh.position) )
+      console.log('CAMERA', this.camera)
       this.controls.target = mesh.position;
       this.controls.saveState()
       this.controls.dollyOut(20);
@@ -423,6 +426,8 @@ class BedfordSquare extends Component {
       this.setState({
         showOverlay: true
       });
+      console.log('AFTER',this.camera.position.distanceTo(mesh.position) )
+
     }
   }
 
@@ -447,6 +452,8 @@ class BedfordSquare extends Component {
           child.material.color = new THREE.Color( 0x87ffd7);
         }
       })
+
+
       setTimeout(() => {
         // mesh.traverse((child) => {
         //   if(child.material){
@@ -513,7 +520,7 @@ class BedfordSquare extends Component {
           total={this.state.itemsTotal}
         />
          <ARModal show={this.state.hasLoaded && !this.state.showOverlay} />
-         <Instructions show={this.state.showInstructions} onClick={this.selectProject.bind(this)} />
+         <Instructions show={this.state.hasLoaded && this.state.showInstructions} onClick={this.selectProject.bind(this)} />
       </>
     );
   }
