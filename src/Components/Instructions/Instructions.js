@@ -26,6 +26,7 @@ const InstructionText = styled.p`
    transition: opacity .25s ease-in-out;
    -moz-transition: opacity .25s ease-in-out;
    -webkit-transition: opacity .25s ease-in-out;
+   opacity: ${props => (props.show ? "1" : "0")};
   
   /* @media (max-width: ${size.tablet}) {
     font-size: 10vw;
@@ -47,28 +48,28 @@ const Instructions = props => {
       <ContentWrapper>
         {!Device.isMobile() ? (
           <>
-            <InstructionText>mouse wheel - zoom</InstructionText>
-            <InstructionText>left mouse button - rotate</InstructionText>
-            <InstructionText> right mouse button - pan </InstructionText>
-            <InstructionText>
+            <InstructionText show={props.show}>mouse wheel - zoom</InstructionText>
+            <InstructionText show={props.show}>left mouse button - rotate</InstructionText>
+            <InstructionText show={props.show}> right mouse button - pan </InstructionText>
+            <InstructionText show={props.show}>
               Select projects on the sidebars to zoom into the totem{" "}
             </InstructionText>
           </>
         ) : (
           <>
-            <InstructionText>
+            <InstructionText show={props.show}>
               {" "}
               Pinch and Spread with two fingers to zoom
             </InstructionText>
-            <InstructionText>
+            <InstructionText show={props.show}>
               {" "}
               Press and drag with one finger to rotate{" "}
             </InstructionText>
-            <InstructionText>
+            <InstructionText show={props.show}> 
               {" "}
               Select projects on the sidebars to zoom into the totem
             </InstructionText>
-            <InstructionText> Tap to start</InstructionText>
+            <InstructionText show={props.show}> Tap to start</InstructionText>
           </>
         )}
       </ContentWrapper>

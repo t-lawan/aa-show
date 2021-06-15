@@ -17,7 +17,7 @@ const NavbarWrapper = styled.div`
   padding: 2vh 4vw;
   overflow-y: scroll;
   @media (max-width: ${size.mobileL}) {
-      display: block;
+      display: ${props => (props.show ? "block" : "none")};
     }
   ::-webkit-scrollbar {
     width: 5px;
