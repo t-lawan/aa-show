@@ -144,6 +144,7 @@ const HomeAR = props => {
         camera-controls
         alt="Astronaut"
         ar-placement="floor"
+        ar-modes="webxr scene-viewer quick-look"
       >
         <ActivateARButton slot="ar-button">Activate AR</ActivateARButton>
       </model-viewer> : null}
