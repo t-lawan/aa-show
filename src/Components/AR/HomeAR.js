@@ -146,7 +146,7 @@ const HomeAR = props => {
         ar-placement="floor"
         ar-modes="webxr scene-viewer quick-look"
       >
-        <ActivateARButton slot="ar-button">Activate AR</ActivateARButton>
+        {/* <ActivateARButton slot="ar-button">Activate AR</ActivateARButton> */}
       </model-viewer> : null}
       
     </HomeARWrapper>
