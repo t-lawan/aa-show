@@ -120,7 +120,7 @@ class BedfordSquare extends Component {
 
   setupControls = () => {
     this.controls = new MapControls(this.camera, this.mount);
-    this.controls.minDistance  = 1;
+    this.controls.minDistance  = 100;
     this.controls.maxDistance = 800;
     this.controls.target = this.centerPoint;
     this.controls.maxPolarAngle = Math.PI/2;
