@@ -142,11 +142,11 @@ const HomeAR = props => {
         // src={src}
         // ios-src={iosSrc}
         ar
+        // ar-modes="webxr scene-viewer quick-look"
         alt={title}
         camera-controls
         alt="Astronaut"
         ar-placement="floor"
-        ar-modes="webxr scene-viewer quick-look"
       >
         {/* <ActivateARButton slot="ar-button">Activate AR</ActivateARButton> */}
       </model-viewer> : null}
