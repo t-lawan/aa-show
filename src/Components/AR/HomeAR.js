@@ -24,10 +24,10 @@ const ActivateARButton = styled.p`
   background: red; */
   color: ${Colours.light_green};
 
-  border-radius: 4px;
+  /* border-radius: 4px; */
   border: none;
   position: absolute;
-  bottom: 1vw;
+  bottom: 1vh;
   right: 1vw;
   padding: 1vw;
 `;
@@ -148,7 +148,7 @@ const HomeAR = props => {
         alt="Astronaut"
         ar-placement="floor"
       >
-        {/* <ActivateARButton slot="ar-button">Activate AR</ActivateARButton> */}
+        <ActivateARButton slot="ar-button">Activate AR</ActivateARButton>
       </model-viewer> : null}
       
     </HomeARWrapper>
