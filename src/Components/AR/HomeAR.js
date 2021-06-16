@@ -137,8 +137,10 @@ const HomeAR = props => {
       <ResetButton onClick={reset}> Reset</ResetButton>
       {/* <model-viewer src={Bear} ar ar-modes="webxr scene-viewer quick-look" camera-controls alt="Bear" ar-placement="floor" /> */}
       {hasFetchedProjects ? <model-viewer
-        src={src}
-        ios-src={iosSrc}
+        src={AstronautGLB}
+        ios-src={AstronautUSDZ}
+        // src={src}
+        // ios-src={iosSrc}
         ar
         alt={title}
         camera-controls
