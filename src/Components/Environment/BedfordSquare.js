@@ -88,9 +88,9 @@ class BedfordSquare extends Component {
     console.log('pro', projects)
     projects.forEach(project => {
       if(project.shouldDisplay){
-        //  this.addCube(project);
+         this.addCube(project);
 
-        this.addObject(project, project.modelUrl);
+        // this.addObject(project, project.modelUrl);
       }
     });
     // console.log('PROJECTS', projects);
@@ -119,7 +119,7 @@ class BedfordSquare extends Component {
   };
 
   setupControls = () => {
-    this.controls = new MapControls(this.camera, this.mount);
+    this.controls = new OrbitControls(this.camera, this.mount);
     this.controls.minDistance  = 60;
     this.controls.maxDistance = 800;
     this.controls.target = this.centerPoint;
@@ -327,13 +327,31 @@ class BedfordSquare extends Component {
     window.addEventListener("resize", this.onWindowResize);
     document.addEventListener("mousemove", this.onDocumentMouseMove, false);
     document.addEventListener("dblclick", this.onDoubleClick, false);
+    document.addEventListener("touchstart", this.onTouchStart, false);
+    document.addEventListener("touchend", this.onTouchEnd, false);
+    document.addEventListener("touchmove", this.onTouchMove, false);
   };
 
   removeEventListener = () => {
     window.removeEventListener("resize", this.onWindowResize);
     document.removeEventListener("mousemove", this.onDocumentMouseMove);
     document.removeEventListener("dblclick", this.onDoubleClick);
+    document.removeEventListener("touchstart", this.onTouchStart);
+    document.removeEventListener("touchend", this.onTouchEnd);
+    document.removeEventListener("touchmove", this.onTouchMove);
   };
+
+  onTouchStart = () => {
+
+  }
+
+  onTouchMove = () => {
+    
+  }
+
+  onTouchEnd = () => {
+
+  }
 
   onWindowResize = () => {
     const width = this.mount.clientWidth;
@@ -511,8 +529,8 @@ class BedfordSquare extends Component {
           onClick={() => this.closeOverlay()}
           show={this.state.showOverlay}
         />
-        <Sidebar show={this.state.hasLoaded} projects={this.state.projects} pageInfo={this.state.pageInfo} onClick={this.selectProject.bind(this)} />
-        <RightSidebar show={this.state.hasLoaded} pageInfo={this.state.pageInfo} onClick={this.selectProject.bind(this)} />
+        {/* <Sidebar show={this.state.hasLoaded} projects={this.state.projects} pageInfo={this.state.pageInfo} onClick={this.selectProject.bind(this)} />
+        <RightSidebar show={this.state.hasLoaded} pageInfo={this.state.pageInfo} onClick={this.selectProject.bind(this)} /> */}
         <Navbar show={this.state.hasLoaded} pageInfo={this.state.pageInfo} onClick={this.selectProject.bind(this)} />
         <LoadingPage
           show={!this.state.hasLoaded}

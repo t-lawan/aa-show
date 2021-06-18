@@ -8,7 +8,7 @@ import { Colours, size, ZLayer } from "../Global/global.styles";
 const NavbarWrapper = styled.div`
   position: absolute;
   display: none;
-  bottom: 0;
+  top: 0;
   width: 100%;
   /* height: 15%; */
   right: 0;
@@ -16,15 +16,18 @@ const NavbarWrapper = styled.div`
   z-index: ${ZLayer.NAVBAR};
   padding: 2vh 4vw;
   overflow-y: scroll;
+  display: ${props => (props.show ? "block" : "none")};
+
   @media (max-width: ${size.mobileL}) {
       display: ${props => (props.show ? "block" : "none")};
     }
   ::-webkit-scrollbar {
     width: 5px;
-    height: 1vh;
+    height: 0.5vh;
+
     @media (max-width: ${size.mobileL}) {
       width: 2.5px;
-      height: 1vh;
+      height: 0.5vh;
     }
   }
 `;
@@ -41,6 +44,7 @@ const NavbarTitle = styled.p`
   margin: 0;
   /* margin-bottom: 0.75vh; */
   padding: 0 1vw;
+  color: ${Colours.orange};
 `;
 const Navbar = props => {
   let pageInfo = props.pageInfo;

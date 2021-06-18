@@ -20,7 +20,9 @@ const ARModalWrapper = styled.div`
     }
 `;
 
-const ARLink = styled(Link)``;
+const ARLink = styled(Link)`
+  color: ${Colours.orange};
+`;
 
 const ContentWrapper = styled.div`
   display: flex;
@@ -31,6 +33,10 @@ const ContentWrapper = styled.div`
   height: 100%;
   width: 100%;
 `;
+
+const Text = styled.p`
+  color: ${Colours.orange};
+`
 
 const ButtonWrapper = styled.div`
   width: 100%;
@@ -56,15 +62,15 @@ const ARModal = props => {
       <ContentWrapper onClick={toggleDisplay}>
         {showARSection ? (
             <React.Fragment>
-            <p> Are you in Bedford Square?</p>
+            <Text> Are you in Bedford Square?</Text>
             <ButtonWrapper>
-                <p> Yes</p>
+                <Text> Yes</Text>
                 <ARLink to={PageURls.AR_AT_HOME.url}> No</ARLink>
 
             </ButtonWrapper>
             </React.Fragment>
         ) : (
-          <p> AR</p>
+          <Text> AR</Text>
         )}
       </ContentWrapper>
     </ARModalWrapper>

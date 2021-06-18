@@ -3,7 +3,7 @@ import Layout from "../Components/Layout/Layout";
 import styled from "styled-components";
 import { Colours, size } from "../Components/Global/global.styles";
 import { useLocation } from "react-router-dom";
-import LocationTest from "../Components/AR/LocationTest";
+import StrawberryGo from "../Components/AR/StrawberryGo";
 
 const TestWrapper = styled.div``;
 
@@ -15,7 +15,7 @@ const AR = () => {
   return (
     <Layout>
       <TestWrapper ref={homeWrapper}>
-        <LocationTest />
+        <StrawberryGo />
       </TestWrapper>
     </Layout>
   );

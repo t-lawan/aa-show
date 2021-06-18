@@ -1047,7 +1047,7 @@ class OrbitControls extends EventDispatcher {
 		}
 
 		function onTouchStart( event ) {
-
+			console.log('TOUCH')
 			if ( scope.enabled === false ) return;
 
 			event.preventDefault(); // prevent scrolling

@@ -38,7 +38,8 @@ export const Colours = {
   light_black: 'rbga(0,0,0,0.1)',
   light_blue: 'rgb(116, 251, 253)',
   light_green: 'rgb(116, 251, 253)',
-  light_green_translucent: 'rgba(116,251,253, 0.2)'
+  light_green_translucent: 'rgba(116,251,253, 0.2)',
+  orange: 'orange'
 };
 
 export const GlobalStyle = createGlobalStyle`
@@ -66,7 +67,7 @@ export const GlobalStyle = createGlobalStyle`
 
   }
   ::-webkit-scrollbar-thumb {
-    background: ${Colours.dark_grey};
+    background: ${Colours.orange};
   }
     }
 
@@ -79,6 +80,11 @@ html, body {
   ${'' /* background: ${Colours.grey}; */}
   width: 100%;
   -webkit-font-smoothing: antialiased;
+}
+
+.leaflet-container {
+  width: 100%;
+  height: 100vh;
 }
 
 

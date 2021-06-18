@@ -20,7 +20,7 @@ const InstructionsWrapper = styled.div`
 `;
 
 const InstructionText = styled.p`
-  color: ${Colours.light_green};
+  color: ${Colours.orange};
   font-size: 3vh;
   opacity: 1;
    transition: opacity .25s ease-in-out;
@@ -40,7 +40,7 @@ const ContentWrapper = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
-  color: ${Colours.light_blue};
+  color: ${Colours.orange};
 `;
 const Instructions = props => {
   return (
@@ -67,7 +67,7 @@ const Instructions = props => {
             </InstructionText>
             <InstructionText show={props.show}> 
               {" "}
-              Select projects on the sidebars to zoom into the totem
+              Select projects on the sliding navigation bar to view each totem
             </InstructionText>
             <InstructionText show={props.show}> Tap to start</InstructionText>
           </>
