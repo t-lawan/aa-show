@@ -22,7 +22,7 @@ const HomeARWrapper = styled.div`
 const ActivateARButton = styled.p`
   /* color: white;
   background: red; */
-  color: ${Colours.light_green};
+  color: ${Colours.orange};
 
   /* border-radius: 4px; */
   border: none;
@@ -50,7 +50,7 @@ const ARLink = styled(Link)`
   padding: 1vw;
   cursor: cell;
   /* background: red;  */
-  color: ${Colours.light_green};
+  color: ${Colours.orange};
 
   z-index: ${ZLayer.MODEL_VIEWER_LINKS};
 `;

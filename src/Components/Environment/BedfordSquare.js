@@ -437,8 +437,9 @@ class BedfordSquare extends Component {
       console.log('BEFORE',this.camera.position.distanceTo(mesh.position) )
       console.log('CAMERA', this.camera)
       this.controls.target = mesh.position;
-      this.controls.saveState()
       this.controls.dollyOut(20);
+      this.controls.saveState()
+
       this.controls.update()
       this.props.setSelectedArProject(project);
       this.setState({
@@ -451,9 +452,9 @@ class BedfordSquare extends Component {
 
   resetTarget = () => {
     console.log('BEFORE', this.controls)
-    this.controls.target = this.centerPoint;
+    // this.controls.target = this.centerPoint;
     // this.controls.scale(10);
-    this.controls.reset();
+    // this.controls.reset();
     this.controls.update()
     console.log('AFTER', this.controls)
 
