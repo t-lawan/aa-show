@@ -75,8 +75,8 @@ html, body {
   margin: 0;
   overflow: hidden;
   font-family:'TypeWriterRegular';
-  ${'' /* cursor: url(${Strawberry}),default; */}
-  cursor: crosshair;
+  cursor: url(${Strawberry}),default;
+  ${'' /* cursor: crosshair; */}
   ${'' /* background: ${Colours.grey}; */}
   width: 100%;
   -webkit-font-smoothing: antialiased;
