@@ -24,6 +24,7 @@ const NavbarWrapper = styled.div`
   ::-webkit-scrollbar {
     width: 5px;
     height: 0.5vh;
+    display:none;
 
     @media (max-width: ${size.mobileL}) {
       width: 2.5px;
@@ -35,17 +36,22 @@ const NavbarWrapper = styled.div`
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
 `;
 
-const NavbarTitle = styled.p`
-  font-size: 1.2vh;
-  font-size: 2vh;
-  opacity: ${props => (props.canClick ? 1 : 0.4)};
-  margin: 0;
-  /* margin-bottom: 0.75vh; */
+const NavbarSection = styled.p`
+  font-size: 3vh;
+  color: white;
   padding: 0 1vw;
+  margin: 0;
+
+`
+const NavbarTitle = styled(NavbarSection)`
+  opacity: ${props => (props.canClick ? 1 : 0.4)};
   color: ${Colours.orange};
 `;
+
+
 const Navbar = props => {
   let pageInfo = props.pageInfo;
   // console.log("PAGE", pageInfo);
@@ -60,10 +66,10 @@ const Navbar = props => {
               key={index}
             >
               {" "}
-              {project.sidebarTitle}
+              {project.sidebarTitle.toUpperCase()}
             </NavbarTitle>
           ))}
-          {/* <NavbarTitle canClick={false}> Experimental </NavbarTitle> */}
+          <NavbarSection> {'Experimental'.toUpperCase()} </NavbarSection>
           {pageInfo.experimental.map((project, index) => (
             <NavbarTitle
               canClick={project.shouldDisplay}
@@ -71,10 +77,11 @@ const Navbar = props => {
               key={index}
             >
               {" "}
-              Exp. {project.sidebarTitle}
+              {project.sidebarTitle}
             </NavbarTitle>
           ))}
           {/* <NavbarTitle canClick={false}> Diploma </NavbarTitle> */}
+          <NavbarSection> {'Diploma'.toUpperCase()} </NavbarSection>
 
           {pageInfo.diploma.map((project, index) => (
             <NavbarTitle
@@ -83,7 +90,7 @@ const Navbar = props => {
               key={index}
             >
               {" "}
-              Dip. {project.sidebarTitle}
+              {project.sidebarTitle}
             </NavbarTitle>
           ))}
 

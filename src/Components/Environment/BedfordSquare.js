@@ -26,6 +26,7 @@ import Instructions from "../Instructions/Instructions";
 const BedfordSquareWrapper = styled.div`
   height: 100vh;
   display: ${props => (props.show ? "block" : "none")};
+  z-index: 50;
 `;
 
 const ARButtonWrapper = styled.div`
@@ -52,7 +53,8 @@ class BedfordSquare extends Component {
       showOverlay: false,
       showSidebar: true,
       projects: [],
-      pageInfo : null
+      pageInfo : null,
+      isReady: false
     };
   }
   async componentDidMount() {
@@ -63,6 +65,7 @@ class BedfordSquare extends Component {
     this.setupLoadingManager();
     this.addEventListener();
     this.startAnimationLoop();
+    this.onWindowResize()
   }
 
   componentWillUnmount() {
@@ -88,9 +91,9 @@ class BedfordSquare extends Component {
     console.log('pro', projects)
     projects.forEach(project => {
       if(project.shouldDisplay){
-        //  this.addCube(project);
+         this.addCube(project);
 
-        this.addObject(project, project.modelUrl);
+        // this.addObject(project, project.modelUrl);
       }
     });
     // console.log('PROJECTS', projects);
@@ -181,14 +184,13 @@ class BedfordSquare extends Component {
       hasLoaded: true
     });
     console.log('HAS LOADED')
-    this.onWindowResize();
+    // this.onWindowResize();
   };
 
   loadError = url => {
     console.log("ERROR", url);
   };
 
-  hasLoaded = () => {};
 
   // Here should come custom code.
   // Code below is taken from Three.js BoxGeometry example
@@ -354,6 +356,7 @@ class BedfordSquare extends Component {
   }
 
   onWindowResize = () => {
+    console.log('onWindowResize')
     const width = this.mount.clientWidth;
     const height = this.mount.clientHeight;
 
@@ -368,11 +371,11 @@ class BedfordSquare extends Component {
   onDocumentMouseMove = event => {
     event.preventDefault();
     if(this.state.showInstructions && this.state.hasLoaded){
-      setTimeout(() => {
-        this.setState({
-          showInstructions: false
-        })
-      }, 5000)
+      // setTimeout(() => {
+      //   this.setState({
+      //     showInstructions: false
+      //   })
+      // }, 5000)
 
     }
     // this.setMouse(event);
@@ -513,6 +516,22 @@ class BedfordSquare extends Component {
     })
   }
 
+  setIsReadyToTrue = () => {
+    console.log('IS READU')
+    this.setState({
+      isReady: true
+    })
+    setTimeout(() => {
+
+
+    this.onWindowResize();
+
+    }, 10)
+
+
+
+  }
+
   closeInstructions = () => {
     this.setState({
       showInstructions: false
@@ -523,7 +542,7 @@ class BedfordSquare extends Component {
     return (
       <>
         <BedfordSquareWrapper
-          show={this.state.hasLoaded}
+          show={this.state.isReady}
           ref={ref => (this.mount = ref)}
         />
         <Overlay
@@ -532,14 +551,16 @@ class BedfordSquare extends Component {
         />
         {/* <Sidebar show={this.state.hasLoaded} projects={this.state.projects} pageInfo={this.state.pageInfo} onClick={this.selectProject.bind(this)} />
         <RightSidebar show={this.state.hasLoaded} pageInfo={this.state.pageInfo} onClick={this.selectProject.bind(this)} /> */}
-        <Navbar show={this.state.hasLoaded} pageInfo={this.state.pageInfo} onClick={this.selectProject.bind(this)} />
+        <Navbar show={this.state.isReady} pageInfo={this.state.pageInfo} onClick={this.selectProject.bind(this)} />
         <LoadingPage
-          show={!this.state.hasLoaded}
+          show={!this.state.isReady}
+          hasLoaded={this.state.hasLoaded}
           loaded={this.state.itemsLoaded}
+          onClick={() => this.setIsReadyToTrue()}
           total={this.state.itemsTotal}
         />
          <ARModal show={this.state.hasLoaded && !this.state.showOverlay} />
-         <Instructions show={this.state.hasLoaded && this.state.showInstructions} onClick={this.selectProject.bind(this)} />
+         {/* <Instructions show={this.state.hasLoaded && this.state.showInstructions} onClick={this.selectProject.bind(this)} /> */}
       </>
     );
   }

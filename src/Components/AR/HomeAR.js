@@ -7,18 +7,27 @@ import "@google/model-viewer";
 import { Link } from "react-router-dom";
 import { ZLayer, Colours } from "../Global/global.styles";
 import RequestManager from "../../Utility/Managers/RequestManager";
+import { ModelViewerElement } from "@google/model-viewer";
 
 const HomeARWrapper = styled.div`
   width: 100vw;
   height: 100vh;
+  background: ${Colours.grey};
 
   model-viewer {
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 80%;
+    left: 5%;
+    top: 10%;
     z-index: ${ZLayer.MODEL_VIEWER};
   }
 `;
 
+const StyledModelViewer = styled(ModelViewerElement)`
+    z-index: ${ZLayer.MODEL_VIEWER};
+    width: 100%;
+    height: 100%;
+`
 const ActivateARButton = styled.p`
   /* color: white;
   background: red; */
@@ -60,7 +69,7 @@ const ResetButton = styled.p`
   bottom: 1vh;
   left: 1vw;
   z-index: ${ZLayer.MODEL_VIEWER_LINKS};
-  color: ${Colours.light_green};
+  color: ${Colours.orange};
 
 `
 
@@ -134,7 +143,7 @@ const HomeAR = props => {
     <HomeARWrapper>
 
       <ARLink to={"/bedford-square"}> Back To Bedford Square </ARLink>
-      <ResetButton onClick={reset}> Reset</ResetButton>
+      <ResetButton onClick={reset}> NEXT</ResetButton>
       {/* <model-viewer src={Bear} ar ar-modes="webxr scene-viewer quick-look" camera-controls alt="Bear" ar-placement="floor" /> */}
       {hasFetchedProjects ? <model-viewer
         // src={AstronautGLB}
@@ -148,7 +157,7 @@ const HomeAR = props => {
         alt="Astronaut"
         ar-placement="floor"
       >
-        <ActivateARButton slot="ar-button">Activate AR</ActivateARButton>
+        <ActivateARButton slot="ar-button">AR</ActivateARButton>
       </model-viewer> : null}
       
     </HomeARWrapper>

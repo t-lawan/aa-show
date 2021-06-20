@@ -19,7 +19,7 @@ export const size = {
   desktop: "2260px"
 };
 export const ZLayer = {
-  LOADING_PAGE: 100,
+  LOADING_PAGE: 200,
   THREE_JS: 50,
   MODEL_VIEWER: 50,
   MODEL_VIEWER_LINKS: 100,
@@ -75,7 +75,7 @@ html, body {
   margin: 0;
   overflow: hidden;
   font-family:'TypeWriterRegular';
-  cursor: url(${Strawberry}),default;
+  cursor: url(${Strawberry}) 15 15, auto;
   ${'' /* cursor: crosshair; */}
   ${'' /* background: ${Colours.grey}; */}
   width: 100%;

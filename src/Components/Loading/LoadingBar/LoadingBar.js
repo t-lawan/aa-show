@@ -10,22 +10,22 @@ const LoadingBarWrapper = styled.div`
   align-items: center;
   z-index: ${ZLayer.LOADING_PAGE};
   width: 100%;
-  height: 0.3rem;
+  height: 1vh;
   /* border: 1px solid ${Colours.dark_grey}; */
 
 `;
 const LoadingWrapper = styled.div`
   width: 100%;
-  height: 0.3rem;
-  background: ${Colours.snot_green};
+  height: 1vh;
+  background: ${Colours.orange};
 `;
 const LoadingProgressWrapper = styled.div`
   bottom: 0;
   width: ${props => props.percent};
   /* height: 100%; */
-  height: 0.3rem;
+  height: 100%;
 
-  background: ${Colours.light_blue};
+  background: white;
 `;
 const LoadingBar = (props) => {
   let percent = 0;
