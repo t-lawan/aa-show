@@ -15,10 +15,10 @@ const HomeARWrapper = styled.div`
   background: ${Colours.grey};
 
   model-viewer {
-    width: 90%;
-    height: 80%;
-    left: 5%;
-    top: 10%;
+    width: 90vw;
+    height: 90vh;
+    left: 5vw;
+    top: 5vh;
     z-index: ${ZLayer.MODEL_VIEWER};
   }
 `;
