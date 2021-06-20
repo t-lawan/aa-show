@@ -15,9 +15,9 @@ const ARModalWrapper = styled.div`
   height: ${props => (props.showARSection ? "30vh" : "5vh")};
   left: ${props => (props.showARSection ? "25vw" : "40vw")};
   /* background: ${Colours.light_green_translucent}; */
-  @media (max-width: ${size.tablet}) {
+  /* @media (max-width: ${size.tablet}) {
       display: none;
-    }
+    } */
 `;
 
 const ARLink = styled(Link)`
