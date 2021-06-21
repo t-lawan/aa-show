@@ -1,17 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   MapContainer,
   TileLayer,
   Marker,
   Popup,
   Circle,
-  useMapEvent
+  useMapEvent,
+  useMapEvents,
+  MapConsumer,
 } from "react-leaflet";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import "leaflet/dist/leaflet.css";
 import RequestManager from "../../Utility/Managers/RequestManager";
 import { Colours } from "../Global/global.styles";
+import UserMarker from '../../Assets/Images/user.png'
+
+
 const StrawberryGoWrapper = styled.div`
   width: 100%;
   height: 100%;
@@ -20,92 +25,129 @@ const StyledMapContainer = styled(MapContainer)`
   width: 100vw;
   height: 100vh;
 `;
-const StrawberryGo = props => {
-  const [hasFetchedProjects, setHasFetchedProjects] = useState(false);
 
-  const startMapCenter = [51.51895683571971, -0.13002140453811567];
-  const startZoom = 19;
-  const maxDistance = 5;
+function Location(props) {
+  const map = useMapEvents({
+    click: () => {
+      map.locate()
+    },
+    locationfound: (location) => {
+      props.getLocation(location)
+      console.log('location found:', location)
+    },
+  })
+  return null
+}
 
-  let projects = [];
-  const [title, setTitle] = useState("");
-  const [savedProjects, setSavedProjects] = useState([]);
+class StrawberryGo extends React.Component {
+  mapRef;
+  startMapCenter = [51.51895683571971, -0.13002140453811567];
+  startZoom = 19;
+  maxDistance = 5;
 
-  useEffect(() => {
-    const getProjects = async () => {
-      projects = await RequestManager.getProjects();
-      projects = projects.filter(project => {
-        return project.showInArAtHome == true;
-      });
+  constructor(props){
+    super(props);
+    this.state = {
+      hasFetchedProjects: false,
+      userLocation: [0,0],
+      projects: [],
+      userRadius: 50
 
-      setSavedProjects(projects);
-
-      if (projects) {
-        setHasFetchedProjects(true); //set login state to true
-        // randomlySelectProject()
-      }
-    };
-
-    if (projects.length === 0) {
-      getProjects();
     }
-  }, []); //<-- run once when component mounted
+    this.mapRef = React.createRef()
+  }
 
-  const selectProject = project => {
+  async componentDidMount(){
+    await  this.getProjects();
+    // setTimeout(() => {
+    //   this.getLocation()
+
+    // }, 500)
+  }
+
+  getProjects = async () => {
+    let projects = await RequestManager.getProjects();
+    projects = projects.filter(project => {
+      return project.showInArAtHome == true;
+    });
+
+    this.setState({
+      projects: projects,
+      hasFetchedProjects: true
+    })
+
+  }
+
+  getLocation = (location) => {
+    // const map =useMapEvents({})
+    console.log('MAP',location);
+    // map.locate();
+    this.setState({
+      userLocation: [location.latitude, location.longitude],
+      userRadius: location.accuracy
+    })
+  }
+
+  selectProject = project => {
     console.log("xxx", project);
+    // this.getLocation()
   };
+  render(){
+    return (
+      <StrawberryGoWrapper>
+        {/* {this.state.hasFetchedProjects ? ( */}
+          <StyledMapContainer
+            center={this.startMapCenter}
+            zoom={this.startZoom}
+            scrollWheelZoom={false}
+            ref={this.mapRef}
+          >
+            <TileLayer
+              attribution="Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL."
+              url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png"
+              maxZoom={20}
+            />
+            <Location getLocation={this.getLocation.bind(this)} />
+            {/* <Marker position={this.state.userLocation}> */}
+              <Circle center={this.state.userLocation} radius={this.state.userRadius} pathOptions={{ color: Colours.orange, fill: true, fillOpacity: 0.3}} />
+            {/* </Marker> */}
+  
+            {this.state.projects.map((project, index) => (
+              <React.Fragment key={index}>
+                {/* Outer Circle */}
+                <Circle
+                  center={[
+                    project.worldCoordinates.lat,
+                    project.worldCoordinates.lon
+                  ]}
+                  radius={this.maxDistance}
+                  pathOptions={{ color: Colours.light_green }}
+                  eventHandlers={{
+                    click: () => {
+                      this.selectProject(project);
+                    }
+                  }}
+                  // onClick={project => }
+                />
+                {/* Inner Circle */}
+  
+                <Circle
+                  center={[
+                    project.worldCoordinates.lat,
+                    project.worldCoordinates.lon
+                  ]}
+                  radius={0.1}
+                  pathOptions={{ color: Colours.light_green }}
+                />
+              </React.Fragment>
+            ))}
+          </StyledMapContainer>
+        {/* ) : null} */}
+      </StrawberryGoWrapper>
+    );
 
-  return (
-    <StrawberryGoWrapper>
-      {hasFetchedProjects ? (
-        <StyledMapContainer
-          center={startMapCenter}
-          zoom={startZoom}
-          scrollWheelZoom={false}
-        >
-          <TileLayer
-            attribution="Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL."
-            url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png"
-            maxZoom={20}
-          />
-          <Marker position={[51.505, -0.09]}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker>
-          {savedProjects.map((project, index) => (
-            <React.Fragment key={index}>
-              {/* Outer Circle */}
-              <Circle
-                center={[
-                  project.worldCoordinates.lat,
-                  project.worldCoordinates.lon
-                ]}
-                radius={maxDistance}
-                pathOptions={{ color: Colours.light_green }}
-                eventHandlers={{
-                  click: (projects) => {
-                    selectProject(project)
-                  }
-                }}
-                // onClick={project => }
-              />
-              {/* Inner Circle */}
-
-              <Circle
-                center={[
-                  project.worldCoordinates.lat,
-                  project.worldCoordinates.lon
-                ]}
-                radius={0.1}
-                pathOptions={{ color: Colours.light_green }}
-              />
-            </React.Fragment>
-          ))}
-        </StyledMapContainer>
-      ) : null}
-    </StrawberryGoWrapper>
-  );
+  }
+  
 };
 
 const mapStateToProps = state => {
