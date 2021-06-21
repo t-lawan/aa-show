@@ -32,6 +32,7 @@ const Button = styled.h1`
 const ContentWrapper = styled.div`
   width: 100%;
   height: 90vh;
+  height: -webkit-fill-available;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
