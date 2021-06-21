@@ -13,12 +13,46 @@ const HomeWrapper = styled.div`
   height: 100vh;
   justify-content: center;
   align-items: center;
+  background: ${Colours.grey};
 `;
 
 export const Title = styled.p`
   text-align: center;
   margin: 0;
   padding: 0;
+`;
+
+const StyledLink = styled(Link)`
+  color: ${Colours.orange};
+  text-decoration: none;
+`
+
+const Paragraph = styled.p`
+  color: white;
+  font-size: 2vh;
+  margin-top: 2vh;
+
+` 
+
+const Credits = styled(Paragraph)`
+
+  display: inline-block;
+  margin: 0 0.5vw;
+`
+
+const CreditsWrapper = styled.div`
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  overflow-y: scroll;
+
+  /* overflow-x: scroll; */
+`
+
+const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 
 export const TwoColumnGrid = styled.div`
@@ -39,14 +73,25 @@ const Home = () => {
   let location = useLocation();
   const homeWrapper = useRef(null);
 
+  let creditText = "CREDITS: CURATOR MANIJEH VERGHESE, CONCEPT AND DESIGN: CREAM PROJECTS, WEB AND AR DEVELOPMENT: AKINSOLA LAWANSON AND TAMAS PALL".split(' ')
 
   return (
     <Layout>
       <HomeWrapper ref={homeWrapper}>
         {/* <Link to={PageURls.GEOLOCATION_TEST.url}> My house </Link> */}
         {/* <Link to={'/ar'}> AR </Link> */}
-        <Link to={PageURls.BEDFORD_SQUARE.url}> Bedford Square  </Link>
-        <Link to={PageURls.AR_AT_HOME.url}> AR AT HOME </Link>
+        <StyledLink to={PageURls.BEDFORD_SQUARE.url}> {"Bedford Square".toUpperCase()}  </StyledLink>
+        <StyledLink to={PageURls.AR_AT_HOME.url}> AR AT HOME </StyledLink>
+        <Paragraph> PROJECTS REVIEW WEBSITE </Paragraph>
+        <CreditsWrapper> 
+        <ContentWrapper>
+        {creditText.map((text, index) => (
+            <Credits key={index}> {text} </Credits>
+
+          ))}
+        </ContentWrapper>
+
+        </CreditsWrapper>
       </HomeWrapper>
     </Layout>
   );
