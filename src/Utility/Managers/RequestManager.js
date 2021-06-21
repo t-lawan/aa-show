@@ -39,6 +39,7 @@ export default class RequestManager {
                   item.fields.description,
                   item.fields.unit,
                   coordinate,
+                  item.fields.worldCoordinates,
                   rotation,
                   item.fields.modelUrl,
                   item.fields.glbUrl,
