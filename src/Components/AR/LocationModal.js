@@ -30,7 +30,7 @@ transition: all 200ms ease;
 
 const CloseText = styled.p`
     z-index: ${ZLayer.MODEL_VIEWER_LINKS};
-  color: ${Colours.orange};
+  /* color: ${Colours.orange}; */
     position: absolute;
     top: 1%;
     right: 1%;
