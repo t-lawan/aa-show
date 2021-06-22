@@ -16,6 +16,7 @@ import RequestManager from "../../Utility/Managers/RequestManager";
 import { Colours } from "../Global/global.styles";
 import UserMarker from "../../Assets/Images/user.png";
 import LocationModal from "./LocationModal";
+import { element } from "prop-types";
 
 const StrawberryGoWrapper = styled.div`
   width: 100%;
@@ -62,7 +63,7 @@ class StrawberryGo extends React.Component {
 
   async componentDidMount() {
     await this.getProjects();
-    this.watchLocation()
+    this.watchLocation();
     // setTimeout(() => {
     //   this.getLocation()
 
@@ -83,7 +84,7 @@ class StrawberryGo extends React.Component {
 
   watchLocation = () => {
     if (navigator.geolocation) {
-      console.log('HI')
+      console.log("HI");
       this.watchPositionId = navigator.geolocation.watchPosition(
         this.handleLocationSuccess.bind(this),
         this.handleLocationError.bind(this),
@@ -97,15 +98,33 @@ class StrawberryGo extends React.Component {
   };
 
   handleLocationSuccess(location) {
-    console.log('handleLocationSuccess', location)
+    console.log("handleLocationSuccess", location);
     this.getLocation(location.coords);
+    this.filterContent(location.coords);
     // filterContentByDistance(lat, lon)
   }
   handleLocationError(location) {
-    console.log('handleLocationError', location)
+    console.log("handleLocationError", location);
 
     // this.getLocation(location);
     // filterContentByDistance(lat, lon)
+  }
+
+  filterContent(location){
+    let projects = this.state.projects;
+    projects.forEach((project, index) => {
+      let dist = this.getDistance(location.latitude, location.longitude, project.worldCoordinates.lat, project.worldCoordinates.lon)
+      if(dist < this.maxDistance) {
+        // CHANGE COLOR
+        project.inProximity = true;
+        if(!project.collected) {
+          project.viewed = true;
+        }
+      } else {
+        project.inProximity = false;
+
+      }
+    })
   }
 
   getLocation = location => {
@@ -117,24 +136,24 @@ class StrawberryGo extends React.Component {
   };
 
   getDistance(lat1, lon1, lat2, lon2) {
-    if ((lat1 == lat2) && (lon1 == lon2)) {
-        return 0;
+    if (lat1 == lat2 && lon1 == lon2) {
+      return 0;
     }
     const R = 6371e3; // metres
-    const φ1 = lat1 * Math.PI / 180; // φ, λ in radians
-    const φ2 = lat2 * Math.PI / 180;
-    const Δφ = (lat2 - lat1) * Math.PI / 180;
-    const Δλ = (lon2 - lon1) * Math.PI / 180;
+    const φ1 = (lat1 * Math.PI) / 180; // φ, λ in radians
+    const φ2 = (lat2 * Math.PI) / 180;
+    const Δφ = ((lat2 - lat1) * Math.PI) / 180;
+    const Δλ = ((lon2 - lon1) * Math.PI) / 180;
 
-    const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
-        Math.cos(φ1) * Math.cos(φ2) *
-        Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+    const a =
+      Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+      Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
     const d = R * c; // in metres
 
-    return d
-}
+    return d;
+  }
 
   selectProject = project => {
     console.log("xxx", project);
@@ -142,26 +161,31 @@ class StrawberryGo extends React.Component {
     this.setState({
       showModal: true,
       currentProject: project
-    })
+    });
   };
 
   onCloseModal = () => {
-    console.log('HEY')
+    console.log("HEY");
     this.setState({
       showModal: false,
       currentProject: null
-    })
-  }
+    });
+  };
 
   collectedItem = () => {
     this.setState({
       numOfStrawberries: this.state.numOfStrawberries + 1
-    })
-  }
+    });
+  };
   render() {
     return (
       <StrawberryGoWrapper>
-        <LocationModal show={this.state.showModal} project={this.state.currentProject} onClose={this.onCloseModal.bind(this)}  collectedItem={this.collectedItem.bind(this)} />
+        <LocationModal
+          show={this.state.showModal}
+          project={this.state.currentProject}
+          onClose={this.onCloseModal.bind(this)}
+          collectedItem={this.collectedItem.bind(this)}
+        />
         {/* {this.state.hasFetchedProjects ? ( */}
         <StyledMapContainer
           center={this.startMapCenter}
@@ -196,7 +220,7 @@ class StrawberryGo extends React.Component {
                   project.worldCoordinates.lon
                 ]}
                 radius={this.maxDistance}
-                pathOptions={{ color: Colours.light_green }}
+                pathOptions={{ color: project.inProximity ? Colours.light_green: Colours.light_blue }}
                 eventHandlers={{
                   click: () => {
                     this.selectProject(project);
@@ -212,7 +236,7 @@ class StrawberryGo extends React.Component {
                   project.worldCoordinates.lon
                 ]}
                 radius={0.1}
-                pathOptions={{ color: Colours.light_green }}
+                pathOptions={{ color: project.inProximity ? Colours.light_green: Colours.light_blue }}
               />
             </React.Fragment>
           ))}
