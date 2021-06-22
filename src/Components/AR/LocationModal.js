@@ -40,7 +40,7 @@ const CloseText = styled.p`
 const CollectItemText = styled.p`
     z-index: ${ZLayer.MODEL_VIEWER_LINKS};
     display: ${props => (props.show ? "block" : "none")};
-    color: ${Colours.orange};
+    /* color: ${Colours.orange}; */
 
     position: absolute;
     top: 7.5%;

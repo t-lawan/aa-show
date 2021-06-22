@@ -19,7 +19,7 @@ const Text = styled.h1`
 
 const Paragraph = styled.p`
   color: black;
-  font-size: 2vh;
+  font-size: 2.2vh;
   text-align: center;
 
 `;
@@ -90,7 +90,7 @@ const LoadingPage = props => {
       <BottomLeftText>20</BottomLeftText>
       <BottomRightText>21 </BottomRightText>
       <ContentWrapper>
-        <Text> AR21 </Text>
+        {/* <Text> AR21 </Text> */}
         <LoadingBarWrapper>
         <Paragraph>Welcome to the AA Augmented Review 2021.</Paragraph>
         <Paragraph>

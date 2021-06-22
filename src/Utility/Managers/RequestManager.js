@@ -21,7 +21,7 @@ export default class RequestManager {
           });
 
 
-        //   console.log('RESPONSE', response)
+          console.log('RESPONSE', response)
           
 
           let projects = response.items.map((item) => {
@@ -59,8 +59,7 @@ export default class RequestManager {
                   glbUrl,
                   usdzUrl,
                   item.fields.shouldDisplay,
-                  item.fields.showInArAtHome,
-                  
+                  item.fields.showInArAtHome
               )
           });
 
@@ -82,13 +81,28 @@ export default class RequestManager {
 
           
 
-          console.log('RESPONSE', response);
+          console.log('getPageInfo', response);
 
           let diplomaProjects = response.fields.diplomaProjects.map((item) =>{
             let coordinate = new Coordinates(item.fields.coordinate.fields.x, item.fields.coordinate.fields.y, item.fields.coordinate.fields.z);
             let rotation = null;
             if(item.fields.rotation){
                 rotation = new Rotation(item.fields.rotation.fields.x, item.fields.rotation.fields.y, item.fields.rotation.fields.z);
+            }
+
+            let modelUrl = 'https://d321q9os2iadt9.cloudfront.net/THREE/'
+            if(item.fields.modelUrl) {
+                modelUrl = modelUrl + item.fields.modelUrl.split('/').pop()
+            }
+
+            let glbUrl = 'https://d321q9os2iadt9.cloudfront.net/AR/AAARGLTF_1/'
+            if(item.fields.glbUrl) {
+                glbUrl = glbUrl + item.fields.glbUrl.split('/').pop()
+            }
+
+            let usdzUrl = 'https://d321q9os2iadt9.cloudfront.net/AR/USDZ/'
+            if(item.fields.usdzUrl) {
+                usdzUrl = usdzUrl + item.fields.usdzUrl.split('/').pop()
             }
             return new ProjectModel(
                 item.sys.id,
@@ -97,13 +111,13 @@ export default class RequestManager {
                 item.fields.description,
                 item.fields.unit,
                 coordinate,
+                item.fields.worldCoordinates,
                 rotation,
-                item.fields.modelUrl,
-                item.fields.glbUrl,
-                item.fields.usdzUrl,
+                modelUrl,
+                glbUrl,
+                usdzUrl,
                 item.fields.shouldDisplay,
-                item.fields.showInArAtHome,
-
+                item.fields.showInArAtHome
             )
           })
 
@@ -113,6 +127,20 @@ export default class RequestManager {
             if(item.fields.rotation){
                 rotation = new Rotation(item.fields.rotation.fields.x, item.fields.rotation.fields.y, item.fields.rotation.fields.z);
             }
+            let modelUrl = 'https://d321q9os2iadt9.cloudfront.net/THREE/'
+            if(item.fields.modelUrl) {
+                modelUrl = modelUrl + item.fields.modelUrl.split('/').pop()
+            }
+
+            let glbUrl = 'https://d321q9os2iadt9.cloudfront.net/AR/AAARGLTF_1/'
+            if(item.fields.glbUrl) {
+                glbUrl = glbUrl + item.fields.glbUrl.split('/').pop()
+            }
+
+            let usdzUrl = 'https://d321q9os2iadt9.cloudfront.net/AR/USDZ/'
+            if(item.fields.usdzUrl) {
+                usdzUrl = usdzUrl + item.fields.usdzUrl.split('/').pop()
+            }
             return new ProjectModel(
                 item.sys.id,
                 item.fields.title,
@@ -120,13 +148,13 @@ export default class RequestManager {
                 item.fields.description,
                 item.fields.unit,
                 coordinate,
+                item.fields.worldCoordinates,
                 rotation,
-                item.fields.modelUrl,
-                item.fields.glbUrl,
-                item.fields.usdzUrl,
+                modelUrl,
+                glbUrl,
+                usdzUrl,
                 item.fields.shouldDisplay,
-                item.fields.showInArAtHome,
-
+                item.fields.showInArAtHome
             )
           })
 
@@ -136,6 +164,20 @@ export default class RequestManager {
             if(item.fields.rotation){
                 rotation = new Rotation(item.fields.rotation.fields.x, item.fields.rotation.fields.y, item.fields.rotation.fields.z);
             }
+            let modelUrl = 'https://d321q9os2iadt9.cloudfront.net/THREE/'
+            if(item.fields.modelUrl) {
+                modelUrl = modelUrl + item.fields.modelUrl.split('/').pop()
+            }
+
+            let glbUrl = 'https://d321q9os2iadt9.cloudfront.net/AR/AAARGLTF_1/'
+            if(item.fields.glbUrl) {
+                glbUrl = glbUrl + item.fields.glbUrl.split('/').pop()
+            }
+
+            let usdzUrl = 'https://d321q9os2iadt9.cloudfront.net/AR/USDZ/'
+            if(item.fields.usdzUrl) {
+                usdzUrl = usdzUrl + item.fields.usdzUrl.split('/').pop()
+            }
             return new ProjectModel(
                 item.sys.id,
                 item.fields.title,
@@ -143,13 +185,13 @@ export default class RequestManager {
                 item.fields.description,
                 item.fields.unit,
                 coordinate,
+                item.fields.worldCoordinates,
                 rotation,
-                item.fields.modelUrl,
-                item.fields.glbUrl,
-                item.fields.usdzUrl,
+                modelUrl,
+                glbUrl,
+                usdzUrl,
                 item.fields.shouldDisplay,
-                item.fields.showInArAtHome,
-
+                item.fields.showInArAtHome
             )
           })
 
@@ -159,6 +201,20 @@ export default class RequestManager {
             if(item.fields.rotation){
                 rotation = new Rotation(item.fields.rotation.fields.x, item.fields.rotation.fields.y, item.fields.rotation.fields.z);
             }
+            let modelUrl = 'https://d321q9os2iadt9.cloudfront.net/THREE/'
+            if(item.fields.modelUrl) {
+                modelUrl = modelUrl + item.fields.modelUrl.split('/').pop()
+            }
+
+            let glbUrl = 'https://d321q9os2iadt9.cloudfront.net/AR/AAARGLTF_1/'
+            if(item.fields.glbUrl) {
+                glbUrl = glbUrl + item.fields.glbUrl.split('/').pop()
+            }
+
+            let usdzUrl = 'https://d321q9os2iadt9.cloudfront.net/AR/USDZ/'
+            if(item.fields.usdzUrl) {
+                usdzUrl = usdzUrl + item.fields.usdzUrl.split('/').pop()
+            }
             return new ProjectModel(
                 item.sys.id,
                 item.fields.title,
@@ -166,13 +222,13 @@ export default class RequestManager {
                 item.fields.description,
                 item.fields.unit,
                 coordinate,
+                item.fields.worldCoordinates,
                 rotation,
-                item.fields.modelUrl,
-                item.fields.glbUrl,
-                item.fields.usdzUrl,
+                modelUrl,
+                glbUrl,
+                usdzUrl,
                 item.fields.shouldDisplay,
-                item.fields.showInArAtHome,
-
+                item.fields.showInArAtHome
             )
           })
 

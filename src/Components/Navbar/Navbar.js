@@ -47,14 +47,14 @@ const NavbarSection = styled.p`
 
 `
 const NavbarTitle = styled(NavbarSection)`
-  opacity: ${props => (props.canClick ? 1 : 0.4)};
-  color: black;
+  opacity: ${props => (props.canClick ? 1 : 0.2)};
+  color: ${props => (props.canClick ? 'black' : Colours.orange)};
 `;
 
 
 const Navbar = props => {
   let pageInfo = props.pageInfo;
-  // console.log("PAGE", pageInfo);
+  console.log("PAGE", pageInfo);
   return (
     <NavbarWrapper show={props.show}>
       {pageInfo ? (

@@ -88,7 +88,6 @@ class BedfordSquare extends Component {
   initLoadingObjects = async () => {
     let pageInfo = await RequestManager.getPageInfo()
     let projects = await RequestManager.getProjects();
-    console.log('pro', projects)
     projects.forEach(project => {
       if(project.shouldDisplay){
          this.addCube(project); 
@@ -453,7 +452,7 @@ class BedfordSquare extends Component {
         });
       }
 
-      console.log('AFTER',this.camera.position.distanceTo(mesh.position) )
+    //  console.log('AFTER',this.camera.position.distanceTo(mesh.position) )
 
     }
   }
