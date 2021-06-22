@@ -21,7 +21,8 @@ const ARModalWrapper = styled.div`
 `;
 
 const ARLink = styled(Link)`
-  color: ${Colours.orange};
+  color: black;
+  text-decoration: none;
 `;
 
 const ContentWrapper = styled.div`
@@ -35,7 +36,7 @@ const ContentWrapper = styled.div`
 `;
 
 const Text = styled.p`
-  color: ${Colours.orange};
+  /* color: ${Colours.orange}; */
 `
 
 const ButtonWrapper = styled.div`
@@ -56,11 +57,11 @@ const ARModal = props => {
   return (
     <ARModalWrapper
       showARSection={showARSection}
-      onClick={props.onClick}
+      // onClick={props.onClick} 
       show={props.show}
     >
       <ContentWrapper onClick={toggleDisplay}>
-        {showARSection ? (
+        {/* {showARSection ? (
             <React.Fragment>
             <Text> Are you in Bedford Square?</Text>
             <ButtonWrapper>
@@ -71,7 +72,9 @@ const ARModal = props => {
             </React.Fragment>
         ) : (
           <Text> AR</Text>
-        )}
+        )} */}
+        <ARLink to={PageURls.AR.url}> AR </ARLink>
+
       </ContentWrapper>
     </ARModalWrapper>
   );

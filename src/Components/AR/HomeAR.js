@@ -35,14 +35,14 @@ const ResetButton = styled.p`
   bottom: 1vh;
   left: 1vw;
   z-index: ${ZLayer.MODEL_VIEWER_LINKS};
-  color: ${Colours.orange};
+  /* color: ${Colours.orange}; */
 
 `
 
 export const ActivateARButton = styled.p`
   /* color: white;
   background: red; */
-  color: ${Colours.orange};
+  /* color: ${Colours.orange}; */
 
   /* border-radius: 4px; */
   border: none;
@@ -70,7 +70,7 @@ const ARLink = styled(Link)`
   padding: 1vw;
   cursor: cell;
   /* background: red;  */
-  color: ${Colours.orange};
+  /* color: ${Colours.orange}; */
 
   z-index: ${ZLayer.MODEL_VIEWER_LINKS};
 `;

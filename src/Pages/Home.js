@@ -23,7 +23,7 @@ export const Title = styled.p`
 `;
 
 const StyledLink = styled(Link)`
-  color: ${Colours.orange};
+  color: black;
   text-decoration: none;
 `
 
@@ -83,11 +83,8 @@ const Home = () => {
   return (
     <Layout>
       <HomeWrapper ref={homeWrapper}>
-        <TopLeftText>
-          AA
-        </TopLeftText>
         <StyledLink to={PageURls.AR_BEDFORD_SQUARE.url}> {"Bedford Square".toUpperCase()}  </StyledLink>
-        <StyledLink to={PageURls.AR_AT_HOME.url}> AR AT HOME </StyledLink>
+        <StyledLink to={PageURls.AR_AT_HOME.url}> HOME </StyledLink>
         <Paragraph> PROJECTS REVIEW WEBSITE </Paragraph>
         <CreditsWrapper> 
         <ContentWrapper>

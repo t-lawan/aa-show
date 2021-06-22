@@ -20,7 +20,7 @@ const OverlayWrapper = styled.div`
 `
 
 const ProjectTitle = styled.h1`
-    color: ${Colours.orange};
+    /* color: ${Colours.orange}; */
     font-size: 10vh;
     @media (max-width: ${size.tablet}) {
     font-size: 10vw;

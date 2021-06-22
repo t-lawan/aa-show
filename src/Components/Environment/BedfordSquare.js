@@ -91,9 +91,9 @@ class BedfordSquare extends Component {
     console.log('pro', projects)
     projects.forEach(project => {
       if(project.shouldDisplay){
-        //  this.addCube(project); 
+         this.addCube(project); 
 
-        this.addObject(project, project.modelUrl);
+        // this.addObject(project, project.modelUrl);
       }
     });
     // console.log('PROJECTS', projects);
@@ -303,8 +303,9 @@ class BedfordSquare extends Component {
   };
 
   findMeshFromProject = (project) => {
-    let mesh =this.clickableObjects.find((pr) => {
-      return pr.userData.project.title == project.title;
+    console.log('CLIC', this.clickableObjects)
+    let mesh =this.clickableObjects.find((obj) => {
+      return obj.userData.project.title == project.title;
     })
 
     return mesh;
@@ -436,20 +437,22 @@ class BedfordSquare extends Component {
     if(project.shouldDisplay){
       this.highlightProject(project);
       // Move towards totem
-      let mesh = this.findMeshFromProject(project);
-      console.log('MESH', mesh)
-      
-      console.log('BEFORE',this.camera.position.distanceTo(mesh.position) )
-      console.log('CAMERA', this.camera)
-      this.controls.target = mesh.position;
-      this.controls.dollyOut(20);
-      this.controls.saveState()
+      console.log('project', project);
 
-      this.controls.update()
-      this.props.setSelectedArProject(project);
-      this.setState({
-        showOverlay: true
-      });
+      let mesh = this.findMeshFromProject(project);
+      console.log('MESH', mesh);
+      if(mesh){
+        this.controls.target = mesh.position;
+        this.controls.dollyOut(20);
+        this.controls.saveState()
+  
+        this.controls.update()
+        this.props.setSelectedArProject(project);
+        this.setState({
+          showOverlay: true
+        });
+      }
+
       console.log('AFTER',this.camera.position.distanceTo(mesh.position) )
 
     }
@@ -471,12 +474,14 @@ class BedfordSquare extends Component {
 
       let mesh = this.findMeshFromProject(project)
       // mesh.children[0].material.color = new THREE.Color( 0x87ffd7);
+      if(mesh) {
+        mesh.traverse((child) => {
+          if(child.material && child.material.color){
+            child.material.color = new THREE.Color( 0x87ffd7);
+          }
+        })
+      }
 
-      mesh.traverse((child) => {
-        if(child.material && child.material.color){
-          child.material.color = new THREE.Color( 0x87ffd7);
-        }
-      })
 
 
       setTimeout(() => {

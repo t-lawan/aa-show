@@ -97,7 +97,7 @@ h1,h2,h3,h4,h5,h6 {
     padding-right: 0;
     padding-top: 0;
     font-weight: 100;
-    color: ${Colours.dark_grey};
+    color: black;
     }
   a {
     text-decoration: underline;
