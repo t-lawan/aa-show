@@ -28,7 +28,7 @@ const StyledModelViewer = styled(ModelViewerElement)`
     width: 100%;
     height: 100%;
 `
-const ActivateARButton = styled.p`
+export const ActivateARButton = styled.p`
   /* color: white;
   background: red; */
   color: ${Colours.orange};
