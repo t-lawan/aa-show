@@ -168,12 +168,37 @@ p, li, a, span{
   }
 }
 
-${'' /* p {
-  line-height: 1.35;
-  font-size: 1.05rem;
-  margin-bottom: 1.5rem;
+
+@keyframes popup {
+  0%{
+    opacity: 0;
+    transform: scale(0);
+  }
+  100%{
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes myAnim {
+    0% {
+      animation-timing-function: ease-in;
+      opacity: 0;
+      transform: translateY(0) scale(1);
+    }
+    15%{
+      opacity: 1;
+    }
+    50%{
+      opacity: 1;
+    }
   
-} */}
+    100% {
+      animation-timing-function: ease-out;
+      transform: translateY(-50vh) scale(0);
+      opacity: 0;
+    }
+  }
 
 
 `;

@@ -15,6 +15,8 @@ const LocationModalWrapper = styled.div`
   left: 10vw;
   background: ${Colours.grey};
   z-index: 200;
+  animation: popup 350ms ease forwards;
+transition: all 200ms ease;
 
   model-viewer {
     width: 100%;
@@ -36,6 +38,9 @@ const CloseText = styled.p`
 `
 
 const CollectItemText = styled.p`
+    z-index: ${ZLayer.MODEL_VIEWER_LINKS};
+    display: ${props => (props.show ? "block" : "none")};
+
     position: absolute;
     top: 7.5%;
     text-align: center;
@@ -67,7 +72,7 @@ const LocationModal = props => {
       show={props.show}
     >
         <CloseText onClick={() => props.onClose()}> Close </CloseText>
-        <CollectItemText onClick={() => props.collectedItem()}> Collect Item </CollectItemText>
+        <CollectItemText show={props.project && !props.project.collected} onClick={() => props.collectedItem(props.project)}> Collect Item </CollectItemText>
         {props.project ? (
             <model-viewer
         // src={AstronautGLB}

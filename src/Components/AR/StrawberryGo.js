@@ -13,10 +13,11 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 import "leaflet/dist/leaflet.css";
 import RequestManager from "../../Utility/Managers/RequestManager";
-import { Colours } from "../Global/global.styles";
+import { Colours, ZLayer } from "../Global/global.styles";
 import UserMarker from "../../Assets/Images/user.png";
 import LocationModal from "./LocationModal";
 import { element } from "prop-types";
+import StrawberryImage from '../../Assets/Images/strawberry.png'
 
 const StrawberryGoWrapper = styled.div`
   width: 100%;
@@ -28,6 +29,26 @@ const StyledMapContainer = styled(MapContainer)`
   z-index: 50;
 `;
 
+const StrawberryImageWrapper = styled.div`
+  /* background: red; */
+  width: 20vw;
+  height: 10vh;
+  position: absolute;
+  top: 1vh;
+  right: 1vw;
+  z-index: ${ZLayer.MODEL_VIEWER_LINKS};
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+`
+
+const StrawberryImageEl = styled.img`
+margin: 0;
+padding: 0;
+width: 50%;
+
+`
 function Location(props) {
   const map = useMapEvents({
     click: () => {
@@ -122,7 +143,6 @@ class StrawberryGo extends React.Component {
         }
       } else {
         project.inProximity = false;
-
       }
     })
   }
@@ -172,9 +192,25 @@ class StrawberryGo extends React.Component {
     });
   };
 
-  collectedItem = () => {
+  collectedItem = (project) => {
+    // Update Project
+    project.collected = true;
+    console.log('PROJECT', project);
+
+    // Find Project
+    let projects = this.state.projects;
+    let index = projects.findIndex((pr) => {
+      return pr.id = project.id;
+    })
+    if(index) {
+      projects[index] = project;
+
+    }
+
+
     this.setState({
-      numOfStrawberries: this.state.numOfStrawberries + 1
+      numOfStrawberries: this.state.numOfStrawberries + 1,
+      projects: projects
     });
   };
   render() {
@@ -186,6 +222,11 @@ class StrawberryGo extends React.Component {
           onClose={this.onCloseModal.bind(this)}
           collectedItem={this.collectedItem.bind(this)}
         />
+
+        <StrawberryImageWrapper>
+          {this.state.numOfStrawberries}
+          <StrawberryImageEl src={StrawberryImage} />
+        </StrawberryImageWrapper>
         {/* {this.state.hasFetchedProjects ? ( */}
         <StyledMapContainer
           center={this.startMapCenter}
@@ -220,7 +261,7 @@ class StrawberryGo extends React.Component {
                   project.worldCoordinates.lon
                 ]}
                 radius={this.maxDistance}
-                pathOptions={{ color: project.inProximity ? Colours.light_green: Colours.light_blue }}
+                pathOptions={{ color: project.collected ? Colours.orange: Colours.light_blue }}
                 eventHandlers={{
                   click: () => {
                     this.selectProject(project);
@@ -236,7 +277,7 @@ class StrawberryGo extends React.Component {
                   project.worldCoordinates.lon
                 ]}
                 radius={0.1}
-                pathOptions={{ color: project.inProximity ? Colours.light_green: Colours.light_blue }}
+                pathOptions={{ color: project.collected ? Colours.orange: Colours.light_blue }}
               />
             </React.Fragment>
           ))}
