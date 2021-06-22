@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { Colours } from "../Global/global.styles";
 import RequestManager from "../../Utility/Managers/RequestManager";
 import { GLTFLoader } from "../../Utility/Loaders/GLTFLoader.js";
@@ -10,7 +10,7 @@ import LoadingPage from "../Loading/LoadingPage/LoadingPage";
 import Overlay from "../Overlay/Overlay";
 import { setSelectedArProject } from "../../Store/action";
 import { connect } from "react-redux";
-// import {OrbitControls, MapControls}from '../../Utility/OrbitControls/OrbitControls'
+import {OrbitControls, MapControls}from '../../Utility/OrbitControls/OrbitControls'
 import ContextModel from '../../Assets/Models/Context.glb';
 import AAWingModel from '../../Assets/Models/AAWing.glb';
 import EastSideModel from '../../Assets/Models/EastSide.glb';
@@ -91,9 +91,9 @@ class BedfordSquare extends Component {
     console.log('pro', projects)
     projects.forEach(project => {
       if(project.shouldDisplay){
-        //  this.addCube(project);
+         this.addCube(project);
 
-        this.addObject(project, project.modelUrl);
+        // this.addObject(project, project.modelUrl);
       }
     });
     // console.log('PROJECTS', projects);
