@@ -9,7 +9,7 @@ import { ActivateARButton } from "./HomeAR";
 const LocationModalWrapper = styled.div`
   display: ${props => (props.show ? "block" : "none")};
   position: absolute;
-  top: 10vh;
+  top: 5vh;
   width: 80vw;
   height: 80vh;
   left: 10vw;
