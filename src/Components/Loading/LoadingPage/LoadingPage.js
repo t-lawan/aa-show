@@ -8,31 +8,32 @@ const LoadingPageWrapper = styled.div`
   position: fixed;
   height: 100vh;
   width: 100vw;
-  background: ${Colours.grey};
+  background: ${Colours.orange};
   z-index: ${ZLayer.LOADING_PAGE};
 `;
 
 const Text = styled.h1`
-  color: ${Colours.orange};
+  color: black;
   text-align: center;
 `;
 
 const Paragraph = styled.p`
-  color: white;
+  color: black;
   font-size: 2vh;
   text-align: center;
 
 `;
 
 const Button = styled.h1`
-  color: ${Colours.orange};
+  color: black;
 
 `
 
 const ContentWrapper = styled.div`
-  top: 0;
+  top: 20vh;
+  position: absolute;
   width: 100%;
-  height: 90vh;
+  height: 60vh;
   /* height: -webkit-fill-available; */
   display: flex;
   flex-direction: column;
@@ -46,9 +47,48 @@ const ContentWrapper = styled.div`
 const LoadingBarWrapper = styled.div`
   width: 60%;
 `;
+
+const TopLeftText = styled.h1`
+  top: 5vh;
+  left:5vw;
+  position: absolute;
+  color: black;
+  font-size: 4vw;
+  font-size: 10vw;
+
+`
+const TopRightText = styled.h1`
+  top: 5vh;
+  right:5vw;
+  position: absolute;
+  color: black;
+  font-size: 10vw;
+`
+
+const BottomLeftText = styled.h1`
+  bottom: 1vh;
+  left:5vw;
+  position: absolute;
+  color: black;
+  font-size: 10vw;
+
+`
+
+const BottomRightText = styled.h1`
+  bottom: 1vh;
+  right:5vw;
+  position: absolute;
+  color: black;
+  font-size: 10vw;
+
+`
 const LoadingPage = props => {
   return (
     <LoadingPageWrapper show={props.show}>
+      <TopLeftText>AA</TopLeftText>
+      <TopRightText> AR</TopRightText>
+      <BottomLeftText>20</BottomLeftText>
+      <BottomRightText>21 </BottomRightText>
       <ContentWrapper>
         <Text> AR21 </Text>
         <LoadingBarWrapper>

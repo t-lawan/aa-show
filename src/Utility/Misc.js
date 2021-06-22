@@ -7,21 +7,21 @@ export const EnvironmentFilter = {
 }
 
 export const PageURls = {
-    BEDFORD_SQUARE: {
-        id: 'BEDFORD_SQUARE',
-        url: '/bedford-square',
+    THREE_JS: {
+        id: 'THREE_JS',
+        url: '/',
     },
     AR_AT_HOME: {
         id: 'AR_AT_HOME',
         url: '/ar-at-home',
     },
-    GEOLOCATION_TEST: {
-        id: 'GEOLOCATION_TEST',
-        url: '/location',
+    AR: {
+        id: 'AR',
+        url: '/ar',
     },
-    HOME: {
-        id: 'HOME',
-        url: '/',
+    AR_BEDFORD_SQUARE: {
+        id: 'AR_BEDFORD_SQUARE',
+        url: '/ar-bedford-square',
     }
 }
 

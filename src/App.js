@@ -6,8 +6,9 @@ import { reducer } from './Store/reducer';
 import Home from './Pages/Home';
 import AR from './Pages/AR';
 import Real from './Pages/Real';
-import ModelViewerExample from './Pages/ModelViewerExample';
 import { PageURls } from './Utility/Misc';
+import ARBedfordSquare from './Pages/ARBedfordSquare';
+import ARAtHome from './Pages/ARAtHome';
 
 const store = createStore(
   reducer,
@@ -19,10 +20,12 @@ function App() {
     <Provider store={store}>
       <Router>
         <Switch>
-          <Route path={PageURls.HOME.url} exact component={Home} />
-          <Route path={"/ar"} exact component={AR} />
-          <Route path={PageURls.BEDFORD_SQUARE.url} exact component={Real} />
-          <Route path={PageURls.AR_AT_HOME.url} exact component={ModelViewerExample} />
+          <Route path={PageURls.THREE_JS.url} exact component={Real} />
+
+          <Route path={PageURls.AR.url} exact component={Home} />
+          <Route path={PageURls.AR_AT_HOME.url} exact component={ARAtHome} />
+          <Route path={PageURls.AR_BEDFORD_SQUARE.url} exact component={ARBedfordSquare} />
+
           <Route component={Home} />
         </Switch>
       </Router>

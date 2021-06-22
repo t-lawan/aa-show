@@ -6,7 +6,7 @@ import HomeAR from "../Components/AR/HomeAR";
 
 const ModelViewerExampleWrapper = styled.div``;
 
-const ModelViewerExample = () => {
+const ARAtHome = () => {
   let location = useLocation();
 //   const homeWrapper = useRef(null);
 
@@ -20,4 +20,4 @@ const ModelViewerExample = () => {
   );
 };
 
-export default ModelViewerExample;
+export default ARAtHome;

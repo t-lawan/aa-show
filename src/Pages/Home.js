@@ -68,6 +68,11 @@ export const TwoColumnGrid = styled.div`
   }
 `;
 
+const TopLeftText = styled.h1`
+  top: 0;
+  left:0;
+  position: absolute;
+`
 
 const Home = () => {
   let location = useLocation();
@@ -78,9 +83,10 @@ const Home = () => {
   return (
     <Layout>
       <HomeWrapper ref={homeWrapper}>
-        {/* <Link to={PageURls.GEOLOCATION_TEST.url}> My house </Link> */}
-        {/* <Link to={'/ar'}> AR </Link> */}
-        <StyledLink to={PageURls.BEDFORD_SQUARE.url}> {"Bedford Square".toUpperCase()}  </StyledLink>
+        <TopLeftText>
+          AA
+        </TopLeftText>
+        <StyledLink to={PageURls.AR_BEDFORD_SQUARE.url}> {"Bedford Square".toUpperCase()}  </StyledLink>
         <StyledLink to={PageURls.AR_AT_HOME.url}> AR AT HOME </StyledLink>
         <Paragraph> PROJECTS REVIEW WEBSITE </Paragraph>
         <CreditsWrapper> 
