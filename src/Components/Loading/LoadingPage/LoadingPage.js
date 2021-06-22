@@ -30,9 +30,10 @@ const Button = styled.h1`
 `
 
 const ContentWrapper = styled.div`
+  top: 0;
   width: 100%;
   height: 90vh;
-  height: -webkit-fill-available;
+  /* height: -webkit-fill-available; */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
