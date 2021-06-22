@@ -22,6 +22,9 @@ import ARModal from "../ARModal/ARModal";
 import RightSidebar from "../Sidebar/RightSidebar";
 import Navbar from "../Navbar/Navbar";
 import Instructions from "../Instructions/Instructions";
+import { EffectComposer } from "../../Utility/EffectComposer";
+import { RenderPass } from "../../Utility/RenderPass";
+import { UnrealBloomPass } from "../../Utility/UnrealBloomPass";
 
 const BedfordSquareWrapper = styled.div`
   height: 100vh;
@@ -83,6 +86,7 @@ class BedfordSquare extends Component {
     this.setupMouse();
     this.setupRayCaster();
     this.setupRenderer();
+    this.setupPostProcessing()
   };
 
   initLoadingObjects = async () => {
@@ -90,8 +94,8 @@ class BedfordSquare extends Component {
     let projects = await RequestManager.getProjects();
     projects.forEach(project => {
       if(project.shouldDisplay){
-         this.addCube(project); 
-        // this.addObject(project, project.modelUrl);
+        //  this.addCube(project); 
+        this.addObject(project, project.modelUrl);
       }
     });
     // console.log('PROJECTS', projects);
@@ -112,12 +116,35 @@ class BedfordSquare extends Component {
       0.1, // near plane
       1000 // far plane
     );
+    const pointLight = new THREE.PointLight( 0xffffff, 1 );
+		this.camera.add( pointLight );
     
     // this.camera.position.set(300,300,1000);
     this.camera.position.set(-378.84945316153204,296.98474526932074,311.5819434772792);
     // this.camera.position.y = 40;
     // this.camera.position.z = 40;
   };
+
+  setupPostProcessing = () => {
+    this.composer = new EffectComposer(this.renderer);
+    this.composer.addPass(new RenderPass(this.scene, this.camera));
+
+    const params = {
+      exposure: 2,
+      bloomStrength: 1.5,
+      bloomThreshold: 1,
+      bloomRadius: 0.7
+    };
+    this.unrealBloomPass = new UnrealBloomPass(new THREE.Vector2( window.innerWidth, window.innerHeight ), 1.5, 0.4, 0.85 )
+    this.unrealBloomPass.threshold = params.bloomThreshold;
+    this.unrealBloomPass.strength = params.bloomStrength;
+    this.unrealBloomPass.radius = params.bloomRadius;
+
+    this.composer.addPass(this.unrealBloomPass);
+
+
+
+  }
 
   setupControls = () => {
     this.controls = new OrbitControls(this.camera, this.mount);
@@ -319,7 +346,8 @@ class BedfordSquare extends Component {
 
       }
     })
-    this.renderer.render(this.scene, this.camera);
+    // this.renderer.render(this.scene, this.camera);
+    this.composer.render();
 
     // The window.requestAnimationFrame() method tells the browser that you wish to perform
     // an animation and requests that the browser call a specified function
@@ -363,6 +391,7 @@ class BedfordSquare extends Component {
     const height = this.mount.clientHeight;
 
     this.renderer.setSize(width, height);
+    this.composer.setSize( width, height );
     this.camera.aspect = width / height;
 
     // Note that after making changes to most of camera properties you have to call
