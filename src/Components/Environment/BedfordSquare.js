@@ -90,8 +90,8 @@ class BedfordSquare extends Component {
     let projects = await RequestManager.getProjects();
     projects.forEach(project => {
       if(project.shouldDisplay){
-        //  this.addCube(project); 
-        this.addObject(project, project.modelUrl);
+         this.addCube(project); 
+        // this.addObject(project, project.modelUrl);
       }
     });
     // console.log('PROJECTS', projects);

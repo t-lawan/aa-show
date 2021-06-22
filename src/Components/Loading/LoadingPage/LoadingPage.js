@@ -54,6 +54,8 @@ const TopLeftText = styled.h1`
   position: absolute;
   color: black;
   font-size: 4vw;
+  margin:0;
+
   font-size: 10vw;
 
 `
@@ -63,6 +65,8 @@ const TopRightText = styled.h1`
   position: absolute;
   color: black;
   font-size: 10vw;
+  margin:0;
+
 `
 
 const BottomLeftText = styled.h1`
@@ -71,6 +75,8 @@ const BottomLeftText = styled.h1`
   position: absolute;
   color: black;
   font-size: 10vw;
+  margin:0;
+
 
 `
 
@@ -80,6 +86,17 @@ const BottomRightText = styled.h1`
   position: absolute;
   color: black;
   font-size: 10vw;
+  margin:0;
+
+`
+
+const BottomCenterText = styled.p`
+  bottom: 1vh;
+  text-align: center;
+  position: absolute;
+  font-size: 2.2vh;
+  width: 100%;
+  /* margin:0; */
 
 `
 const LoadingPage = props => {
@@ -89,6 +106,7 @@ const LoadingPage = props => {
       <TopRightText> AR</TopRightText>
       <BottomLeftText>20</BottomLeftText>
       <BottomRightText>21 </BottomRightText>
+      <BottomCenterText>or go to the AA PR Website</BottomCenterText>
       <ContentWrapper>
         {/* <Text> AR21 </Text> */}
         <LoadingBarWrapper>
