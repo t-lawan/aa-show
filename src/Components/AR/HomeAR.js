@@ -29,6 +29,16 @@ const StyledModelViewer = styled(ModelViewerElement)`
     width: 100%;
     height: 100%;
 `
+
+const ResetButton = styled.p`
+  position: absolute;
+  bottom: 1vh;
+  left: 1vw;
+  z-index: ${ZLayer.MODEL_VIEWER_LINKS};
+  color: ${Colours.orange};
+
+`
+
 export const ActivateARButton = styled.p`
   /* color: white;
   background: red; */
@@ -39,7 +49,7 @@ export const ActivateARButton = styled.p`
   position: absolute;
   bottom: 1vh;
   right: 1vw;
-  padding: 1vw;
+  /* padding: 1vw; */
 `;
 
 const ExitARButton = styled(ActivateARButton)`
@@ -65,14 +75,7 @@ const ARLink = styled(Link)`
   z-index: ${ZLayer.MODEL_VIEWER_LINKS};
 `;
 
-const ResetButton = styled.p`
-  position: absolute;
-  bottom: 1vh;
-  left: 1vw;
-  z-index: ${ZLayer.MODEL_VIEWER_LINKS};
-  color: ${Colours.orange};
 
-`
 
 const HomeAR = props => {
   const [ hasFetchedProjects, setHasFetchedProjects ] = useState(false);
@@ -144,7 +147,6 @@ const HomeAR = props => {
     <HomeARWrapper>
 
       <ARLink to={"/bedford-square"}> Back To Bedford Square </ARLink>
-      <ResetButton onClick={reset}> NEXT</ResetButton>
       {/* <model-viewer src={Bear} ar ar-modes="webxr scene-viewer quick-look" camera-controls alt="Bear" ar-placement="floor" /> */}
       {hasFetchedProjects ? <model-viewer
         // src={AstronautGLB}
@@ -158,6 +160,8 @@ const HomeAR = props => {
         alt="Astronaut"
         ar-placement="floor"
       >
+      <ResetButton onClick={reset}> NEXT</ResetButton>
+
         <ActivateARButton slot="ar-button">AR</ActivateARButton>
       </model-viewer> : null}
       

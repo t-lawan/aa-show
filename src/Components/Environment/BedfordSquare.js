@@ -471,8 +471,9 @@ class BedfordSquare extends Component {
 
       let mesh = this.findMeshFromProject(project)
       // mesh.children[0].material.color = new THREE.Color( 0x87ffd7);
+
       mesh.traverse((child) => {
-        if(child.material){
+        if(child.material && child.material.color){
           child.material.color = new THREE.Color( 0x87ffd7);
         }
       })

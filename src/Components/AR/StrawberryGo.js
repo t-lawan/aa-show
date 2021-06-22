@@ -66,7 +66,7 @@ class StrawberryGo extends React.Component {
   mapRef;
   startMapCenter = [51.51895683571971, -0.13002140453811567];
   startZoom = 19;
-  maxDistance = 5;
+  maxDistance = 7;
   watchPositionId = null;
   constructor(props) {
     super(props);
