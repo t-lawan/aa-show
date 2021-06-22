@@ -177,6 +177,7 @@ class StrawberryGo extends React.Component {
 
   selectProject = project => {
     console.log("xxx", project);
+    project.viewed = true;
     // this.getLocation()
     this.setState({
       showModal: true,
@@ -192,20 +193,32 @@ class StrawberryGo extends React.Component {
     });
   };
 
-  collectedItem = (project) => {
-    // Update Project
-    project.collected = true;
-    console.log('PROJECT', project);
 
-    // Find Project
+  updateProjects = (project) => {
     let projects = this.state.projects;
     let index = projects.findIndex((pr) => {
       return pr.id = project.id;
     })
     if(index) {
       projects[index] = project;
-
     }
+    return projects;
+  }
+  collectedItem = (project) => {
+    // Update Project
+    project.collected = true;
+    console.log('PROJECT', project);
+
+    // Find Project
+    // let projects = this.state.projects;
+    // let index = projects.findIndex((pr) => {
+    //   return pr.id = project.id;
+    // })
+    // if(index) {
+    //   projects[index] = project;
+    // }
+
+    let projects = this.updateProjects(project)
 
 
     this.setState({

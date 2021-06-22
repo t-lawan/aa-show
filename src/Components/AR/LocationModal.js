@@ -30,7 +30,7 @@ transition: all 200ms ease;
 
 const CloseText = styled.p`
     z-index: ${ZLayer.MODEL_VIEWER_LINKS};
-
+  color: ${Colours.orange};
     position: absolute;
     top: 1%;
     right: 1%;
@@ -40,6 +40,7 @@ const CloseText = styled.p`
 const CollectItemText = styled.p`
     z-index: ${ZLayer.MODEL_VIEWER_LINKS};
     display: ${props => (props.show ? "block" : "none")};
+    color: ${Colours.orange};
 
     position: absolute;
     top: 7.5%;
