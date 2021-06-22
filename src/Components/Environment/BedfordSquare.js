@@ -91,9 +91,9 @@ class BedfordSquare extends Component {
     console.log('pro', projects)
     projects.forEach(project => {
       if(project.shouldDisplay){
-         this.addCube(project);
+        //  this.addCube(project); 
 
-        // this.addObject(project, project.modelUrl);
+        this.addObject(project, project.modelUrl);
       }
     });
     // console.log('PROJECTS', projects);
