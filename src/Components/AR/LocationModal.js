@@ -17,16 +17,18 @@ const LocationModalWrapper = styled.div`
   z-index: 200;
 
   model-viewer {
-    width: 90vw;
-    height: 90%;
+    width: 100%;
+    height: 100%;
     left: 0;
-    top: 10%;
+    /* top: 10%; */
     z-index: ${ZLayer.MODEL_VIEWER};
     background: transparent;
   }
 `;
 
 const CloseText = styled.p`
+    z-index: ${ZLayer.MODEL_VIEWER_LINKS};
+
     position: absolute;
     top: 1%;
     right: 1%;

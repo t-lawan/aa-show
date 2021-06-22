@@ -21,7 +21,7 @@ export default class RequestManager {
           });
 
 
-          console.log('RESPONSE', response)
+        //   console.log('RESPONSE', response)
           
 
           let projects = response.items.map((item) => {
@@ -30,7 +30,21 @@ export default class RequestManager {
             if(item.fields.rotation){
                 rotation = new Rotation(item.fields.rotation.fields.x, item.fields.rotation.fields.y, item.fields.rotation.fields.z);
             }
-             
+            let modelUrl = 'https://d321q9os2iadt9.cloudfront.net/THREE/'
+            if(item.fields.modelUrl) {
+                modelUrl = modelUrl + item.fields.modelUrl.split('/').pop()
+            }
+
+            let glbUrl = 'https://d321q9os2iadt9.cloudfront.net/AR/AAARGLTF_1/'
+            if(item.fields.glbUrl) {
+                glbUrl = glbUrl + item.fields.glbUrl.split('/').pop()
+            }
+
+            let usdzUrl = 'https://d321q9os2iadt9.cloudfront.net/AR/USDZ/'
+            if(item.fields.usdzUrl) {
+                usdzUrl = usdzUrl + item.fields.usdzUrl.split('/').pop()
+            }
+
             //   console.log('Item', item)
               return new ProjectModel(
                   item.sys.id,
@@ -41,9 +55,9 @@ export default class RequestManager {
                   coordinate,
                   item.fields.worldCoordinates,
                   rotation,
-                  item.fields.modelUrl,
-                  item.fields.glbUrl,
-                  item.fields.usdzUrl,
+                  modelUrl,
+                  glbUrl,
+                  usdzUrl,
                   item.fields.shouldDisplay,
                   item.fields.showInArAtHome,
                   

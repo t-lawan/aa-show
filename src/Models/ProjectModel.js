@@ -12,6 +12,12 @@ export default class ProjectModel {
     rotation;
     showInArAtHome;
     worldCoordinates;
+    // AR
+    markers = [];
+    inProximity = false;
+    viewed = false;
+    collected = false;
+    
     constructor(id, title, sidebarTitle, description, unit, coordinate, worldCoordinates, rotation, modelUrl, glbUrl,usdzUrl, shouldDisplay, showInArAtHome) {
         this.id = id;
         this.title = title;
