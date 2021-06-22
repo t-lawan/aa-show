@@ -132,10 +132,16 @@ class StrawberryGo extends React.Component {
       currentProject: null
     })
   }
+
+  collectedItem = () => {
+    this.setState({
+      numOfStrawberries: this.state.numOfStrawberries + 1
+    })
+  }
   render() {
     return (
       <StrawberryGoWrapper>
-        <LocationModal show={this.state.showModal} project={this.state.currentProject} onClose={this.onCloseModal.bind(this)} />
+        <LocationModal show={this.state.showModal} project={this.state.currentProject} onClose={this.onCloseModal.bind(this)}  collectedItem={this.collectedItem.bind(this)} />
         {/* {this.state.hasFetchedProjects ? ( */}
         <StyledMapContainer
           center={this.startMapCenter}
