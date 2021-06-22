@@ -114,7 +114,7 @@ class BedfordSquare extends Component {
     );
     
     // this.camera.position.set(300,300,1000);
-    this.camera.position.set(663,477,13);
+    this.camera.position.set(-378.84945316153204,296.98474526932074,311.5819434772792);
     // this.camera.position.y = 40;
     // this.camera.position.z = 40;
   };
@@ -213,6 +213,7 @@ class BedfordSquare extends Component {
     this.addEnvironmentObject(RoadOutlineModel, 'RoadOutline');
     this.addEnvironmentObject(NorthSideModel, 'NorthSide');
     this.addEnvironmentObject(SouthSideModel, 'SouthSide');
+    this.addEnvironmentObject(EastSideModel, 'EastSide');
 
   }
 

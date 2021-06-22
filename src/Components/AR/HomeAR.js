@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { ZLayer, Colours } from "../Global/global.styles";
 import RequestManager from "../../Utility/Managers/RequestManager";
 import { ModelViewerElement } from "@google/model-viewer";
+import { PageURls } from "../../Utility/Misc";
 
 const HomeARWrapper = styled.div`
   width: 100vw;
@@ -146,7 +147,7 @@ const HomeAR = props => {
   return (
     <HomeARWrapper>
 
-      <ARLink to={"/bedford-square"}> Back To Bedford Square </ARLink>
+      <ARLink to={PageURls.THREE_JS.url}> Back To Bedford Square </ARLink>
       {/* <model-viewer src={Bear} ar ar-modes="webxr scene-viewer quick-look" camera-controls alt="Bear" ar-placement="floor" /> */}
       {hasFetchedProjects ? <model-viewer
         // src={AstronautGLB}
