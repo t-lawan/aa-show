@@ -180,6 +180,19 @@ p, li, a, span{
   }
 }
 
+@keyframes scroll-left {
+            0% {
+                -moz-transform: translateX(100%);
+                -webkit-transform: translateX(100%);
+                transform: translateX(100%);
+            }
+            100% {
+                -moz-transform: translateX(-100%);
+                -webkit-transform: translateX(-100%);
+                transform: translateX(-100%);
+            }
+        }
+
 @keyframes myAnim {
     0% {
       animation-timing-function: ease-in;

@@ -47,6 +47,7 @@ const NavbarSection = styled.p`
 
 `
 const NavbarTitle = styled(NavbarSection)`
+  color: black;
   opacity: ${props => (props.canClick ? 1 : 0.4)};
   /* color: ${props => (props.canClick ? 'black' : Colours.orange)}; */
 `;

@@ -5,6 +5,7 @@ import { Colours, size } from "../Components/Global/global.styles";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { PageURls } from "../Utility/Misc";
+import Ticker from "../Components/Ticker/Ticker";
 
 const HomeWrapper = styled.div`
   display: flex;
@@ -13,7 +14,7 @@ const HomeWrapper = styled.div`
   height: 100vh;
   justify-content: center;
   align-items: center;
-  background: ${Colours.grey};
+  background: ${Colours.orange};
 `;
 
 export const Title = styled.p`
@@ -86,7 +87,7 @@ const Home = () => {
         <StyledLink to={PageURls.AR_BEDFORD_SQUARE.url}> {"Bedford Square".toUpperCase()}  </StyledLink>
         <StyledLink to={PageURls.AR_AT_HOME.url}> HOME </StyledLink>
         <Paragraph> PROJECTS REVIEW WEBSITE </Paragraph>
-        <CreditsWrapper> 
+        {/* <CreditsWrapper> 
         <ContentWrapper>
         {creditText.map((text, index) => (
             <Credits key={index}> {text} </Credits>
@@ -94,7 +95,8 @@ const Home = () => {
           ))}
         </ContentWrapper>
 
-        </CreditsWrapper>
+        </CreditsWrapper> */}
+        <Ticker />
       </HomeWrapper>
     </Layout>
   );
