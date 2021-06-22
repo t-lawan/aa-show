@@ -9,7 +9,7 @@ export const Main = styled.section`
 const Layout = props => {
   let description = props.description ? props.description : "A series of interactive digital walks using metagenomics to reveal food gardens as spaces for mutual care and imagine a future where urban agriculture is essential to public life.";
   let url = "";
-  let title = props.title ? props.title : "AA Show" ;
+  let title = props.title ? props.title : "AR2021" ;
   return (
     <HelmetProvider>
       <Helmet
