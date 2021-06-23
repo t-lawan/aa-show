@@ -147,7 +147,7 @@ const HomeAR = props => {
   return (
     <HomeARWrapper>
 
-      <ARLink to={PageURls.THREE_JS.url}> Back To Bedford Square </ARLink>
+      <ARLink to={PageURls.AR.url}> Back </ARLink>
       {/* <model-viewer src={Bear} ar ar-modes="webxr scene-viewer quick-look" camera-controls alt="Bear" ar-placement="floor" /> */}
       {hasFetchedProjects ? <model-viewer
         // src={AstronautGLB}

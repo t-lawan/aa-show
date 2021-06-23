@@ -12,10 +12,7 @@ const LoadingPageWrapper = styled.div`
   z-index: ${ZLayer.LOADING_PAGE};
 `;
 
-const Text = styled.h1`
-  color: black;
-  text-align: center;
-`;
+
 
 const Paragraph = styled.p`
   color: black;
@@ -48,46 +45,43 @@ const LoadingBarWrapper = styled.div`
   width: 60%;
 `;
 
-const TopLeftText = styled.h1`
+
+const Text = styled.h1`
+  color: black;
+  position: absolute;
+  color: black;
+  margin:0;
+  font-size: 10vw;
+  @media (max-width: ${size.tablet}) {
+  font-size: 10vh;
+  }
+`;
+
+
+const TopLeftText = styled(Text)`
   top: 5vh;
   left:5vw;
-  position: absolute;
-  color: black;
-  font-size: 4vw;
-  margin:0;
-
-  font-size: 10vw;
-
 `
-const TopRightText = styled.h1`
+const TopRightText = styled(Text)`
   top: 5vh;
   right:5vw;
-  position: absolute;
-  color: black;
-  font-size: 10vw;
-  margin:0;
-
 `
 
-const BottomLeftText = styled.h1`
+const BottomLeftText = styled(Text)`
   bottom: 1vh;
   left:5vw;
-  position: absolute;
-  color: black;
-  font-size: 10vw;
-  margin:0;
-
-
+  @media (max-width: ${size.tablet}) {
+    bottom: 5vh;
+  }
 `
 
-const BottomRightText = styled.h1`
+const BottomRightText = styled(Text)`
   bottom: 1vh;
   right:5vw;
-  position: absolute;
-  color: black;
-  font-size: 10vw;
-  margin:0;
+  @media (max-width: ${size.tablet}) {
+  bottom: 5vh;
 
+  }
 `
 
 const BottomCenterText = styled.p`
