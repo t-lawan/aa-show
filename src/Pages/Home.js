@@ -75,6 +75,14 @@ const TopLeftText = styled.h1`
   position: absolute;
 `
 
+const LinksWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+    align-items: center;
+    width: 60%;
+`
+
 const Home = () => {
   let location = useLocation();
   const homeWrapper = useRef(null);
@@ -84,8 +92,11 @@ const Home = () => {
   return (
     <Layout>
       <HomeWrapper ref={homeWrapper}>
-        <StyledLink to={PageURls.AR_BEDFORD_SQUARE.url}> {"Bedford Square".toUpperCase()}  </StyledLink>
+      <LinksWrapper>
+      <StyledLink to={PageURls.AR_BEDFORD_SQUARE.url}> {"Bedford Square".toUpperCase()}  </StyledLink>
         <StyledLink to={PageURls.AR_AT_HOME.url}> HOME </StyledLink>
+      </LinksWrapper>
+
         <Paragraph> PROJECTS REVIEW WEBSITE </Paragraph>
         {/* <CreditsWrapper> 
         <ContentWrapper>
