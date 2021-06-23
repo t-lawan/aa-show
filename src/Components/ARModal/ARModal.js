@@ -23,6 +23,8 @@ const ARModalWrapper = styled.div`
 const ARLink = styled(Link)`
   color: black;
   text-decoration: none;
+  font-size: 3vh;
+
 `;
 
 const ContentWrapper = styled.div`
