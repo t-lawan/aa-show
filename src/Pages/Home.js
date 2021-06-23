@@ -40,7 +40,6 @@ const Warning  = styled(Paragraph)`
   position: absolute;
   text-align: center;
     width: 60%;
-}
 `
 
 
@@ -82,7 +81,7 @@ const Home = () => {
       <HomeWrapper ref={homeWrapper}>
       <LinksWrapper>
       <StyledLink to={PageURls.AR_BEDFORD_SQUARE.url}> {"Bedford Square".toUpperCase()}  </StyledLink>
-        <StyledLink to={PageURls.AR_AT_HOME.url}> HOME </StyledLink>
+        <StyledLink to={PageURls.AR_AT_HOME.url}> ELSEWHERE </StyledLink>
       </LinksWrapper>
 
         <Paragraph> PROJECTS REVIEW WEBSITE </Paragraph>

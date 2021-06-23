@@ -25,6 +25,7 @@ import Instructions from "../Instructions/Instructions";
 import { EffectComposer } from "../../Utility/EffectComposer";
 import { RenderPass } from "../../Utility/RenderPass";
 import { UnrealBloomPass } from "../../Utility/UnrealBloomPass";
+import Device from "../../Utility/Device";
 
 const BedfordSquareWrapper = styled.div`
   height: 100vh;
@@ -114,13 +115,22 @@ class BedfordSquare extends Component {
       17, // fov = field of view
       this.mount.clientWidth / this.mount.clientHeight, // aspect ratio
       0.1, // near plane
-      1000 // far plane
+      1500 // far plane
     );
     const pointLight = new THREE.PointLight( 0xffffff, 1 );
 		this.camera.add( pointLight );
     
     // this.camera.position.set(300,300,1000);
-    this.camera.position.set(-378.84945316153204,296.98474526932074,311.5819434772792);
+    if(Device.isMobile()){
+      this.camera.position.set(
+        -985.181093860796,
+        393.4537648390991,
+        264.9690040807232
+      )
+    } else {
+      this.camera.position.set(-378.84945316153204,296.98474526932074,311.5819434772792);
+
+    }
     // this.camera.position.y = 40;
     // this.camera.position.z = 40;
   };
@@ -149,7 +159,7 @@ class BedfordSquare extends Component {
   setupControls = () => {
     this.controls = new OrbitControls(this.camera, this.mount);
     this.controls.minDistance  = 60;
-    this.controls.maxDistance = 800;
+    this.controls.maxDistance = 1200;
     this.controls.screenSpacePanning = true;
     this.controls.enablePan = false;
     this.controls.target = this.centerPoint;

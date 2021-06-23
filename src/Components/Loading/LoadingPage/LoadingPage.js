@@ -100,7 +100,7 @@ const LoadingPage = props => {
       <TopRightText> AR</TopRightText>
       <BottomLeftText>20</BottomLeftText>
       <BottomRightText>21 </BottomRightText>
-      <BottomCenterText>or go to the AA PR Website</BottomCenterText>
+      {/* <BottomCenterText>or go to the AA PR Website</BottomCenterText> */}
       <ContentWrapper>
         {/* <Text> AR21 </Text> */}
         <LoadingBarWrapper>
