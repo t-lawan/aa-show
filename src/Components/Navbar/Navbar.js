@@ -44,11 +44,14 @@ const NavbarSection = styled.p`
   color: white;
   padding: 0 1vw;
   margin: 0;
+  white-space: nowrap;
+
 
 `
 const NavbarTitle = styled(NavbarSection)`
   color: black;
   opacity: ${props => (props.canClick ? 1 : 0.4)};
+  white-space: nowrap;
   /* color: ${props => (props.canClick ? 'black' : Colours.orange)}; */
 `;
 
