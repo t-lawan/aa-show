@@ -67,7 +67,7 @@ export const GlobalStyle = createGlobalStyle`
 
   }
   ::-webkit-scrollbar-thumb {
-    background: ${Colours.orange};
+    background: white;
   }
     }
 

@@ -23,8 +23,8 @@ const NavbarWrapper = styled.div`
     }
   ::-webkit-scrollbar {
     width: 5px;
-    height: 0.5vh;
-    display:none;
+    height: 1vh;
+    /* display:none; */
 
     @media (max-width: ${size.mobileL}) {
       width: 2.5px;
