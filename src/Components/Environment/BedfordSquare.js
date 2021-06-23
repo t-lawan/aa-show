@@ -86,7 +86,7 @@ class BedfordSquare extends Component {
     this.setupMouse();
     this.setupRayCaster();
     this.setupRenderer();
-    this.setupPostProcessing()
+    // this.setupPostProcessing()
   };
 
   initLoadingObjects = async () => {
@@ -346,8 +346,8 @@ class BedfordSquare extends Component {
 
       }
     })
-    // this.renderer.render(this.scene, this.camera);
-    this.composer.render();
+    this.renderer.render(this.scene, this.camera);
+    // this.composer.render();
 
     // The window.requestAnimationFrame() method tells the browser that you wish to perform
     // an animation and requests that the browser call a specified function
@@ -391,7 +391,7 @@ class BedfordSquare extends Component {
     const height = this.mount.clientHeight;
 
     this.renderer.setSize(width, height);
-    this.composer.setSize( width, height );
+    // this.composer.setSize( width, height );
     this.camera.aspect = width / height;
 
     // Note that after making changes to most of camera properties you have to call
