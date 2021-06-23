@@ -35,26 +35,14 @@ const Paragraph = styled.p`
 
 ` 
 
-const Credits = styled(Paragraph)`
-
-  display: inline-block;
-  margin: 0 0.5vw;
-`
-
-const CreditsWrapper = styled.div`
-  bottom: 0;
-  left: 0;
+const Warning  = styled(Paragraph)`
+  bottom: 20vh;
   position: absolute;
-  overflow-y: scroll;
-
-  /* overflow-x: scroll; */
+  text-align: center;
+    width: 60%;
+}
 `
 
-const ContentWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
 
 export const TwoColumnGrid = styled.div`
   display: grid;
@@ -98,6 +86,7 @@ const Home = () => {
       </LinksWrapper>
 
         <Paragraph> PROJECTS REVIEW WEBSITE </Paragraph>
+        <Warning> Please be aware of your surroundings during the AR experience </Warning>
         {/* <CreditsWrapper> 
         <ContentWrapper>
         {creditText.map((text, index) => (
