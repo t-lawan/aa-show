@@ -81,7 +81,7 @@ const Navbar = props => {
               key={index}
             >
               {" "}
-              {project.sidebarTitle}
+              {project.sidebarTitle.toUpperCase()}
             </NavbarTitle>
           ))}
           {/* <NavbarTitle canClick={false}> Diploma </NavbarTitle> */}
@@ -94,7 +94,7 @@ const Navbar = props => {
               key={index}
             >
               {" "}
-              {project.sidebarTitle}
+              {project.sidebarTitle.toUpperCase()}
             </NavbarTitle>
           ))}
 
@@ -105,7 +105,7 @@ const Navbar = props => {
                 onClick={() => props.onClick(project)}
                 key={index}
               >
-                {project.sidebarTitle}
+                {project.sidebarTitle.toUpperCase()}
               </NavbarTitle>
             ))}
           </React.Fragment>
