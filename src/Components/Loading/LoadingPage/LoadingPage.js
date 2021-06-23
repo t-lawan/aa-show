@@ -61,17 +61,27 @@ const Text = styled.h1`
 const TopLeftText = styled(Text)`
   top: 5vh;
   left:5vw;
+  @media (max-width: ${size.tablet}) {
+    top: 2vh;
+  left:2vw;
+
+  }
 `
 const TopRightText = styled(Text)`
   top: 5vh;
   right:5vw;
+  @media (max-width: ${size.tablet}) {
+    top: 2vh;
+    right:2vw;
+
+  }
 `
 
 const BottomLeftText = styled(Text)`
   bottom: 1vh;
   left:5vw;
   @media (max-width: ${size.tablet}) {
-    bottom: 5vh;
+    bottom: 10vh;
   }
 `
 
@@ -79,7 +89,7 @@ const BottomRightText = styled(Text)`
   bottom: 1vh;
   right:5vw;
   @media (max-width: ${size.tablet}) {
-  bottom: 5vh;
+  bottom: 10vh;
 
   }
 `

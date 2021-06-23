@@ -25,6 +25,7 @@ const NavbarWrapper = styled.div`
     width: 5px;
     height: 1vh;
     /* display:none; */
+    cursor: crosshair !important;
 
     @media (max-width: ${size.mobileL}) {
       width: 2.5px;
