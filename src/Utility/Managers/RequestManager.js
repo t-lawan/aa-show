@@ -4,6 +4,8 @@ import Coordinates from "../../Models/Coordinates";
 import Rotation from "../../Models/Rotation";
 import PageInfoModel from "../../Models/PageInfoModel";
 
+let baseUrl = 'https://ar2021.azureedge.net/ar2021-objects/ASSETS/ASSETS/'
+// baseUrl = 'https://d321q9os2iadt9.cloudfront.net/'
 export default class RequestManager {
     static space = "w6wp6l1i10zr";
     static environment = "master";
@@ -30,17 +32,17 @@ export default class RequestManager {
             if(item.fields.rotation){
                 rotation = new Rotation(item.fields.rotation.fields.x, item.fields.rotation.fields.y, item.fields.rotation.fields.z);
             }
-            let modelUrl = 'https://d321q9os2iadt9.cloudfront.net/THREE/'
+            let modelUrl = baseUrl + 'THREE/'
             if(item.fields.modelUrl) {
                 modelUrl = modelUrl + item.fields.modelUrl.split('/').pop()
             }
 
-            let glbUrl = 'https://d321q9os2iadt9.cloudfront.net/AR/AAARGLTF_1/'
+            let glbUrl = baseUrl +  'AR/AAARGLTF_1/'
             if(item.fields.glbUrl) {
                 glbUrl = glbUrl + item.fields.glbUrl.split('/').pop()
             }
 
-            let usdzUrl = 'https://d321q9os2iadt9.cloudfront.net/AR/USDZ/'
+            let usdzUrl = baseUrl + 'AR/USDZ/'
             if(item.fields.usdzUrl) {
                 usdzUrl = usdzUrl + item.fields.usdzUrl.split('/').pop()
             }
@@ -90,17 +92,17 @@ export default class RequestManager {
                 rotation = new Rotation(item.fields.rotation.fields.x, item.fields.rotation.fields.y, item.fields.rotation.fields.z);
             }
 
-            let modelUrl = 'https://d321q9os2iadt9.cloudfront.net/THREE/'
+            let modelUrl = baseUrl + 'THREE/'
             if(item.fields.modelUrl) {
                 modelUrl = modelUrl + item.fields.modelUrl.split('/').pop()
             }
 
-            let glbUrl = 'https://d321q9os2iadt9.cloudfront.net/AR/AAARGLTF_1/'
+            let glbUrl = baseUrl +  'AR/AAARGLTF_1/'
             if(item.fields.glbUrl) {
                 glbUrl = glbUrl + item.fields.glbUrl.split('/').pop()
             }
 
-            let usdzUrl = 'https://d321q9os2iadt9.cloudfront.net/AR/USDZ/'
+            let usdzUrl = baseUrl + 'AR/USDZ/'
             if(item.fields.usdzUrl) {
                 usdzUrl = usdzUrl + item.fields.usdzUrl.split('/').pop()
             }
@@ -127,17 +129,17 @@ export default class RequestManager {
             if(item.fields.rotation){
                 rotation = new Rotation(item.fields.rotation.fields.x, item.fields.rotation.fields.y, item.fields.rotation.fields.z);
             }
-            let modelUrl = 'https://d321q9os2iadt9.cloudfront.net/THREE/'
+            let modelUrl = baseUrl + 'THREE/'
             if(item.fields.modelUrl) {
                 modelUrl = modelUrl + item.fields.modelUrl.split('/').pop()
             }
 
-            let glbUrl = 'https://d321q9os2iadt9.cloudfront.net/AR/AAARGLTF_1/'
+            let glbUrl = baseUrl +  'AR/AAARGLTF_1/'
             if(item.fields.glbUrl) {
                 glbUrl = glbUrl + item.fields.glbUrl.split('/').pop()
             }
 
-            let usdzUrl = 'https://d321q9os2iadt9.cloudfront.net/AR/USDZ/'
+            let usdzUrl = baseUrl + 'AR/USDZ/'
             if(item.fields.usdzUrl) {
                 usdzUrl = usdzUrl + item.fields.usdzUrl.split('/').pop()
             }
@@ -164,17 +166,17 @@ export default class RequestManager {
             if(item.fields.rotation){
                 rotation = new Rotation(item.fields.rotation.fields.x, item.fields.rotation.fields.y, item.fields.rotation.fields.z);
             }
-            let modelUrl = 'https://d321q9os2iadt9.cloudfront.net/THREE/'
+            let modelUrl = baseUrl + 'THREE/'
             if(item.fields.modelUrl) {
                 modelUrl = modelUrl + item.fields.modelUrl.split('/').pop()
             }
 
-            let glbUrl = 'https://d321q9os2iadt9.cloudfront.net/AR/AAARGLTF_1/'
+            let glbUrl = baseUrl +  'AR/AAARGLTF_1/'
             if(item.fields.glbUrl) {
                 glbUrl = glbUrl + item.fields.glbUrl.split('/').pop()
             }
 
-            let usdzUrl = 'https://d321q9os2iadt9.cloudfront.net/AR/USDZ/'
+            let usdzUrl = baseUrl + 'AR/USDZ/'
             if(item.fields.usdzUrl) {
                 usdzUrl = usdzUrl + item.fields.usdzUrl.split('/').pop()
             }
@@ -201,17 +203,17 @@ export default class RequestManager {
             if(item.fields.rotation){
                 rotation = new Rotation(item.fields.rotation.fields.x, item.fields.rotation.fields.y, item.fields.rotation.fields.z);
             }
-            let modelUrl = 'https://d321q9os2iadt9.cloudfront.net/THREE/'
+            let modelUrl = baseUrl + 'THREE/'
             if(item.fields.modelUrl) {
                 modelUrl = modelUrl + item.fields.modelUrl.split('/').pop()
             }
 
-            let glbUrl = 'https://d321q9os2iadt9.cloudfront.net/AR/AAARGLTF_1/'
+            let glbUrl = baseUrl +  'AR/AAARGLTF_1/'
             if(item.fields.glbUrl) {
                 glbUrl = glbUrl + item.fields.glbUrl.split('/').pop()
             }
 
-            let usdzUrl = 'https://d321q9os2iadt9.cloudfront.net/AR/USDZ/'
+            let usdzUrl = baseUrl + 'AR/USDZ/'
             if(item.fields.usdzUrl) {
                 usdzUrl = usdzUrl + item.fields.usdzUrl.split('/').pop()
             }

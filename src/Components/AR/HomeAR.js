@@ -66,10 +66,11 @@ const ModelViewer = styled('model_viewer')`
 
 const ARLink = styled(Link)`
   position: absolute;
-  top: 1vh;
-  left: 14%;
+  top: 1%;
+  left: 10%;
   padding: 1vw;
   cursor: cell;
+  text-decoration: none;
   /* background: red;  */
   /* color: ${Colours.orange}; */
 
@@ -145,7 +146,6 @@ const HomeAR = props => {
   return (
     <HomeARWrapper>
 
-      <ARLink to={PageURls.AR.url}> Back </ARLink>
       {/* <model-viewer src={Bear} ar ar-modes="webxr scene-viewer quick-look" camera-controls alt="Bear" ar-placement="floor" /> */}
       {hasFetchedProjects ? <model-viewer
         // src={AstronautGLB}
@@ -159,6 +159,8 @@ const HomeAR = props => {
         alt="Astronaut"
         ar-placement="floor"
       >
+      <ARLink to={PageURls.AR.url}> BACK </ARLink>
+
       <ResetButton onClick={reset}> NEXT</ResetButton>
 
         <ActivateARButton slot="ar-button">AR</ActivateARButton>
