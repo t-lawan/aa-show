@@ -61,7 +61,6 @@ registerRoute(
   })
 );
 
-// registerRoute(new RegExp('https:\/\/ar2021\.azureedge\.net\/ar2021-objects\/ASSETS\/ASSETS\/[\w\d\s]*', new StaleWhileRevalidate() )
 
 
 // This allows the web app to trigger skipWaiting via
@@ -74,3 +73,4 @@ self.addEventListener('message', (event) => {
 
 // Any other custom service worker logic can go here.
 
+registerRoute(new RegExp('https:\/\/ar2021\.azureedge\.net\/ar2021-objects\/ASSETS\/ASSETS\/[\w\d\s]*'), new StaleWhileRevalidate())
