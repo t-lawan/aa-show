@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import * as THREE from "three";
 // import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { Colours } from "../Global/global.styles";
+import { Colours, size } from "../Global/global.styles";
 import RequestManager from "../../Utility/Managers/RequestManager";
 import { GLTFLoader } from "../../Utility/Loaders/GLTFLoader.js";
 import Astronaut from "../../Assets/Models/Astronaut.glb";
@@ -31,6 +31,11 @@ const BedfordSquareWrapper = styled.div`
   height: 100vh;
   display: ${props => (props.show ? "block" : "none")};
   z-index: 50;
+  @media (max-width: ${size.tablet}) {
+    height:-webkit-fill-available;
+  }
+  
+
 `;
 
 const ARButtonWrapper = styled.div`

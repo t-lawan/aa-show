@@ -10,6 +10,9 @@ const LoadingPageWrapper = styled.div`
   width: 100vw;
   background: ${Colours.orange};
   z-index: ${ZLayer.LOADING_PAGE};
+  @media (max-width: ${size.tablet}) {
+    height:-webkit-fill-available;
+  }
 `;
 
 
