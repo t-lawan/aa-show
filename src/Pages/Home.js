@@ -42,13 +42,16 @@ const StyledLink = styled(Link)`
 `;
 
 const Paragraph = styled.p`
-
   font-size: 2.2vh;
+  /* width: 60%; */
 
   text-align: center;
-
 `;
 
+
+const LongPara = styled(Paragraph)`
+  width: 60%;
+`
 const Warning = styled(Paragraph)`
   color: black;
   width: 60%;
@@ -97,6 +100,11 @@ const Home = () => {
           {" "}
           Please be aware of your surroundings during the AR experience{" "}
         </Warning>
+        <LongPara>
+          For more information about the work of the units and programmes, and
+          to view the series of short films and individual student projects,
+          please visit pr2021.aaschool.ac.uk
+        </LongPara>
         <TopLeftText>AA</TopLeftText>
         <TopRightText> AR</TopRightText>
         <BottomLeftText>20</BottomLeftText>

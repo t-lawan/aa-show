@@ -33,6 +33,13 @@ const Paragraph = styled.p`
 
 const Button = styled.h1`
   color: black;
+  margin: 0;
+  @media (max-width: ${size.mobileL}) {
+    /* font-size: 1.6vh; */
+  font-size: 4vh;
+
+  }
+
 `;
 
 const ContentWrapper = styled.div`
@@ -130,7 +137,7 @@ const BottomCenterText = styled.div`
   left: 20%;
   height: 10vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   /* margin:0; */
