@@ -95,10 +95,10 @@ class BedfordSquare extends Component {
   initLoadingObjects = async () => {
     let pageInfo = await RequestManager.getPageInfo()
     let projects = await RequestManager.getProjects();
-    projects.forEach(project => {
+    projects.forEach(async (project) => {
       if(project.shouldDisplay){
         //  this.addCube(project); 
-        this.addObject(project, project.modelUrl);
+        await this.addObject(project, project.modelUrl);
       }
     });
     // console.log('PROJECTS', projects);
@@ -316,12 +316,14 @@ class BedfordSquare extends Component {
     this.clickableObjects.push(cube);
   };
 
-  addObject = (project, object = Astronaut) => {
+  addObject = async (project, object = Astronaut) => {
     const loader = new GLTFLoader(this.manager);
     let mesh = new THREE.Object3D();
     const coordinate = project.coordinate;
 
-    loader.load(object, gltf => {
+    return new Promise((resolve, reject) => {
+
+    loader.load(object, (gltf) => {
       mesh = gltf.scene;
       mesh.userData.project = project;
       mesh.position.x = coordinate.x;
@@ -330,14 +332,18 @@ class BedfordSquare extends Component {
       mesh.position.z = coordinate.z;
       mesh.visible = true
       mesh.children[0].userData.project = project;
-      this.baseColor = mesh.children[0].material.color;
-      mesh.userData.baseColor = mesh.children[0].material.color;
+      this.baseColor = mesh.children[0] &&  mesh.children[0].material && mesh.children[0].material.color ? mesh.children[0].material.color : new THREE.Color(Colours.light_green);
+      mesh.userData.baseColor = mesh.children[0] &&  mesh.children[0].material && mesh.children[0].material.color ? mesh.children[0].material.color : new THREE.Color(Colours.light_green);
       mesh.receiveShadow = true;
       mesh.castShadow = true;
       // console.log('ADD MESH', mesh)
       this.scene.add(mesh);
       this.clickableObjects.push(mesh);
-    })
+      resolve(true)
+    }, undefined, reject)
+  })
+
+  }
     
     // , undefined, (error) => {
     //     if(!project.hasReTried){
@@ -345,7 +351,7 @@ class BedfordSquare extends Component {
     //       this.addObject(project, object);
     //     }
     // });
-  };
+  // };
 
   findMeshFromProject = (project) => {
     let mesh =this.clickableObjects.find((obj) => {
