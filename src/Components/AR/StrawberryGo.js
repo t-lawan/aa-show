@@ -56,7 +56,6 @@ function Location(props) {
     },
     locationfound: location => {
       props.getLocation(location);
-      console.log("location found:", location);
     }
   });
   return null;
@@ -105,7 +104,6 @@ class StrawberryGo extends React.Component {
 
   watchLocation = () => {
     if (navigator.geolocation) {
-      console.log("HI");
       this.watchPositionId = navigator.geolocation.watchPosition(
         this.handleLocationSuccess.bind(this),
         this.handleLocationError.bind(this),
@@ -119,13 +117,11 @@ class StrawberryGo extends React.Component {
   };
 
   handleLocationSuccess(location) {
-    console.log("handleLocationSuccess", location);
     this.getLocation(location.coords);
     this.filterContent(location.coords);
     // filterContentByDistance(lat, lon)
   }
   handleLocationError(location) {
-    console.log("handleLocationError", location);
 
     // this.getLocation(location);
     // filterContentByDistance(lat, lon)
@@ -176,7 +172,6 @@ class StrawberryGo extends React.Component {
   }
 
   selectProject = project => {
-    console.log("xxx", project);
     project.viewed = true;
     // this.getLocation()
     this.setState({
@@ -186,7 +181,6 @@ class StrawberryGo extends React.Component {
   };
 
   onCloseModal = () => {
-    console.log("HEY");
     this.setState({
       showModal: false,
       currentProject: null
@@ -207,7 +201,6 @@ class StrawberryGo extends React.Component {
   collectedItem = (project) => {
     // Update Project
     project.collected = true;
-    console.log('PROJECT', project);
 
     // Find Project
     // let projects = this.state.projects;

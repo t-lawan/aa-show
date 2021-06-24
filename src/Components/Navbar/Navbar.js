@@ -59,7 +59,6 @@ const NavbarTitle = styled(NavbarSection)`
 
 const Navbar = props => {
   let pageInfo = props.pageInfo;
-  console.log("PAGE", pageInfo);
   return (
     <NavbarWrapper show={props.show}>
       {pageInfo ? (

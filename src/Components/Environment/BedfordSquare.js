@@ -341,7 +341,6 @@ class BedfordSquare extends Component {
   };
 
   findMeshFromProject = (project) => {
-    console.log('CLIC', this.clickableObjects)
     let mesh =this.clickableObjects.find((obj) => {
       return obj.userData.project.title == project.title;
     })
@@ -437,7 +436,6 @@ class BedfordSquare extends Component {
 
   onDoubleClick = event => {
     event.preventDefault();
-    console.log('CONTROLS', this.camera.position)
     this.setMouse(event);
     this.raycaster.setFromCamera(this.mouse, this.camera);
     this.intersects = this.raycaster.intersectObjects(
@@ -454,7 +452,6 @@ class BedfordSquare extends Component {
       // console.log('OBJ', obj)
       let project = obj.parent.userData.project;
       if (project) {
-        console.log(project)
         this.props.setSelectedArProject(project);
         this.showOverlay()
       }
@@ -477,10 +474,8 @@ class BedfordSquare extends Component {
     if(project.shouldDisplay){
       this.highlightProject(project);
       // Move towards totem
-      console.log('project', project);
 
       let mesh = this.findMeshFromProject(project);
-      console.log('MESH', mesh);
       if(mesh){
         this.controls.target = mesh.position;
         this.controls.dollyOut(20);
@@ -499,12 +494,10 @@ class BedfordSquare extends Component {
   }
 
   resetTarget = () => {
-    console.log('BEFORE', this.controls)
     // this.controls.target = this.centerPoint;
     // this.controls.scale(10);
     // this.controls.reset();
     this.controls.update()
-    console.log('AFTER', this.controls)
 
   }
 
@@ -565,7 +558,6 @@ class BedfordSquare extends Component {
   }
 
   setIsReadyToTrue = () => {
-    console.log('IS READU')
     this.setState({
       isReady: true
     })

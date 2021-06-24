@@ -111,13 +111,11 @@ const HomeAR = props => {
   }, []); //<-- run once when component mounted
 
   useEffect(() => {
-    console.log('HI');
     projects = savedProjects;
     randomlySelectProject()
   }, [isChanging])
 
   const randomlySelectProject = () => {
-    console.log('CLICKED', projects)
       if(projects.length > 0) {
         console.log('BEFORE', projects.length)
 
