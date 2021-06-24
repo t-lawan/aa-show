@@ -30,7 +30,7 @@ const TickerText = styled.p`
   transform: translateX(100%);
   -moz-animation: scroll-left 2s linear infinite;
   -webkit-animation: scroll-left 2s linear infinite;
-  animation: scroll-left 20s linear infinite;
+  animation: scroll-left 30s linear infinite;
   white-space: nowrap;
   font-size: 2vh;
 
@@ -44,7 +44,7 @@ const Ticker = () => {
     return (
         <TickerWrapper>
             <MarqueeWrapper>
-                <TickerText> {"CREDITS: CONCEPT AND DESIGN: CREAM PROJECTS, WEB AND AR DEVELOPMENT: AKINSOLA LAWANSON AND TAMAS PALL, Base 3D Model: AccuCities, Thanks to: all units and programmes at the AA, AA Public Programme, AA Print Studio         ".toUpperCase()}</TickerText>
+                <TickerText> {"CREDITS: CONCEPT AND DESIGN: CREAM PROJECTS,   WEB AND AR DEVELOPMENT: AKINSOLA LAWANSON AND TAMAS PALL,   Base 3D Model: AccuCities,   3d Models: AA Students         ".toUpperCase()}</TickerText>
             </MarqueeWrapper>
         </TickerWrapper>
     )

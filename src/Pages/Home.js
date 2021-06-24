@@ -41,6 +41,13 @@ const StyledLink = styled(Link)`
   }
 `;
 
+const StyledOuterLink = styled.a`
+  color: white;
+  text-decoration: none;
+  font-size: 2.2vh;
+
+`
+
 const Paragraph = styled.p`
   font-size: 2.2vh;
   /* width: 60%; */
@@ -103,7 +110,7 @@ const Home = () => {
         <LongPara>
           For more information about the work of the units and programmes, and
           to view the series of short films and individual student projects,
-          please visit pr2021.aaschool.ac.uk
+          please visit <StyledOuterLink href="https://pr2021.aaschool.ac.uk/" target="__blank"> pr2021.aaschool.ac.uk</StyledOuterLink>
         </LongPara>
         <TopLeftText>AA</TopLeftText>
         <TopRightText> AR</TopRightText>
