@@ -5,7 +5,7 @@ import Rotation from "../../Models/Rotation";
 import PageInfoModel from "../../Models/PageInfoModel";
 
 let baseUrl = 'https://ar2021.azureedge.net/ar2021-objects/ASSETS/ASSETS/'
-// baseUrl = 'https://d321q9os2iadt9.cloudfront.net/'
+baseUrl = 'https://d321q9os2iadt9.cloudfront.net/'
 export default class RequestManager {
     static space = "w6wp6l1i10zr";
     static environment = "master";
