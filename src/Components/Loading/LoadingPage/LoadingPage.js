@@ -84,7 +84,7 @@ const BottomLeftText = styled(Text)`
   bottom: 1vh;
   left:5vw;
   @media (max-width: ${size.tablet}) {
-    bottom: 10vh;
+    bottom: 2vh;
   }
 `
 
@@ -92,7 +92,7 @@ const BottomRightText = styled(Text)`
   bottom: 1vh;
   right:5vw;
   @media (max-width: ${size.tablet}) {
-  bottom: 10vh;
+  bottom: 2vh;
 
   }
 `

@@ -67,7 +67,7 @@ const ModelViewer = styled('model_viewer')`
 const ARLink = styled(Link)`
   position: absolute;
   top: 1vh;
-  left: 1vw;
+  left: 14%;
   padding: 1vw;
   cursor: cell;
   /* background: red;  */
@@ -119,13 +119,13 @@ const HomeAR = props => {
   const randomlySelectProject = () => {
     console.log('CLICKED', projects)
       if(projects.length > 0) {
-        console.log('BEFORE', projects)
+        console.log('BEFORE', projects.length)
 
         let randomIndex = Math.floor(Math.random() * (projects.length -1)); 
         let project = projects[randomIndex];
         projects.splice(randomIndex, 1);
         projectsViewed.push(project)
-        console.log('AFTER', projects)
+        console.log('AFTER', projects.length)
 
          console.log('pr', project)
 
