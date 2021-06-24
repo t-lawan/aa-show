@@ -77,7 +77,7 @@ const LoadingBarWrapper = styled.div`
 const TextWrapper = styled(LoadingBarWrapper)`
 margin: 0;
   @media (max-width: ${size.tablet}) {
-    overflow: scroll;
+    overflow-y: scroll;
     width: 90%;
     margin-left: 5%;
     margin: 0;
