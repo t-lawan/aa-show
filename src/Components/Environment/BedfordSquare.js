@@ -98,7 +98,7 @@ class BedfordSquare extends Component {
     projects.forEach(async (project) => {
       if(project.shouldDisplay){
         //  this.addCube(project); 
-        await this.addObject(project, project.modelUrl);
+        this.addObject(project, project.modelUrl);
       }
     });
     // console.log('PROJECTS', projects);
@@ -321,7 +321,7 @@ class BedfordSquare extends Component {
     let mesh = new THREE.Object3D();
     const coordinate = project.coordinate;
 
-    return new Promise((resolve, reject) => {
+    // return new Promise((resolve, reject) => {
 
     loader.load(object, (gltf) => {
       mesh = gltf.scene;
@@ -332,18 +332,20 @@ class BedfordSquare extends Component {
       mesh.position.z = coordinate.z;
       mesh.visible = true
       mesh.children[0].userData.project = project;
-      this.baseColor = mesh.children[0] &&  mesh.children[0].material && mesh.children[0].material.color ? mesh.children[0].material.color : new THREE.Color(Colours.light_green);
-      mesh.userData.baseColor = mesh.children[0] &&  mesh.children[0].material && mesh.children[0].material.color ? mesh.children[0].material.color : new THREE.Color(Colours.light_green);
+      let color = mesh.children && mesh.children[0] &&  mesh.children[0].material && mesh.children[0].material.color ? mesh.children[0].material.color : new THREE.Color(Colours.light_green)
+      this.baseColor = color;
+      mesh.userData.baseColor = color;
       mesh.receiveShadow = true;
       mesh.castShadow = true;
       // console.log('ADD MESH', mesh)
       this.scene.add(mesh);
       this.clickableObjects.push(mesh);
-      resolve(true)
-    }, undefined, reject)
-  })
+      // resolve(true)
+    })
+    // , undefined, reject)
+  // })
 
-  }
+  // }
     
     // , undefined, (error) => {
     //     if(!project.hasReTried){
@@ -351,7 +353,7 @@ class BedfordSquare extends Component {
     //       this.addObject(project, object);
     //     }
     // });
-  // };
+  };
 
   findMeshFromProject = (project) => {
     let mesh =this.clickableObjects.find((obj) => {
@@ -563,7 +565,10 @@ class BedfordSquare extends Component {
     this.clickableObjects.forEach((mesh) => {
       mesh.traverse((child) => {
         if(child.material){
+          if(child.material && child.material.color){
+
           child.material.color = mesh.userData.baseColor;
+        }
 
         }
       })
