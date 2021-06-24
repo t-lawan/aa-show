@@ -11,7 +11,7 @@ import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
-import { StaleWhileRevalidate } from 'workbox-strategies';
+import { StaleWhileRevalidate, CacheFirst } from 'workbox-strategies';
 
 clientsClaim();
 
@@ -73,4 +73,4 @@ self.addEventListener('message', (event) => {
 
 // Any other custom service worker logic can go here.
 
-registerRoute(new RegExp('https:\/\/ar2021\.azureedge\.net\/ar2021-objects\/ASSETS\/ASSETS\/[\w\d\s]*'), new StaleWhileRevalidate())
+registerRoute(new RegExp('https:\/\/ar2021\.azureedge\.net\/ar2021-objects\/ASSETS\/ASSETS\/[\w\d\s]*'), new CacheFirst())
