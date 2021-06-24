@@ -44,7 +44,7 @@ const Ticker = () => {
     return (
         <TickerWrapper>
             <MarqueeWrapper>
-                <TickerText> CREDITS: CURATOR MANIJEH VERGHESE, CONCEPT AND DESIGN: CREAM PROJECTS, WEB AND AR DEVELOPMENT: AKINSOLA LAWANSON AND TAMAS PALL</TickerText>
+                <TickerText> {"CREDITS: CONCEPT AND DESIGN: CREAM PROJECTS, WEB AND AR DEVELOPMENT: AKINSOLA LAWANSON AND TAMAS PALL, Base 3D Model: AccuCities, Thanks to: all units and programmes at the AA, AA Public Programme, AA Print Studio         ".toUpperCase()}</TickerText>
             </MarqueeWrapper>
         </TickerWrapper>
     )

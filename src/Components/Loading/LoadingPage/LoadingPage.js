@@ -11,23 +11,22 @@ const LoadingPageWrapper = styled.div`
   background: ${Colours.orange};
   z-index: ${ZLayer.LOADING_PAGE};
   @media (max-width: ${size.tablet}) {
-    height:-webkit-fill-available;
+    height: -webkit-fill-available;
   }
 `;
-
-
 
 const Paragraph = styled.p`
   color: black;
   font-size: 2.2vh;
   text-align: center;
-
+  @media (max-width: ${size.mobileL}) {
+  font-size: 1.6vh;
+  }
 `;
 
 const Button = styled.h1`
   color: black;
-
-`
+`;
 
 const ContentWrapper = styled.div`
   top: 20vh;
@@ -45,57 +44,52 @@ const ContentWrapper = styled.div`
 `;
 
 const LoadingBarWrapper = styled.div`
-  width: 60%;
+  width: 80%;
 `;
-
 
 const Text = styled.h1`
   color: black;
   position: absolute;
   color: black;
-  margin:0;
+  margin: 0;
   font-size: 10vw;
   @media (max-width: ${size.tablet}) {
-  font-size: 10vh;
+    font-size: 10vh;
   }
 `;
 
-
 const TopLeftText = styled(Text)`
   top: 5vh;
-  left:5vw;
+  left: 5vw;
   @media (max-width: ${size.tablet}) {
     top: 2vh;
-  left:2vw;
-
+    left: 2vw;
   }
-`
+`;
 const TopRightText = styled(Text)`
   top: 5vh;
-  right:5vw;
+  right: 5vw;
   @media (max-width: ${size.tablet}) {
     top: 2vh;
-    right:2vw;
-
+    right: 2vw;
   }
-`
+`;
 
 const BottomLeftText = styled(Text)`
   bottom: 1vh;
-  left:5vw;
+  left: 5vw;
   @media (max-width: ${size.tablet}) {
     bottom: 2vh;
   }
-`
+`;
 
 const BottomRightText = styled(Text)`
   bottom: 1vh;
-  right:5vw;
+  right: 5vw;
   @media (max-width: ${size.tablet}) {
-  bottom: 2vh;
-
+    bottom: 2vh;
   }
-`
+`;
 
 const BottomCenterText = styled.p`
   bottom: 1vh;
@@ -104,8 +98,7 @@ const BottomCenterText = styled.p`
   font-size: 2.2vh;
   width: 100%;
   /* margin:0; */
-
-`
+`;
 const LoadingPage = props => {
   return (
     <LoadingPageWrapper show={props.show}>
@@ -117,29 +110,51 @@ const LoadingPage = props => {
       <ContentWrapper>
         {/* <Text> AR21 </Text> */}
         <LoadingBarWrapper>
-        <Paragraph>Welcome to the AA Augmented Review 2021.</Paragraph>
-        <Paragraph>
-          You will soon enter an interactive map of Bedford Square, showing
-          contributions from each programme at the AA. To launch the Augmented
-          Reality experience, in Bedford Square or from home, navitage to the
-          bottom of the next page.
-        </Paragraph>
-        <Paragraph>
-          Mobile: pinch and spread with two fingers to zoom, press and drag with
-          one finger to rotate Desktop: use mousebuttons to pan, rotate and zoom
-        </Paragraph>
-        </LoadingBarWrapper>        
+          <Paragraph>
+            Welcome to the AA Augmented Reality Interactive Experience as part
+            of Projects Review 2021.
+          </Paragraph>
+          <Paragraph>
+            You will soon enter an interactive map of Bedford Square, which will
+            encompass contributions from every unit and programme at AA in the
+            form of geolocated totemic artefacts. To launch the Augmented
+            Reality (AR) experience on your mobile – in Bedford Square or from
+            elsewhere – navigate to the bottom of the next page.
+          </Paragraph>
+          <Paragraph>
+            If you are in Bedford Square, search for the different totemic
+            objects and collect strawberries along the way, in homage to the
+            annual AA tradition of the strawberry tables, which take centre
+            stage during the Projects Review Private View. If you are accessing
+            the exhibition from elsewhere, select the object of your choice and
+            scale it to sit within your immediate environment, wherever you are
+            in the world.
+          </Paragraph>
+          <Paragraph>
+            Take photographs of the objects you discover and share them on
+            Instagram, tagging #AAar21 and @aaschool in your posts and stories,
+            so we can share these on the AA Instagram account. We hope you enjoy
+            exploring this wonderful world of objects, agendas and experiences
+            as part of the Projects Review 2021 exhibition. For more information
+            about the work of the units and programmes, and to view the series
+            of short films and individual student projects, please visit
+            pr2021.aaschool.ac.uk
+          </Paragraph>
+          <Paragraph>
+          Desktop: use mouse buttons to rotate and zoom    
+          </Paragraph>
+          <Paragraph>
+          Mobile: pinch and spread with two fingers to zoom; press and drag with one finger to rotate
+
+          </Paragraph>
+        </LoadingBarWrapper>
         {!props.hasLoaded ? (
           <LoadingBarWrapper>
-          <LoadingBar show={true} loaded={props.loaded} total={props.total} />
-        </LoadingBarWrapper>
+            <LoadingBar show={true} loaded={props.loaded} total={props.total} />
+          </LoadingBarWrapper>
         ) : (
-          <Button onClick={() => props.onClick()}>
-          ENTER
-        </Button>
+          <Button onClick={() => props.onClick()}>ENTER</Button>
         )}
-
-  
       </ContentWrapper>
     </LoadingPageWrapper>
   );
