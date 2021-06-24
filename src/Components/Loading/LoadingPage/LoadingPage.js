@@ -11,6 +11,8 @@ const LoadingPageWrapper = styled.div`
   width: 100vw;
   background: ${Colours.orange};
   z-index: ${ZLayer.LOADING_PAGE};
+  justify-content: center;
+    align-items: center;
   @media (max-width: ${size.tablet}) {
     height: -webkit-fill-available;
   }
@@ -21,7 +23,9 @@ const Paragraph = styled.p`
   font-size: 2.2vh;
   text-align: center;
   @media (max-width: ${size.mobileL}) {
-  font-size: 1.6vh;
+    /* font-size: 1.6vh; */
+  font-size: 2.5vh;
+
   }
 `;
 
@@ -32,7 +36,7 @@ const Button = styled.h1`
 const ContentWrapper = styled.div`
   top: 20vh;
   position: absolute;
-  width: 100%;
+  width: 80%;
   height: 60vh;
   /* height: -webkit-fill-available; */
   display: flex;
@@ -40,14 +44,36 @@ const ContentWrapper = styled.div`
   justify-content: space-around;
 
   align-items: center;
-  @media (max-width: ${size.tabletL}) {
+  @media (max-width: ${size.mobileL}) {
+    height: 70%;
+    top: 20%;
+    width: 100%;
+    padding: 1%;
+    padding-bottom: 0;
   }
 `;
 
 const LoadingBarWrapper = styled.div`
-  width: 80%;
-`;
+  width: 60%;
+  margin-left: 20%;
 
+  @media (max-width: ${size.mobileL}) {
+    width: 80%;
+  margin-left: 10%;
+  /* margin-top: 10%; */
+
+  }
+`;
+const TextWrapper = styled(LoadingBarWrapper)`
+margin: 0;
+  @media (max-width: ${size.mobileL}) {
+    overflow: scroll;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 20%;
+
+  }
+`;
 const Text = styled.h1`
   color: black;
   position: absolute;
@@ -111,7 +137,7 @@ const LoadingPage = props => {
       {/* <BottomCenterText>or go to the AA PR Website</BottomCenterText> */}
       <ContentWrapper>
         {/* <Text> AR21 </Text> */}
-        <LoadingBarWrapper>
+        <TextWrapper>
           <Paragraph>
             Welcome to the AA Augmented Reality Interactive Experience as part
             of Projects Review 2021.
@@ -142,21 +168,20 @@ const LoadingPage = props => {
             of short films and individual student projects, please visit
             pr2021.aaschool.ac.uk
           </Paragraph>
+          <Paragraph>Desktop: use mouse buttons to rotate and zoom</Paragraph>
           <Paragraph>
-          Desktop: use mouse buttons to rotate and zoom    
+            Mobile: pinch and spread with two fingers to zoom; press and drag
+            with one finger to rotate
           </Paragraph>
-          <Paragraph>
-          Mobile: pinch and spread with two fingers to zoom; press and drag with one finger to rotate
-
-          </Paragraph>
-        </LoadingBarWrapper>
-        {!props.hasLoaded ? (
+          {!props.hasLoaded ? (
           <LoadingBarWrapper>
             <LoadingBar show={true} loaded={props.loaded} total={props.total} />
           </LoadingBarWrapper>
         ) : (
           <Button onClick={() => props.onClick()}>ENTER</Button>
         )}
+        </TextWrapper>
+
       </ContentWrapper>
     </LoadingPageWrapper>
   );
