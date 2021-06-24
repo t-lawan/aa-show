@@ -26,6 +26,10 @@ export const Title = styled.p`
 const StyledLink = styled(Link)`
   color: black;
   text-decoration: none;
+    @media (max-width: ${size.tablet}) {
+      padding: 0 5vw;
+    }
+  
 `
 
 const Paragraph = styled.p`
