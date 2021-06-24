@@ -17,6 +17,7 @@ export default class ProjectModel {
     inProximity = false;
     viewed = false;
     collected = false;
+    hasReTried = false;
     
     constructor(id, title, sidebarTitle, description, unit, coordinate, worldCoordinates, rotation, modelUrl, glbUrl,usdzUrl, shouldDisplay, showInArAtHome) {
         this.id = id;
