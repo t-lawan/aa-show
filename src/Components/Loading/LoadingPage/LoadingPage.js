@@ -22,6 +22,8 @@ const Paragraph = styled.p`
   color: black;
   font-size: 2.2vh;
   text-align: center;
+  line-height: 3vh;
+
   @media (max-width: ${size.mobileL}) {
     /* font-size: 1.6vh; */
   font-size: 2.5vh;
@@ -53,13 +55,14 @@ const ContentWrapper = styled.div`
   }
 `;
 
+
 const LoadingBarWrapper = styled.div`
-  width: 60%;
-  margin-left: 20%;
+  width: 100%;
+  /* margin-left: 2.5%; */
 
   @media (max-width: ${size.mobileL}) {
     width: 80%;
-  margin-left: 10%;
+  /* margin-left: 10%; */
   /* margin-top: 10%; */
 
   }
@@ -68,9 +71,10 @@ const TextWrapper = styled(LoadingBarWrapper)`
 margin: 0;
   @media (max-width: ${size.mobileL}) {
     overflow: scroll;
-    width: 100%;
+    width: 90%;
+    margin-left: 5%;
     margin: 0;
-    padding-bottom: 20%;
+    /* padding-bottom: 20%; */
 
   }
 `;
@@ -79,10 +83,9 @@ const Text = styled.h1`
   position: absolute;
   color: black;
   margin: 0;
-  font-size: 10vw;
-  @media (max-width: ${size.tablet}) {
+  /* @media (max-width: ${size.tablet}) { */
     font-size: 10vh;
-  }
+  /* } */
 `;
 
 export const TopLeftText = styled(Text)`
@@ -118,13 +121,25 @@ export const BottomRightText = styled(Text)`
   }
 `;
 
-const BottomCenterText = styled.p`
+const BottomCenterText = styled.div`
   bottom: 1vh;
   text-align: center;
   position: absolute;
   font-size: 2.2vh;
-  width: 100%;
+  width: 60%;
+  left: 20%;
+  height: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   /* margin:0; */
+  @media (max-width: ${size.mobileL}) {
+  bottom: 2vh;
+    
+  /* margin-top: 10%; */
+
+  }
 `;
 const LoadingPage = props => {
   return (
@@ -133,6 +148,15 @@ const LoadingPage = props => {
       <TopRightText> AR</TopRightText>
       <BottomLeftText>20</BottomLeftText>
       <BottomRightText>21 </BottomRightText>
+      <BottomCenterText>
+          {!props.hasLoaded ? (
+          <LoadingBarWrapper>
+            <LoadingBar show={true} loaded={props.loaded} total={props.total} />
+          </LoadingBarWrapper>
+        ) : (
+          <Button onClick={() => props.onClick()}>ENTER</Button>
+        )}
+      </BottomCenterText>
       {/* <Ticker /> */}
       {/* <BottomCenterText>or go to the AA PR Website</BottomCenterText> */}
       <ContentWrapper>
@@ -163,23 +187,20 @@ const LoadingPage = props => {
             Instagram, tagging #AAar21 and @aaschool in your posts and stories,
             so we can share these on the AA Instagram account. We hope you enjoy
             exploring this wonderful world of objects, agendas and experiences
-            as part of the Projects Review 2021 exhibition. For more information
+            as part of the Projects Review 2021 exhibition. 
+            </Paragraph>
+            {/* <Paragraph>
+            For more information
             about the work of the units and programmes, and to view the series
             of short films and individual student projects, please visit
             pr2021.aaschool.ac.uk
-          </Paragraph>
+          </Paragraph> */}
           <Paragraph>Desktop: use mouse buttons to rotate and zoom</Paragraph>
           <Paragraph>
             Mobile: pinch and spread with two fingers to zoom; press and drag
             with one finger to rotate
           </Paragraph>
-          {!props.hasLoaded ? (
-          <LoadingBarWrapper>
-            <LoadingBar show={true} loaded={props.loaded} total={props.total} />
-          </LoadingBarWrapper>
-        ) : (
-          <Button onClick={() => props.onClick()}>ENTER</Button>
-        )}
+
         </TextWrapper>
 
       </ContentWrapper>
