@@ -337,12 +337,14 @@ class BedfordSquare extends Component {
       // console.log('ADD MESH', mesh)
       this.scene.add(mesh);
       this.clickableObjects.push(mesh);
-    }, undefined, (error) => {
-        if(!project.hasReTried){
-          project.hasReTried = true;
-          this.addObject(project, object);
-        }
-    });
+    })
+    
+    // , undefined, (error) => {
+    //     if(!project.hasReTried){
+    //       project.hasReTried = true;
+    //       this.addObject(project, object);
+    //     }
+    // });
   };
 
   findMeshFromProject = (project) => {
