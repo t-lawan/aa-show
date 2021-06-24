@@ -61,7 +61,7 @@ registerRoute(
   })
 );
 
-registerRoute(new RegExp('https:\/\/ar2021\.azureedge\.net\/ar2021-objects\/ASSETS\/ASSETS\/[\w\d\s]*', new StaleWhileRevalidate() )
+// registerRoute(new RegExp('https:\/\/ar2021\.azureedge\.net\/ar2021-objects\/ASSETS\/ASSETS\/[\w\d\s]*', new StaleWhileRevalidate() )
 
 
 // This allows the web app to trigger skipWaiting via
