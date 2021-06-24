@@ -24,7 +24,7 @@ const Paragraph = styled.p`
   text-align: center;
   line-height: 3vh;
 
-  @media (max-width: ${size.mobileL}) {
+  @media (max-width: ${size.tablet}) {
     /* font-size: 1.6vh; */
   font-size: 2.5vh;
 
@@ -34,7 +34,7 @@ const Paragraph = styled.p`
 const Button = styled.h1`
   color: black;
   margin: 0;
-  @media (max-width: ${size.mobileL}) {
+  @media (max-width: ${size.tablet}) {
     /* font-size: 1.6vh; */
   font-size: 4vh;
 
@@ -53,8 +53,8 @@ const ContentWrapper = styled.div`
   justify-content: space-around;
 
   align-items: center;
-  @media (max-width: ${size.mobileL}) {
-    height: 70%;
+  @media (max-width: ${size.tablet}) {
+    height: 65%;
     top: 20%;
     width: 100%;
     padding: 1%;
@@ -67,7 +67,7 @@ const LoadingBarWrapper = styled.div`
   width: 100%;
   /* margin-left: 2.5%; */
 
-  @media (max-width: ${size.mobileL}) {
+  @media (max-width: ${size.tablet}) {
     width: 80%;
   /* margin-left: 10%; */
   /* margin-top: 10%; */
@@ -76,11 +76,12 @@ const LoadingBarWrapper = styled.div`
 `;
 const TextWrapper = styled(LoadingBarWrapper)`
 margin: 0;
-  @media (max-width: ${size.mobileL}) {
+  @media (max-width: ${size.tablet}) {
     overflow: scroll;
     width: 90%;
     margin-left: 5%;
     margin: 0;
+    padding: 0;
     /* padding-bottom: 20%; */
 
   }

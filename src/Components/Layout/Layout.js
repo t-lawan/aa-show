@@ -5,9 +5,10 @@ import styled from 'styled-components'
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 export const Main = styled.section`
   overflow: hidden;
+
 `
 const Layout = props => {
-  let description = props.description ? props.description : "A series of interactive digital walks using metagenomics to reveal food gardens as spaces for mutual care and imagine a future where urban agriculture is essential to public life.";
+  let description = props.description ? props.description : `The AA Projects Review 2021`;
   let url = "";
   let title = props.title ? props.title : "AR2021" ;
   return (
