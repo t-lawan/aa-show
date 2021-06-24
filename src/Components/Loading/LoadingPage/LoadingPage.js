@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import LoadingBar from "../LoadingBar/LoadingBar";
 import { size, ZLayer, Colours } from "../../Global/global.styles";
+import Ticker from "../../Ticker/Ticker";
 
 const LoadingPageWrapper = styled.div`
   display: ${props => (props.show ? "flex" : "none")};
@@ -106,6 +107,7 @@ const LoadingPage = props => {
       <TopRightText> AR</TopRightText>
       <BottomLeftText>20</BottomLeftText>
       <BottomRightText>21 </BottomRightText>
+      {/* <Ticker /> */}
       {/* <BottomCenterText>or go to the AA PR Website</BottomCenterText> */}
       <ContentWrapper>
         {/* <Text> AR21 </Text> */}
