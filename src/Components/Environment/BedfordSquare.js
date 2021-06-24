@@ -31,9 +31,6 @@ const BedfordSquareWrapper = styled.div`
   height: 100vh;
   display: ${props => (props.show ? "block" : "none")};
   z-index: 50;
-  @media (max-width: ${size.tablet}) {
-    height:-webkit-fill-available;
-  }
   
 
 `;
