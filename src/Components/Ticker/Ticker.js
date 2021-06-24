@@ -23,7 +23,7 @@ const TickerText = styled.p`
   width: 100%;
   height: 100%;
   margin: 0;
-  line-height: 50px;
+  line-height: 12vh;
   text-align: center;
   -moz-transform: translateX(100%);
   -webkit-transform: translateX(100%);

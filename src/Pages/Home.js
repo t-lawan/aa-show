@@ -6,6 +6,12 @@ import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { PageURls } from "../Utility/Misc";
 import Ticker from "../Components/Ticker/Ticker";
+import {
+  TopRightText,
+  BottomLeftText,
+  BottomRightText,
+  TopLeftText
+} from "../Components/Loading/LoadingPage/LoadingPage";
 
 const HomeWrapper = styled.div`
   display: flex;
@@ -24,28 +30,28 @@ export const Title = styled.p`
 `;
 
 const StyledLink = styled(Link)`
-  color: black;
+  color: white;
   text-decoration: none;
-    @media (max-width: ${size.tablet}) {
-      padding: 0 5vw;
-    }
-  
-`
+  font-size: 2vh;
+
+  @media (max-width: ${size.tablet}) {
+    padding: 0 5vw;
+  }
+`;
 
 const Paragraph = styled.p`
-  color: white;
+  /* color: white; */
   font-size: 2vh;
-  margin-top: 2vh;
-
-` 
-
-const Warning  = styled(Paragraph)`
-  bottom: 20vh;
-  position: absolute;
+  /* margin-top: 2vh; */
   text-align: center;
-    width: 60%;
-`
 
+`;
+
+const Warning = styled(Paragraph)`
+  color: black;
+  width: 60%;
+  margin-top: 2vh;
+`;
 
 export const TwoColumnGrid = styled.div`
   display: grid;
@@ -60,45 +66,39 @@ export const TwoColumnGrid = styled.div`
   }
 `;
 
-const TopLeftText = styled.h1`
-  top: 0;
-  left:0;
-  position: absolute;
-`
-
-const LinksWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-    align-items: center;
-    width: 60%;
-`
+const LinksWrapper = styled.div``;
 
 const Home = () => {
   let location = useLocation();
   const homeWrapper = useRef(null);
 
-  let creditText = "CREDITS: CURATOR MANIJEH VERGHESE, CONCEPT AND DESIGN: CREAM PROJECTS, WEB AND AR DEVELOPMENT: AKINSOLA LAWANSON AND TAMAS PALL".split(' ')
+  let creditText = "CREDITS: CURATOR MANIJEH VERGHESE, CONCEPT AND DESIGN: CREAM PROJECTS, WEB AND AR DEVELOPMENT: AKINSOLA LAWANSON AND TAMAS PALL".split(
+    " "
+  );
 
   return (
     <Layout>
       <HomeWrapper ref={homeWrapper}>
-      <LinksWrapper>
-      <StyledLink to={PageURls.AR_BEDFORD_SQUARE.url}> {"Bedford Square".toUpperCase()}  </StyledLink>
-        <StyledLink to={PageURls.AR_AT_HOME.url}> ELSEWHERE </StyledLink>
-      </LinksWrapper>
+        <LinksWrapper>
+          <Paragraph>Are you in</Paragraph>
+          <Paragraph>
+            <StyledLink to={PageURls.AR_BEDFORD_SQUARE.url}>
+              {" "}
+              {"Bedford Square"}{" "}
+            </StyledLink>
+            or
+            <StyledLink to={PageURls.AR_AT_HOME.url}> Elsewhere </StyledLink>
+          </Paragraph>
+        </LinksWrapper>
 
-        <Paragraph> PROJECTS REVIEW WEBSITE </Paragraph>
-        <Warning> Please be aware of your surroundings during the AR experience </Warning>
-        {/* <CreditsWrapper> 
-        <ContentWrapper>
-        {creditText.map((text, index) => (
-            <Credits key={index}> {text} </Credits>
-
-          ))}
-        </ContentWrapper>
-
-        </CreditsWrapper> */}
+        <Warning>
+          {" "}
+          Please be aware of your surroundings during the AR experience{" "}
+        </Warning>
+        <TopLeftText>AA</TopLeftText>
+        <TopRightText> AR</TopRightText>
+        <BottomLeftText>20</BottomLeftText>
+        <BottomRightText>21 </BottomRightText>
         <Ticker />
       </HomeWrapper>
     </Layout>

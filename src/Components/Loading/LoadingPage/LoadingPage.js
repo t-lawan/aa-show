@@ -59,7 +59,7 @@ const Text = styled.h1`
   }
 `;
 
-const TopLeftText = styled(Text)`
+export const TopLeftText = styled(Text)`
   top: 5vh;
   left: 5vw;
   @media (max-width: ${size.tablet}) {
@@ -67,7 +67,7 @@ const TopLeftText = styled(Text)`
     left: 2vw;
   }
 `;
-const TopRightText = styled(Text)`
+export const TopRightText = styled(Text)`
   top: 5vh;
   right: 5vw;
   @media (max-width: ${size.tablet}) {
@@ -76,7 +76,7 @@ const TopRightText = styled(Text)`
   }
 `;
 
-const BottomLeftText = styled(Text)`
+export const BottomLeftText = styled(Text)`
   bottom: 1vh;
   left: 5vw;
   @media (max-width: ${size.tablet}) {
@@ -84,7 +84,7 @@ const BottomLeftText = styled(Text)`
   }
 `;
 
-const BottomRightText = styled(Text)`
+export const BottomRightText = styled(Text)`
   bottom: 1vh;
   right: 5vw;
   @media (max-width: ${size.tablet}) {
