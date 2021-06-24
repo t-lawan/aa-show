@@ -32,17 +32,19 @@ export const Title = styled.p`
 const StyledLink = styled(Link)`
   color: white;
   text-decoration: none;
-  font-size: 2vh;
+  font-size: 2.2vh;
+
+  /* font-size: 2vh; */
 
   @media (max-width: ${size.tablet}) {
-    padding: 0 5vw;
+    /* padding: 0 5vw; */
   }
 `;
 
 const Paragraph = styled.p`
-  /* color: white; */
-  font-size: 2vh;
-  /* margin-top: 2vh; */
+
+  font-size: 2.2vh;
+
   text-align: center;
 
 `;
@@ -50,7 +52,7 @@ const Paragraph = styled.p`
 const Warning = styled(Paragraph)`
   color: black;
   width: 60%;
-  margin-top: 2vh;
+  margin-top: 4vh;
 `;
 
 export const TwoColumnGrid = styled.div`
