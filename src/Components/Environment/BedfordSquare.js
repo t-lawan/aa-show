@@ -440,27 +440,31 @@ class BedfordSquare extends Component {
     this.clickableObjects.push(cube);
   };
 
-  loadModel = (project, object) => {
+  loadModel = async (url) => {
     const loader = new GLTFLoader(this.manager);
-    let mesh = new THREE.Object3D();
-    const coordinate = project.coordinate;
+    // let mesh = new THREE.Object3D();
+    // const coordinate = project.coordinate;
 
     return new Promise(resolve => {
-      loader.load(object, resolve);
+      loader.load(url, resolve);
     });
   };
 
   addObject = async (project, object = Astronaut) => {
     const loader = new GLTFLoader(this.manager);
-    let mesh = new THREE.Object3D();
-    const coordinate = project.coordinate;
+
+    
 
     // return new Promise((resolve, reject) => {
       let file = ModelMap[project.fileName]
       if(file){
-        loader.load(
-          ModelMap[project.fileName],
-          gltf => {
+        let gltf = await this.loadModel(file);
+        let mesh = new THREE.Object3D();
+        const coordinate = project.coordinate;
+
+        // loader.load(
+        //   ModelMap[project.fileName],
+        //   gltf => {
             mesh = gltf.scene;
             mesh.userData.project = project;
             mesh.position.x = coordinate.x;
@@ -486,12 +490,12 @@ class BedfordSquare extends Component {
             this.scene.add(mesh);
             this.clickableObjects.push(mesh);
             // resolve(true)
-          },
-          undefined,
-          error => {
-            console.log("ERROR", error);
-          }
-        );
+          // },
+          // undefined,
+          // error => {
+          //   console.log("ERROR", error);
+          // }
+        // );
       } else {
         console.log("PROJECT", project.unit);
 
