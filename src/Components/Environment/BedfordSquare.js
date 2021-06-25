@@ -680,20 +680,6 @@ class BedfordSquare extends Component {
           }
         });
       }
-
-      setTimeout(() => {
-        // mesh.traverse((child) => {
-        //   if(child.material){
-        //     child.material.color = mesh.userData.baseColor;
-        //   }
-        // })
-        // if(this.state.showOverlay){
-        //   this.closeOverlay()
-        // }
-        // mesh.children[0].material.color = new THREE.Color(255,255,255);
-      }, 10000);
-
-      // console.log('highlightProject', mesh)
     }
   };
 
@@ -748,7 +734,7 @@ class BedfordSquare extends Component {
         <Navbar
           show={this.state.isReady}
           pageInfo={this.state.pageInfo}
-          onClick={this.selectProject.bind(this)}
+          onClick={(project) => this.selectProject(project)}
         />
         <LoadingPage
           show={!this.state.isReady}
