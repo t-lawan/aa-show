@@ -10,7 +10,28 @@ export default class RequestManager {
     static space = "w6wp6l1i10zr";
     static environment = "master";
     static accessToken = "dTfnzz7HGLVoGfTRJSLMn8zb_15PTclYK_uT6koQCPk";
-  
+    
+    static getModelUrl= (item) => {
+        let modelUrl = baseUrl + 'THREE/'
+        modelUrl = modelUrl + item.fields.modelUrl.split('/').pop()
+        return modelUrl;
+    }
+
+    static getGlbUrl = (item) => {
+        let glbUrl = baseUrl +  'AR/AAARGLTF_1/'
+        glbUrl = glbUrl + item.fields.glbUrl.split('/').pop()
+        return glbUrl;
+    }
+
+    static getUSDZUrl = (item) => {
+        let usdzUrl = baseUrl + 'AR/USDZ/'
+        usdzUrl = usdzUrl + item.fields.usdzUrl.split('/').pop()
+        return usdzUrl
+    }
+
+    static getFileName = (item) => {
+        return item.fields.modelUrl.split('/').pop()
+    }
     static getProjects = async () => {
         let client = contentful.createClient({
             space: this.space,
@@ -23,7 +44,6 @@ export default class RequestManager {
           });
 
 
-          console.log('RESPONSE', response)
           
 
           let projects = response.items.map((item) => {
@@ -32,23 +52,18 @@ export default class RequestManager {
             if(item.fields.rotation){
                 rotation = new Rotation(item.fields.rotation.fields.x, item.fields.rotation.fields.y, item.fields.rotation.fields.z);
             }
-            let modelUrl = baseUrl + 'THREE/'
-            if(item.fields.modelUrl) {
-                modelUrl = modelUrl + item.fields.modelUrl.split('/').pop()
-            }
+            // let modelUrl = baseUrl + 'THREE/'
+            // if(item.fields.modelUrl) {
+            //     modelUrl = modelUrl + item.fields.modelUrl.split('/').pop()
+            // }
+            let modelUrl = RequestManager.getModelUrl(item)
 
-            let glbUrl = baseUrl +  'AR/AAARGLTF_1/'
-            if(item.fields.glbUrl) {
-                glbUrl = glbUrl + item.fields.glbUrl.split('/').pop()
-            }
+            let glbUrl = RequestManager.getGlbUrl(item)
 
-            let usdzUrl = baseUrl + 'AR/USDZ/'
-            if(item.fields.usdzUrl) {
-                usdzUrl = usdzUrl + item.fields.usdzUrl.split('/').pop()
-            }
+            let usdzUrl = RequestManager.getUSDZUrl(item)
 
             //   console.log('Item', item)
-              return new ProjectModel(
+              let project =  new ProjectModel(
                   item.sys.id,
                   item.fields.title,
                   item.fields.sidebarDisplayTitle,
@@ -63,7 +78,13 @@ export default class RequestManager {
                   item.fields.shouldDisplay,
                   item.fields.showInArAtHome
               )
+
+              project.fileName = RequestManager.getFileName(item)
+              return project
           });
+
+          console.log('PROJECTS', projects)
+
 
           return projects;
     }
@@ -92,20 +113,13 @@ export default class RequestManager {
                 rotation = new Rotation(item.fields.rotation.fields.x, item.fields.rotation.fields.y, item.fields.rotation.fields.z);
             }
 
-            let modelUrl = baseUrl + 'THREE/'
-            if(item.fields.modelUrl) {
-                modelUrl = modelUrl + item.fields.modelUrl.split('/').pop()
-            }
+            // let modelUrl = baseUrl + 'THREE/'
+            let modelUrl = RequestManager.getModelUrl(item)
 
-            let glbUrl = baseUrl +  'AR/AAARGLTF_1/'
-            if(item.fields.glbUrl) {
-                glbUrl = glbUrl + item.fields.glbUrl.split('/').pop()
-            }
+            let glbUrl = RequestManager.getGlbUrl(item)
 
-            let usdzUrl = baseUrl + 'AR/USDZ/'
-            if(item.fields.usdzUrl) {
-                usdzUrl = usdzUrl + item.fields.usdzUrl.split('/').pop()
-            }
+            let usdzUrl = RequestManager.getUSDZUrl(item)
+
             return new ProjectModel(
                 item.sys.id,
                 item.fields.title,
@@ -129,20 +143,11 @@ export default class RequestManager {
             if(item.fields.rotation){
                 rotation = new Rotation(item.fields.rotation.fields.x, item.fields.rotation.fields.y, item.fields.rotation.fields.z);
             }
-            let modelUrl = baseUrl + 'THREE/'
-            if(item.fields.modelUrl) {
-                modelUrl = modelUrl + item.fields.modelUrl.split('/').pop()
-            }
+            let modelUrl = RequestManager.getModelUrl(item)
 
-            let glbUrl = baseUrl +  'AR/AAARGLTF_1/'
-            if(item.fields.glbUrl) {
-                glbUrl = glbUrl + item.fields.glbUrl.split('/').pop()
-            }
+            let glbUrl = RequestManager.getGlbUrl(item)
 
-            let usdzUrl = baseUrl + 'AR/USDZ/'
-            if(item.fields.usdzUrl) {
-                usdzUrl = usdzUrl + item.fields.usdzUrl.split('/').pop()
-            }
+            let usdzUrl = RequestManager.getUSDZUrl(item)
             return new ProjectModel(
                 item.sys.id,
                 item.fields.title,
@@ -163,23 +168,13 @@ export default class RequestManager {
           let defaultProjects = response.fields.defaultProjects.map((item) => {
             let coordinate = new Coordinates(item.fields.coordinate.fields.x, item.fields.coordinate.fields.y, item.fields.coordinate.fields.z);
             let rotation = null;
-            if(item.fields.rotation){
-                rotation = new Rotation(item.fields.rotation.fields.x, item.fields.rotation.fields.y, item.fields.rotation.fields.z);
-            }
-            let modelUrl = baseUrl + 'THREE/'
-            if(item.fields.modelUrl) {
-                modelUrl = modelUrl + item.fields.modelUrl.split('/').pop()
-            }
 
-            let glbUrl = baseUrl +  'AR/AAARGLTF_1/'
-            if(item.fields.glbUrl) {
-                glbUrl = glbUrl + item.fields.glbUrl.split('/').pop()
-            }
+            let modelUrl = RequestManager.getModelUrl(item)
 
-            let usdzUrl = baseUrl + 'AR/USDZ/'
-            if(item.fields.usdzUrl) {
-                usdzUrl = usdzUrl + item.fields.usdzUrl.split('/').pop()
-            }
+            let glbUrl = RequestManager.getGlbUrl(item)
+
+            let usdzUrl = RequestManager.getUSDZUrl(item)
+
             return new ProjectModel(
                 item.sys.id,
                 item.fields.title,
@@ -203,20 +198,12 @@ export default class RequestManager {
             if(item.fields.rotation){
                 rotation = new Rotation(item.fields.rotation.fields.x, item.fields.rotation.fields.y, item.fields.rotation.fields.z);
             }
-            let modelUrl = baseUrl + 'THREE/'
-            if(item.fields.modelUrl) {
-                modelUrl = modelUrl + item.fields.modelUrl.split('/').pop()
-            }
+            let modelUrl = RequestManager.getModelUrl(item)
 
-            let glbUrl = baseUrl +  'AR/AAARGLTF_1/'
-            if(item.fields.glbUrl) {
-                glbUrl = glbUrl + item.fields.glbUrl.split('/').pop()
-            }
+            let glbUrl = RequestManager.getGlbUrl(item)
 
-            let usdzUrl = baseUrl + 'AR/USDZ/'
-            if(item.fields.usdzUrl) {
-                usdzUrl = usdzUrl + item.fields.usdzUrl.split('/').pop()
-            }
+            let usdzUrl = RequestManager.getUSDZUrl(item)
+
             return new ProjectModel(
                 item.sys.id,
                 item.fields.title,

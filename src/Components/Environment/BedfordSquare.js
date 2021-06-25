@@ -10,29 +10,150 @@ import LoadingPage from "../Loading/LoadingPage/LoadingPage";
 import Overlay from "../Overlay/Overlay";
 import { setSelectedArProject } from "../../Store/action";
 import { connect } from "react-redux";
-import {OrbitControls, MapControls}from '../../Utility/OrbitControls/OrbitControls'
-import ContextModel from '../../Assets/Models/Context.glb';
-import AAWingModel from '../../Assets/Models/AAWing.glb';
-import EastSideModel from '../../Assets/Models/EastSide.glb';
-import NorthSideModel from '../../Assets/Models/NorthSide.glb';
-import SouthSideModel from '../../Assets/Models/SouthSide.glb';
-import RoadOutlineModel from '../../Assets/Models/RoadOutline.glb';
-import Sidebar from "../Sidebar/Sidebar";
+import {
+  OrbitControls,
+  MapControls
+} from "../../Utility/OrbitControls/OrbitControls";
+import ContextModel from "../../Assets/Models/Context.glb";
+import AAWingModel from "../../Assets/Models/AAWing.glb";
+import EastSideModel from "../../Assets/Models/EastSide.glb";
+import NorthSideModel from "../../Assets/Models/NorthSide.glb";
+import SouthSideModel from "../../Assets/Models/SouthSide.glb";
+import RoadOutlineModel from "../../Assets/Models/RoadOutline.glb";
 import ARModal from "../ARModal/ARModal";
-import RightSidebar from "../Sidebar/RightSidebar";
 import Navbar from "../Navbar/Navbar";
-import Instructions from "../Instructions/Instructions";
 import { EffectComposer } from "../../Utility/EffectComposer";
 import { RenderPass } from "../../Utility/RenderPass";
 import { UnrealBloomPass } from "../../Utility/UnrealBloomPass";
 import Device from "../../Utility/Device";
+import AAIS from "../../Assets/Models/AAIS3js.glb";
+import ARCHIVE from "../../Assets/Models/ARCHIVES3JS.glb";
+import COMMUNICATIONMEDIA from "../../Assets/Models/COMMUNICATIONMEDIA3JS.glb";
+import DESIGNMAKE from "../../Assets/Models/DESIGNMAKE3JS.glb";
+import DIP13 from "../../Assets/Models/DIP13JS.glb";
+import DIP23 from "../../Assets/Models/DIP23JS.glb";
+import DIP33 from "../../Assets/Models/DIP33JS.glb";
+import DIP43 from "../../Assets/Models/DIP43JS.glb";
+import DIP53 from "../../Assets/Models/DIP53JS.glb";
+import DIP63 from "../../Assets/Models/DIP63js.glb";
+import DIP73 from "../../Assets/Models/DIP73JS.glb";
+import DIP83 from "../../Assets/Models/DIP83js.glb";
+import DIP93 from "../../Assets/Models/DIP93js.glb";
+import DIP103 from "../../Assets/Models/DIP103JS.glb";
+import DIP113 from "../../Assets/Models/DIP113JS.glb";
+import DIP123 from "../../Assets/Models/DIP123JS.glb";
+import DIP133 from "../../Assets/Models/DIP133JS.glb";
+import DIP143 from "../../Assets/Models/DIP143JS.glb";
+import DIP153 from "../../Assets/Models/DIP153JS.glb";
+import DIP163 from "../../Assets/Models/DIP163JS.glb";
+import DIP173 from "../../Assets/Models/DIP173JS.glb";
+import DIP183 from "../../Assets/Models/DIP183js.glb";
+import DIP193 from "../../Assets/Models/DIP193js.glb";
+import DIP203 from "../../Assets/Models/DIP203js.glb";
+import DIP213 from "../../Assets/Models/DIP213JS.glb";
+import DRL from "../../Assets/Models/DRL3js.glb";
+import EMTECH from "../../Assets/Models/EMTECH3JS.glb";
+import ETS from "../../Assets/Models/ETS3js.glb";
+import EX13 from "../../Assets/Models/EX13JS.glb";
+import EX23 from "../../Assets/Models/EX23js.glb";
+import EX33 from "../../Assets/Models/EX33JS.glb";
+import EX43 from "../../Assets/Models/EX43JS.glb";
+import EX53 from "../../Assets/Models/EX53JS.glb";
+import EX63 from "../../Assets/Models/EX63js.glb";
+import EX73 from "../../Assets/Models/EX73js.glb";
+import EX83 from "../../Assets/Models/EX83JS.glb";
+import EX93 from "../../Assets/Models/EX93js.glb";
+import EX103 from "../../Assets/Models/EX103JS.glb";
+import EX113 from "../../Assets/Models/EX113JS.glb";
+import EX123 from "../../Assets/Models/EX123js.glb";
+import EX133 from "../../Assets/Models/EX133js.glb";
+import EX143 from "../../Assets/Models/EX143JS.glb";
+import EX153 from "../../Assets/Models/EX153JS.glb";
+import EX163 from "../../Assets/Models/EX163JS.glb";
+import EX173 from "../../Assets/Models/EX173js.glb";
+import EX183 from "../../Assets/Models/EX183js.glb";
+import Foundation from "../../Assets/Models/Foundation3JS.glb";
+import FY3 from "../../Assets/Models/FY3js.glb";
+import Groundlab from "../../Assets/Models/GroundLab3js.glb";
+import HCT from "../../Assets/Models/HCT3js.glb";
+import HistoryTheory from "../../Assets/Models/HISTORYTHEORY3JS.glb";
+import HousingUrbanism from "../../Assets/Models/HOUSINGURBANISM3JS.glb";
+import Lawun from "../../Assets/Models/LAWUN3JS.glb";
+import LU from "../../Assets/Models/LU3js.glb";
+import PHD from "../../Assets/Models/PHD3js.glb";
+import ProfessionalPractice from "../../Assets/Models/PROFESSIONALPRACTICE3JS.glb";
+import ProjectCities from "../../Assets/Models/PROJECTIVECITIES3JS.glb";
+import SED from "../../Assets/Models/SED3JS.glb";
+import VISITINGSCHOOL from "../../Assets/Models/VISITINGSCHOOL3JS.glb";
+import WOODLAB from "../../Assets/Models/WOODLAB3JS.glb";
+
+const ModelMap = {
+  "AAIS3js.glb": AAIS,
+  "ARCHIVES3JS.glb": ARCHIVE,
+  "COMMUNICATIONMEDIA3JS.glb": COMMUNICATIONMEDIA,
+  "DESIGNMAKE3JS.glb": DESIGNMAKE,
+  "DIP13JS.glb": DIP13,
+  "DIP23JS.glb": DIP23,
+  "DIP33JS.glb": DIP33,
+  "DIP43JS.glb": DIP43,
+  "DIP53JS.glb": DIP53,
+  "DIP63js.glb": DIP63,
+  "DIP73JS.glb": DIP73,
+  "DIP83js.glb": DIP83,
+  "DIP93js.glb": DIP93,
+  "DIP103JS.glb": DIP103,
+  "DIP113JS.glb": DIP113,
+  "DIP123JS.glb": DIP123,
+  "DIP133JS.glb": DIP133,
+  "DIP143JS.glb": DIP143,
+  "DIP153JS.glb": DIP153,
+  "DIP163JS.glb": DIP163,
+  "DIP173JS.glb": DIP173,
+  "DIP183js.glb": DIP183,
+  "DIP193js.glb": DIP193,
+  "DIP203js.glb": DIP203,
+  "DIP213JS.glb": DIP213,
+  "DRL3js.glb": DRL,
+  "EMTECH3JS.glb": EMTECH,
+  "ETS3js.glb": ETS,
+  "EX13JS.glb": EX13,
+  "EX23js.glb": EX23,
+  "EX33JS.glb": EX33,
+  "EX43JS.glb": EX43,
+  "EX53JS.glb": EX53,
+  "EX63js.glb": EX63,
+  "EX73js.glb": EX73,
+  "EX83JS.glb": EX83,
+  "EX93js.glb": EX93,
+  "EX103JS.glb": EX103,
+  "EX113JS.glb": EX113,
+  "EX123js.glb": EX123,
+  "EX133js.glb": EX133,
+  "EX143JS.glb": EX143,
+  "EX153JS.glb": EX153,
+  "EX163JS.glb": EX163,
+  "EX173js.glb": EX173,
+  "EX183js.glb": EX183,
+  "Foundation3JS.glb": Foundation,
+  "FY3js.glb": FY3,
+  "GroundLab3js.glb": Groundlab,
+  "HCT3js.glb": HCT,
+  "HISTORYTHEORY3JS.glb": HistoryTheory,
+  "HOUSINGURBANISM3JS.glb": HousingUrbanism,
+  "LAWUN3JS.glb": Lawun,
+  "LU3js.glb": LU,
+  "PHD3js.glb": PHD,
+  "PROFESSIONALPRACTICE3JS.glb": ProfessionalPractice,
+  "PROJECTIVECITIES3JS.glb": ProjectCities,
+  "SED3JS.glb": SED,
+  "VISITINGSCHOOL3JS.glb": VISITINGSCHOOL,
+  'WOODLAB3JS.glb': WOODLAB
+};
 
 const BedfordSquareWrapper = styled.div`
   height: 100vh;
   display: ${props => (props.show ? "block" : "none")};
   z-index: 50;
-  
-
 `;
 
 const ARButtonWrapper = styled.div`
@@ -47,8 +168,8 @@ const ARButtonWrapper = styled.div`
 
 class BedfordSquare extends Component {
   clickableObjects = [];
-  baseColor = new THREE.Color(0,0,0);
-  centerPoint = new THREE.Vector3(0,30,0);
+  baseColor = new THREE.Color(0, 0, 0);
+  centerPoint = new THREE.Vector3(0, 30, 0);
   constructor(props) {
     super(props);
     this.state = {
@@ -59,7 +180,7 @@ class BedfordSquare extends Component {
       showOverlay: false,
       showSidebar: true,
       projects: [],
-      pageInfo : null,
+      pageInfo: null,
       isReady: false
     };
   }
@@ -71,7 +192,7 @@ class BedfordSquare extends Component {
     this.setupLoadingManager();
     this.addEventListener();
     this.startAnimationLoop();
-    this.onWindowResize()
+    this.onWindowResize();
   }
 
   componentWillUnmount() {
@@ -93,11 +214,11 @@ class BedfordSquare extends Component {
   };
 
   initLoadingObjects = async () => {
-    let pageInfo = await RequestManager.getPageInfo()
+    let pageInfo = await RequestManager.getPageInfo();
     let projects = await RequestManager.getProjects();
-    projects.forEach(async (project) => {
-      if(project.shouldDisplay){
-        //  this.addCube(project); 
+    projects.forEach(async project => {
+      if (project.shouldDisplay) {
+        //  this.addCube(project);
         this.addObject(project, project.modelUrl);
       }
     });
@@ -105,7 +226,7 @@ class BedfordSquare extends Component {
     this.setState({
       projects: projects,
       pageInfo: pageInfo
-    })
+    });
   };
 
   setupScene = () => {
@@ -119,19 +240,22 @@ class BedfordSquare extends Component {
       0.1, // near plane
       1500 // far plane
     );
-    const pointLight = new THREE.PointLight( 0xffffff, 1 );
-		this.camera.add( pointLight );
-    
+    const pointLight = new THREE.PointLight(0xffffff, 1);
+    this.camera.add(pointLight);
+
     // this.camera.position.set(300,300,1000);
-    if(Device.isMobile()){
+    if (Device.isMobile()) {
       this.camera.position.set(
         -985.181093860796,
         393.4537648390991,
         264.9690040807232
-      )
+      );
     } else {
-      this.camera.position.set(-378.84945316153204,296.98474526932074,311.5819434772792);
-
+      this.camera.position.set(
+        -378.84945316153204,
+        296.98474526932074,
+        311.5819434772792
+      );
     }
     // this.camera.position.y = 40;
     // this.camera.position.z = 40;
@@ -147,29 +271,34 @@ class BedfordSquare extends Component {
       bloomThreshold: 1,
       bloomRadius: 0.7
     };
-    this.unrealBloomPass = new UnrealBloomPass(new THREE.Vector2( window.innerWidth, window.innerHeight ), 1.5, 0.4, 0.85 )
+    this.unrealBloomPass = new UnrealBloomPass(
+      new THREE.Vector2(window.innerWidth, window.innerHeight),
+      1.5,
+      0.4,
+      0.85
+    );
     this.unrealBloomPass.threshold = params.bloomThreshold;
     this.unrealBloomPass.strength = params.bloomStrength;
     this.unrealBloomPass.radius = params.bloomRadius;
 
     this.composer.addPass(this.unrealBloomPass);
-
-
-
-  }
+  };
 
   setupControls = () => {
     this.controls = new OrbitControls(this.camera, this.mount);
-    this.controls.minDistance  = 60;
+    this.controls.minDistance = 60;
     this.controls.maxDistance = 1200;
     this.controls.screenSpacePanning = true;
     this.controls.enablePan = false;
     this.controls.target = this.centerPoint;
-    this.controls.maxPolarAngle = Math.PI/2;
+    this.controls.maxPolarAngle = Math.PI / 2;
   };
 
   setupRenderer = () => {
-    this.renderer = new THREE.WebGLRenderer({antialias: true, premultipliedAlpha:true});
+    this.renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      premultipliedAlpha: true
+    });
     // this.renderer.setClearColor(Colours.background);
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -222,14 +351,13 @@ class BedfordSquare extends Component {
     this.setState({
       hasLoaded: true
     });
-    console.log('HAS LOADED')
+    console.log("HAS LOADED");
     // this.onWindowResize();
   };
 
   loadError = url => {
     console.log("ERROR", url);
   };
-
 
   // Here should come custom code.
   // Code below is taken from Three.js BoxGeometry example
@@ -247,14 +375,13 @@ class BedfordSquare extends Component {
   };
 
   addEnvironment = () => {
-    this.addEnvironmentObject(ContextModel, 'CONTEXT');
-    this.addEnvironmentObject(AAWingModel, 'AAWING');
-    this.addEnvironmentObject(RoadOutlineModel, 'RoadOutline');
-    this.addEnvironmentObject(NorthSideModel, 'NorthSide');
-    this.addEnvironmentObject(SouthSideModel, 'SouthSide');
-    this.addEnvironmentObject(EastSideModel, 'EastSide');
-
-  }
+    this.addEnvironmentObject(ContextModel, "CONTEXT");
+    this.addEnvironmentObject(AAWingModel, "AAWING");
+    this.addEnvironmentObject(RoadOutlineModel, "RoadOutline");
+    this.addEnvironmentObject(NorthSideModel, "NorthSide");
+    this.addEnvironmentObject(SouthSideModel, "SouthSide");
+    this.addEnvironmentObject(EastSideModel, "EastSide");
+  };
 
   addLights = () => {
     let hemilight = new THREE.HemisphereLight(0xfff0db, 0xfff0db, 0);
@@ -277,8 +404,6 @@ class BedfordSquare extends Component {
     this.scene.add(light3);
   };
 
-
-
   addEnvironmentObject = (object, name) => {
     const loader = new GLTFLoader(this.manager);
     let mesh = new THREE.Object3D();
@@ -289,8 +414,8 @@ class BedfordSquare extends Component {
       mesh.position.z = 0;
       // mesh.position.y = -25;
       this.scene.add(mesh);
-    })
-  }
+    });
+  };
 
   addCube = project => {
     const coordinate = project.coordinate;
@@ -309,11 +434,20 @@ class BedfordSquare extends Component {
     cube.userData.project = project;
     cube.userData.baseColor = this.baseColor;
     cube.visible = true;
-    
 
     this.scene.add(cube);
 
     this.clickableObjects.push(cube);
+  };
+
+  loadModel = (project, object) => {
+    const loader = new GLTFLoader(this.manager);
+    let mesh = new THREE.Object3D();
+    const coordinate = project.coordinate;
+
+    return new Promise(resolve => {
+      loader.load(object, resolve);
+    });
   };
 
   addObject = async (project, object = Astronaut) => {
@@ -322,35 +456,52 @@ class BedfordSquare extends Component {
     const coordinate = project.coordinate;
 
     // return new Promise((resolve, reject) => {
-
-    loader.load(object, (gltf) => {
-      mesh = gltf.scene;
-      mesh.userData.project = project;
-      mesh.position.x = coordinate.x;
-      mesh.position.y = coordinate.y;
-      // mesh.position.y = 0;
-      mesh.position.z = coordinate.z;
-      mesh.visible = true
-      mesh.children[0].userData.project = project;
-      let color = new THREE.Color(Colours.light_green)
-      if(mesh.children.length > 0 && mesh.children[0]&&  mesh.children[0].material && mesh.children[0].material.color){
-        color = mesh.children[0].material.color;
+      let file = ModelMap[project.fileName]
+      if(file){
+        loader.load(
+          ModelMap[project.fileName],
+          gltf => {
+            mesh = gltf.scene;
+            mesh.userData.project = project;
+            mesh.position.x = coordinate.x;
+            mesh.position.y = coordinate.y;
+            // mesh.position.y = 0;
+            mesh.position.z = coordinate.z;
+            mesh.visible = true;
+            mesh.children[0].userData.project = project;
+            let color = new THREE.Color(Colours.light_green);
+            if (
+              mesh.children.length > 0 &&
+              mesh.children[0] &&
+              mesh.children[0].material &&
+              mesh.children[0].material.color
+            ) {
+              color = mesh.children[0].material.color;
+            }
+            this.baseColor = color;
+            mesh.userData.baseColor = color;
+            mesh.receiveShadow = true;
+            mesh.castShadow = true;
+            // console.log('ADD MESH', mesh)
+            this.scene.add(mesh);
+            this.clickableObjects.push(mesh);
+            // resolve(true)
+          },
+          undefined,
+          error => {
+            console.log("ERROR", error);
+          }
+        );
+      } else {
+        console.log("PROJECT", project.unit);
 
       }
-      this.baseColor = color;
-      mesh.userData.baseColor = color;
-      mesh.receiveShadow = true;
-      mesh.castShadow = true;
-      // console.log('ADD MESH', mesh)
-      this.scene.add(mesh);
-      this.clickableObjects.push(mesh);
-      // resolve(true)
-    })
-    // , undefined, reject)
-  // })
 
-  // }
-    
+    // , undefined, reject)
+    // })
+
+    // }
+
     // , undefined, (error) => {
     //     if(!project.hasReTried){
     //       project.hasReTried = true;
@@ -359,23 +510,22 @@ class BedfordSquare extends Component {
     // });
   };
 
-  findMeshFromProject = (project) => {
-    let mesh =this.clickableObjects.find((obj) => {
+  findMeshFromProject = project => {
+    let mesh = this.clickableObjects.find(obj => {
       return obj.userData.project.title == project.title;
-    })
+    });
 
     return mesh;
-  }
+  };
 
   startAnimationLoop = () => {
-    this.clickableObjects.forEach((mesh)=> {
-      if(mesh.userData.project && mesh.userData.project.rotation){
+    this.clickableObjects.forEach(mesh => {
+      if (mesh.userData.project && mesh.userData.project.rotation) {
         mesh.rotation.x += mesh.userData.project.rotation.x;
         mesh.rotation.y += mesh.userData.project.rotation.y;
         mesh.rotation.z += mesh.userData.project.rotation.z;
-
       }
-    })
+    });
     this.renderer.render(this.scene, this.camera);
     // this.composer.render();
 
@@ -403,20 +553,14 @@ class BedfordSquare extends Component {
     document.removeEventListener("touchmove", this.onTouchMove);
   };
 
-  onTouchStart = () => {
+  onTouchStart = () => {};
 
-  }
+  onTouchMove = () => {};
 
-  onTouchMove = () => {
-    
-  }
-
-  onTouchEnd = () => {
-
-  }
+  onTouchEnd = () => {};
 
   onWindowResize = () => {
-    console.log('onWindowResize')
+    console.log("onWindowResize");
     const width = this.mount.clientWidth;
     const height = this.mount.clientHeight;
 
@@ -431,13 +575,12 @@ class BedfordSquare extends Component {
 
   onDocumentMouseMove = event => {
     event.preventDefault();
-    if(this.state.showInstructions && this.state.hasLoaded){
+    if (this.state.showInstructions && this.state.hasLoaded) {
       // setTimeout(() => {
       //   this.setState({
       //     showInstructions: false
       //   })
       // }, 5000)
-
     }
     // this.setMouse(event);
     // this.raycaster.setFromCamera(this.mouse, this.camera);
@@ -467,15 +610,14 @@ class BedfordSquare extends Component {
       // obj.material.color.r = 116;
       // obj.material.color.g = 251;
       // obj.material.color.b = 253;
-      if(obj.material){
-        obj.material.color = new THREE.Color( 0x87ffd7)
-
+      if (obj.material) {
+        obj.material.color = new THREE.Color(0x87ffd7);
       }
       // console.log('OBJ', obj)
       let project = obj.parent.userData.project;
       if (project) {
         this.props.setSelectedArProject(project);
-        this.showOverlay()
+        this.showOverlay();
       }
     }
   };
@@ -492,72 +634,64 @@ class BedfordSquare extends Component {
     });
   };
 
-  selectProject = (project) => {
-    if(project.shouldDisplay){
+  selectProject = project => {
+    if (project.shouldDisplay) {
       this.highlightProject(project);
       // Move towards totem
 
       let mesh = this.findMeshFromProject(project);
-      if(mesh){
+      if (mesh) {
         this.controls.target = mesh.position;
         this.controls.dollyOut(20);
-        this.controls.saveState()
-  
-        this.controls.update()
+        this.controls.saveState();
+
+        this.controls.update();
         this.props.setSelectedArProject(project);
         this.setState({
           showOverlay: true
         });
       }
 
-    //  console.log('AFTER',this.camera.position.distanceTo(mesh.position) )
-
+      //  console.log('AFTER',this.camera.position.distanceTo(mesh.position) )
     }
-  }
+  };
 
   resetTarget = () => {
     // this.controls.target = this.centerPoint;
     // this.controls.scale(10);
     // this.controls.reset();
-    this.controls.update()
+    this.controls.update();
+  };
 
-  }
+  highlightProject = project => {
+    if (project.shouldDisplay) {
+      this.turnOffAllClickableObjects();
 
-  highlightProject = (project) => {
-    if(project.shouldDisplay) {
-      this.turnOffAllClickableObjects()
-
-      let mesh = this.findMeshFromProject(project)
+      let mesh = this.findMeshFromProject(project);
       // mesh.children[0].material.color = new THREE.Color( 0x87ffd7);
-      if(mesh) {
-        mesh.traverse((child) => {
-          if(child.material && child.material.color){
-            child.material.color = new THREE.Color( 0x87ffd7);
+      if (mesh) {
+        mesh.traverse(child => {
+          if (child.material && child.material.color) {
+            child.material.color = new THREE.Color(0x87ffd7);
           }
-        })
+        });
       }
-
-
 
       setTimeout(() => {
         // mesh.traverse((child) => {
         //   if(child.material){
         //     child.material.color = mesh.userData.baseColor;
-
         //   }
         // })
-
         // if(this.state.showOverlay){
         //   this.closeOverlay()
         // }
-
-
         // mesh.children[0].material.color = new THREE.Color(255,255,255);
-      }, 10000)
+      }, 10000);
 
       // console.log('highlightProject', mesh)
     }
-  }
+  };
 
   closeOverlay = () => {
     this.hideOverlay();
@@ -565,43 +699,34 @@ class BedfordSquare extends Component {
     //   this.turnOffAllClickableObjects()
     // }, 10000)
     this.resetTarget();
-
-  }
+  };
 
   turnOffAllClickableObjects = () => {
-    this.clickableObjects.forEach((mesh) => {
-      mesh.traverse((child) => {
-        if(child.material){
-          if(child.material && child.material.color){
-
-          child.material.color = mesh.userData.baseColor;
+    this.clickableObjects.forEach(mesh => {
+      mesh.traverse(child => {
+        if (child.material) {
+          if (child.material && child.material.color) {
+            child.material.color = mesh.userData.baseColor;
+          }
         }
-
-        }
-      })
-    })
-  }
+      });
+    });
+  };
 
   setIsReadyToTrue = () => {
     this.setState({
       isReady: true
-    })
+    });
     setTimeout(() => {
-
-
-    this.onWindowResize();
-
-    }, 10)
-
-
-
-  }
+      this.onWindowResize();
+    }, 10);
+  };
 
   closeInstructions = () => {
     this.setState({
       showInstructions: false
-    })
-  }
+    });
+  };
 
   render() {
     return (
@@ -616,7 +741,11 @@ class BedfordSquare extends Component {
         />
         {/* <Sidebar show={this.state.hasLoaded} projects={this.state.projects} pageInfo={this.state.pageInfo} onClick={this.selectProject.bind(this)} />
         <RightSidebar show={this.state.hasLoaded} pageInfo={this.state.pageInfo} onClick={this.selectProject.bind(this)} /> */}
-        <Navbar show={this.state.isReady} pageInfo={this.state.pageInfo} onClick={this.selectProject.bind(this)} />
+        <Navbar
+          show={this.state.isReady}
+          pageInfo={this.state.pageInfo}
+          onClick={this.selectProject.bind(this)}
+        />
         <LoadingPage
           show={!this.state.isReady}
           hasLoaded={this.state.hasLoaded}
@@ -624,8 +753,8 @@ class BedfordSquare extends Component {
           onClick={() => this.setIsReadyToTrue()}
           total={this.state.itemsTotal}
         />
-         <ARModal show={this.state.hasLoaded && !this.state.showOverlay} />
-         {/* <Instructions show={this.state.hasLoaded && this.state.showInstructions} onClick={this.selectProject.bind(this)} /> */}
+        <ARModal show={this.state.hasLoaded && !this.state.showOverlay} />
+        {/* <Instructions show={this.state.hasLoaded && this.state.showInstructions} onClick={this.selectProject.bind(this)} /> */}
       </>
     );
   }

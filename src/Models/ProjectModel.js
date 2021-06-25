@@ -18,6 +18,7 @@ export default class ProjectModel {
     viewed = false;
     collected = false;
     hasReTried = false;
+    fileName = '';
     
     constructor(id, title, sidebarTitle, description, unit, coordinate, worldCoordinates, rotation, modelUrl, glbUrl,usdzUrl, shouldDisplay, showInArAtHome) {
         this.id = id;
