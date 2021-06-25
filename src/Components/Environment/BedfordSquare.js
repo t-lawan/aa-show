@@ -332,7 +332,11 @@ class BedfordSquare extends Component {
       mesh.position.z = coordinate.z;
       mesh.visible = true
       mesh.children[0].userData.project = project;
-      let color = mesh.children && mesh.children[0] &&  mesh.children[0].material && mesh.children[0].material.color ? mesh.children[0].material.color : new THREE.Color(Colours.light_green)
+      let color = new THREE.Color(Colours.light_green)
+      if(mesh.children.length > 0 && mesh.children[0]&&  mesh.children[0].material && mesh.children[0].material.color){
+        color = mesh.children[0].material.color;
+
+      }
       this.baseColor = color;
       mesh.userData.baseColor = color;
       mesh.receiveShadow = true;
@@ -463,7 +467,10 @@ class BedfordSquare extends Component {
       // obj.material.color.r = 116;
       // obj.material.color.g = 251;
       // obj.material.color.b = 253;
-      obj.material.color = new THREE.Color( 0x87ffd7)
+      if(obj.material){
+        obj.material.color = new THREE.Color( 0x87ffd7)
+
+      }
       // console.log('OBJ', obj)
       let project = obj.parent.userData.project;
       if (project) {
