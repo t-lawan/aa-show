@@ -57,7 +57,8 @@ const ContentWrapper = styled.div`
   align-items: center;
   @media (max-width: ${size.tablet}) {
     height: 65%;
-    top: 20%;
+    top: 17.5%;
+    
     width: 100%;
     padding: 1%;
     padding-bottom: 0;
