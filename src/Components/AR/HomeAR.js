@@ -71,6 +71,7 @@ const ARLink = styled(Link)`
   padding: 1vw;
   cursor: cell;
   text-decoration: none;
+  margin-top: 1rem;
   /* background: red;  */
   /* color: ${Colours.orange}; */
 
