@@ -17,6 +17,7 @@ const NavbarWrapper = styled.div`
   padding: 2vh 4vw;
   overflow-y: scroll;
   display: ${props => (props.show ? "block" : "none")};
+  cursor: crosshair;
 
   @media (max-width: ${size.mobileL}) {
       display: ${props => (props.show ? "block" : "none")};
@@ -25,7 +26,6 @@ const NavbarWrapper = styled.div`
     width: 5px;
     height: 1vh;
     /* display:none; */
-    cursor: crosshair !important;
 
     @media (max-width: ${size.mobileL}) {
       width: 2.5px;

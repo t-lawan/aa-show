@@ -1,14 +1,23 @@
 import React from 'react';
 import styled from "styled-components";
+import { size } from '../Global/global.styles';
 
 const TickerWrapper = styled.div`
   position: absolute;
   bottom: 0;
   width: 100%;
   height: 7.5%;
+
   /* background: rgba(0, 255, 0, 0.6); */
   /* z-index: 100; */
   /* padding: 0.5rem; */
+  @media (max-width: ${size.mobileL}) {
+    /* font-size: 1.6vh; */
+  /* font-size: 2.5vh; */
+  height: 8.5%;
+
+
+  }
 `
 
 const MarqueeWrapper = styled.div`

@@ -34,7 +34,7 @@ const StyledModelViewer = styled(ModelViewerElement)`
 const ResetButton = styled.p`
   position: absolute;
   bottom: 1%;
-  left: 10%;
+  left: 5%;
   z-index: ${ZLayer.MODEL_VIEWER_LINKS};
   /* color: ${Colours.orange}; */
 
@@ -49,7 +49,7 @@ export const ActivateARButton = styled.p`
   border: none;
   position: absolute;
   bottom: 1%;
-  right: 10%;
+  right: 5%;
   /* padding: 1vw; */
 `;
 
@@ -67,7 +67,7 @@ const ModelViewer = styled('model_viewer')`
 const ARLink = styled(Link)`
   position: absolute;
   top: 1%;
-  left: 10%;
+  left: 5%;
   padding: 1vw;
   cursor: cell;
   text-decoration: none;
