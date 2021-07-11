@@ -210,7 +210,6 @@ class BedfordSquare extends Component {
     this.setupMouse();
     this.setupRayCaster();
     this.setupRenderer();
-    // this.setupPostProcessing()
   };
 
   initLoadingObjects = async () => {
@@ -250,6 +249,7 @@ class BedfordSquare extends Component {
         393.4537648390991,
         264.9690040807232
       );
+      // this.camera.lookAt(this.centerPoint)
     } else {
       this.camera.position.set(
         -378.84945316153204,
@@ -257,8 +257,6 @@ class BedfordSquare extends Component {
         311.5819434772792
       );
     }
-    // this.camera.position.y = 40;
-    // this.camera.position.z = 40;
   };
 
   setupPostProcessing = () => {
@@ -292,6 +290,7 @@ class BedfordSquare extends Component {
     this.controls.enablePan = false;
     this.controls.target = this.centerPoint;
     this.controls.maxPolarAngle = Math.PI / 2;
+    this.controls.update()
   };
 
   setupRenderer = () => {
@@ -541,20 +540,20 @@ class BedfordSquare extends Component {
 
   addEventListener = () => {
     window.addEventListener("resize", this.onWindowResize);
-    document.addEventListener("mousemove", this.onDocumentMouseMove, false);
+    // document.addEventListener("mousemove", this.onDocumentMouseMove, false);
     document.addEventListener("dblclick", this.onDoubleClick, false);
-    document.addEventListener("touchstart", this.onTouchStart, false);
-    document.addEventListener("touchend", this.onTouchEnd, false);
-    document.addEventListener("touchmove", this.onTouchMove, false);
+    // document.addEventListener("touchstart", this.onTouchStart, false);
+    // document.addEventListener("touchend", this.onTouchEnd, false);
+    // document.addEventListener("touchmove", this.onTouchMove, false);
   };
 
   removeEventListener = () => {
     window.removeEventListener("resize", this.onWindowResize);
-    document.removeEventListener("mousemove", this.onDocumentMouseMove);
+    // document.removeEventListener("mousemove", this.onDocumentMouseMove);
     document.removeEventListener("dblclick", this.onDoubleClick);
-    document.removeEventListener("touchstart", this.onTouchStart);
-    document.removeEventListener("touchend", this.onTouchEnd);
-    document.removeEventListener("touchmove", this.onTouchMove);
+    // document.removeEventListener("touchstart", this.onTouchStart);
+    // document.removeEventListener("touchend", this.onTouchEnd);
+    // document.removeEventListener("touchmove", this.onTouchMove);
   };
 
   onTouchStart = () => {};
