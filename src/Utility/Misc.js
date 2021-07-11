@@ -22,7 +22,11 @@ export const PageURls = {
     AR_BEDFORD_SQUARE: {
         id: 'AR_BEDFORD_SQUARE',
         url: '/ar-bedford-square',
-    }
+    },
+    TEST: {
+        id: 'TEST',
+        url: '/test',
+    },
 }
 
 

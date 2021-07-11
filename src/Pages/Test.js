@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Colours, size } from "../Components/Global/global.styles";
 import { useLocation } from "react-router-dom";
 import TestEnvironment from "../Components/Environment/TestEnvironment";
+import BedfordSquare from "../Components/Environment/BedfordSquare";
 
 const TestWrapper = styled.div``;
 
@@ -13,18 +14,6 @@ export const Title = styled.p`
   padding: 0;
 `;
 
-export const TwoColumnGrid = styled.div`
-  display: grid;
-  grid-template-columns: 3fr 5fr;
-  grid-column-gap: 1rem;
-  grid-row-gap: 10rem;
-  padding: 1rem;
-  @media (max-width: ${size.tabletL}) {
-    /* width: 90%; */
-    grid-row-gap: 1rem;
-    grid-template-columns: 1fr;
-  }
-`;
 
 
 const Test = () => {
@@ -35,7 +24,7 @@ const Test = () => {
   return (
     <Layout>
       <TestWrapper ref={homeWrapper}>
-        <TestEnvironment />
+        <BedfordSquare />
       </TestWrapper>
     </Layout>
   );

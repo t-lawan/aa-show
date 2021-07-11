@@ -297,7 +297,8 @@ class BedfordSquare extends Component {
   setupRenderer = () => {
     this.renderer = new THREE.WebGLRenderer({
       antialias: true,
-      premultipliedAlpha: true
+      // premultipliedAlpha: true,
+      // powerPreference: "low-power"
     });
     // this.renderer.setClearColor(Colours.background);
     this.renderer.shadowMap.enabled = true;
@@ -473,7 +474,8 @@ class BedfordSquare extends Component {
             mesh.position.z = coordinate.z;
             mesh.visible = true;
             mesh.children[0].userData.project = project;
-            let color = new THREE.Color(Colours.light_green);
+            let color = new THREE.Color(0.0030350000597536564, 1, 0.3094690144062042);
+            
             if (
               mesh.children.length > 0 &&
               mesh.children[0] &&
@@ -484,6 +486,7 @@ class BedfordSquare extends Component {
             }
             this.baseColor = color;
             mesh.userData.baseColor = color;
+            // console.log("color", color)÷
             mesh.receiveShadow = true;
             mesh.castShadow = true;
             // console.log('ADD MESH', mesh)
@@ -496,9 +499,6 @@ class BedfordSquare extends Component {
           //   console.log("ERROR", error);
           // }
         // );
-      } else {
-        console.log("PROJECT", project.unit);
-
       }
 
     // , undefined, reject)
